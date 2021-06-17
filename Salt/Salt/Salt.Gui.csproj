@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Salt.Business\Salt.Business\Salt.Business.csproj" />
+    <ProjectReference Include="..\..\Salt.Interfaces\Salt.Interfaces\Salt.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Salt.Shared\Salt.Shared\Salt.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

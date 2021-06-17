@@ -1,0 +1,184 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0-windows7.0": {
+      "Salt.Business/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Salt.Contacts": "1.0.0",
+          "Salt.Interfaces": "1.0.0",
+          "Salt.Messages": "1.0.0",
+          "Salt.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Salt.Business.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Salt.Business.dll": {}
+        }
+      },
+      "Salt.Contacts/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Salt.Interfaces": "1.0.0",
+          "Salt.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Salt.Contacts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Salt.Contacts.dll": {}
+        }
+      },
+      "Salt.Interfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Salt.Interfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Salt.Interfaces.dll": {}
+        }
+      },
+      "Salt.Messages/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Salt.Interfaces": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Salt.Messages.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Salt.Messages.dll": {}
+        }
+      },
+      "Salt.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Salt.Interfaces": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Salt.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Salt.Shared.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Salt.Business/1.0.0": {
+      "type": "project",
+      "path": "../../Salt.Business/Salt.Business/Salt.Business.csproj",
+      "msbuildProject": "../../Salt.Business/Salt.Business/Salt.Business.csproj"
+    },
+    "Salt.Contacts/1.0.0": {
+      "type": "project",
+      "path": "../../Salt.Contacts/Salt.Contacts/Salt.Contacts.csproj",
+      "msbuildProject": "../../Salt.Contacts/Salt.Contacts/Salt.Contacts.csproj"
+    },
+    "Salt.Interfaces/1.0.0": {
+      "type": "project",
+      "path": "../../Salt.Interfaces/Salt.Interfaces/Salt.Interfaces.csproj",
+      "msbuildProject": "../../Salt.Interfaces/Salt.Interfaces/Salt.Interfaces.csproj"
+    },
+    "Salt.Messages/1.0.0": {
+      "type": "project",
+      "path": "../../Salt.Messages/Salt.Messages/Salt.Messages.csproj",
+      "msbuildProject": "../../Salt.Messages/Salt.Messages/Salt.Messages.csproj"
+    },
+    "Salt.Shared/1.0.0": {
+      "type": "project",
+      "path": "../../Salt.Shared/Salt.Shared/Salt.Shared.csproj",
+      "msbuildProject": "../../Salt.Shared/Salt.Shared/Salt.Shared.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0-windows7.0": [
+      "Salt.Business >= 1.0.0",
+      "Salt.Interfaces >= 1.0.0",
+      "Salt.Shared >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\danie\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Projekt\\Salt\\Salt\\Salt\\Salt.Gui.csproj",
+      "projectName": "Salt.Gui",
+      "projectPath": "C:\\Projekt\\Salt\\Salt\\Salt\\Salt.Gui.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "C:\\Projekt\\Salt\\Salt\\Salt\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0-windows7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "projectReferences": {
+            "C:\\Projekt\\Salt\\Salt.Business\\Salt.Business\\Salt.Business.csproj": {
+              "projectPath": "C:\\Projekt\\Salt\\Salt.Business\\Salt.Business\\Salt.Business.csproj"
+            },
+            "C:\\Projekt\\Salt\\Salt.Interfaces\\Salt.Interfaces\\Salt.Interfaces.csproj": {
+              "projectPath": "C:\\Projekt\\Salt\\Salt.Interfaces\\Salt.Interfaces\\Salt.Interfaces.csproj"
+            },
+            "C:\\Projekt\\Salt\\Salt.Shared\\Salt.Shared\\Salt.Shared.csproj": {
+              "projectPath": "C:\\Projekt\\Salt\\Salt.Shared\\Salt.Shared\\Salt.Shared.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
