@@ -1,9 +1,0 @@
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\bin\Debug\netstandard2.0\Salt.Interfaces.deps.json
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\bin\Debug\netstandard2.0\Salt.Interfaces.dll
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\bin\Debug\netstandard2.0\Salt.Interfaces.pdb
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\obj\Debug\netstandard2.0\Salt.Interfaces.csproj.AssemblyReference.cache
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\obj\Debug\netstandard2.0\Salt.Interfaces.AssemblyInfoInputs.cache
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\obj\Debug\netstandard2.0\Salt.Interfaces.AssemblyInfo.cs
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\obj\Debug\netstandard2.0\Salt.Interfaces.csproj.CoreCompileInputs.cache
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\obj\Debug\netstandard2.0\Salt.Interfaces.dll
-C:\Projekt\Salt\Salt.Interfaces\Salt.Interfaces\obj\Debug\netstandard2.0\Salt.Interfaces.pdb

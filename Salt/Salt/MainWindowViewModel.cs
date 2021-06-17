@@ -32,7 +32,7 @@ namespace Salt
 
             string keyName = "";
 
-            foreach (var message in SaltApp.GetMessagesByKeyName(keyName))
+            foreach (var message in SaltApp.GetMessagesByKeyName("", keyName))
             {
                 MessageHeaders.Add(message.Subject);
             }

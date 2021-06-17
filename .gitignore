@@ -3,4 +3,4 @@ obj
 .vs
 TestResults
 Debug
-*.suo
+.suo

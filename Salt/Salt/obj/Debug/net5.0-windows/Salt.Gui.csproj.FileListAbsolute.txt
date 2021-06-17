@@ -1,6 +1,0 @@
-C:\Projekt\Salt\Salt\Salt\obj\Debug\net5.0-windows\Salt.Gui.csproj.AssemblyReference.cache
-C:\Projekt\Salt\Salt\Salt\obj\Debug\net5.0-windows\MainWindow.g.cs
-C:\Projekt\Salt\Salt\Salt\obj\Debug\net5.0-windows\App.g.cs
-C:\Projekt\Salt\Salt\Salt\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
-C:\Projekt\Salt\Salt\Salt\obj\Debug\net5.0-windows\Salt.Gui_MarkupCompile.cache
-C:\Projekt\Salt\Salt\Salt\obj\Debug\net5.0-windows\Salt.Gui_MarkupCompile.lref
