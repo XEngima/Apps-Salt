@@ -1,0 +1,14 @@
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\bin\Debug\netstandard2.0\Salt.Contacts.deps.json
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\bin\Debug\netstandard2.0\Salt.Contacts.dll
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\bin\Debug\netstandard2.0\Salt.Contacts.pdb
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\bin\Debug\netstandard2.0\Salt.Interfaces.dll
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\bin\Debug\netstandard2.0\Salt.Shared.dll
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\bin\Debug\netstandard2.0\Salt.Interfaces.pdb
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\bin\Debug\netstandard2.0\Salt.Shared.pdb
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\obj\Debug\netstandard2.0\Salt.Contacts.csproj.AssemblyReference.cache
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\obj\Debug\netstandard2.0\Salt.Contacts.AssemblyInfoInputs.cache
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\obj\Debug\netstandard2.0\Salt.Contacts.AssemblyInfo.cs
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\obj\Debug\netstandard2.0\Salt.Contacts.csproj.CoreCompileInputs.cache
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\obj\Debug\netstandard2.0\Salt.Contacts.csproj.CopyComplete
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\obj\Debug\netstandard2.0\Salt.Contacts.dll
+C:\Projekt\Salt\Salt.Contacts\Salt.Contacts\obj\Debug\netstandard2.0\Salt.Contacts.pdb

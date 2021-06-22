@@ -10,7 +10,7 @@
         "projectUniqueName": "C:\\Projekt\\Salt\\Salt.Business\\Salt.Business\\Salt.Business.csproj",
         "projectName": "Salt.Business",
         "projectPath": "C:\\Projekt\\Salt\\Salt.Business\\Salt.Business\\Salt.Business.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\SCBDEIS\\.nuget\\packages\\",
         "outputPath": "C:\\Projekt\\Salt\\Salt.Business\\Salt.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
@@ -18,7 +18,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SCBDEIS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,6 +27,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://tfsprod:8080/tfs/SCB/_packaging/GDB/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -85,7 +86,7 @@
         "projectUniqueName": "C:\\Projekt\\Salt\\Salt.Contacts\\Salt.Contacts\\Salt.Contacts.csproj",
         "projectName": "Salt.Contacts",
         "projectPath": "C:\\Projekt\\Salt\\Salt.Contacts\\Salt.Contacts\\Salt.Contacts.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\SCBDEIS\\.nuget\\packages\\",
         "outputPath": "C:\\Projekt\\Salt\\Salt.Contacts\\Salt.Contacts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
@@ -93,7 +94,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SCBDEIS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -102,6 +103,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://tfsprod:8080/tfs/SCB/_packaging/GDB/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -154,7 +156,7 @@
         "projectUniqueName": "C:\\Projekt\\Salt\\Salt.Interfaces\\Salt.Interfaces\\Salt.Interfaces.csproj",
         "projectName": "Salt.Interfaces",
         "projectPath": "C:\\Projekt\\Salt\\Salt.Interfaces\\Salt.Interfaces\\Salt.Interfaces.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\SCBDEIS\\.nuget\\packages\\",
         "outputPath": "C:\\Projekt\\Salt\\Salt.Interfaces\\Salt.Interfaces\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
@@ -162,7 +164,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SCBDEIS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -171,6 +173,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://tfsprod:8080/tfs/SCB/_packaging/GDB/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -216,7 +219,7 @@
         "projectUniqueName": "C:\\Projekt\\Salt\\Salt.Messages\\Salt.Messages\\Salt.Messages.csproj",
         "projectName": "Salt.Messages",
         "projectPath": "C:\\Projekt\\Salt\\Salt.Messages\\Salt.Messages\\Salt.Messages.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\SCBDEIS\\.nuget\\packages\\",
         "outputPath": "C:\\Projekt\\Salt\\Salt.Messages\\Salt.Messages\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
@@ -224,7 +227,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SCBDEIS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -233,6 +236,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://tfsprod:8080/tfs/SCB/_packaging/GDB/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -260,6 +264,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             }
           },
           "imports": [
@@ -282,7 +290,7 @@
         "projectUniqueName": "C:\\Projekt\\Salt\\Salt.Shared\\Salt.Shared\\Salt.Shared.csproj",
         "projectName": "Salt.Shared",
         "projectPath": "C:\\Projekt\\Salt\\Salt.Shared\\Salt.Shared\\Salt.Shared.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\SCBDEIS\\.nuget\\packages\\",
         "outputPath": "C:\\Projekt\\Salt\\Salt.Shared\\Salt.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
@@ -290,7 +298,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SCBDEIS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -299,6 +307,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://tfsprod:8080/tfs/SCB/_packaging/GDB/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

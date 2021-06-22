@@ -22,9 +22,14 @@ namespace Salt.Business
             return ContactStore.GetAllContacts();
         }
 
-        public IEnumerable<IMessage> GetMessagesByKeyName(string contactId, string keyName)
+        public IMessage GetMessage(int id)
         {
-            return MessageStore.FetchMessages(keyName);
+            return MessageStore.GetMessage(id);
+        }
+
+        public IEnumerable<IMessage> GetMessages(Guid contactId)
+        {
+            return MessageStore.GetMessages(contactId);
         }
     }
 }

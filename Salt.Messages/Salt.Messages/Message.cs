@@ -9,7 +9,7 @@ namespace Salt.Messages
     {
         public Message()
         {
-            Id = Guid.NewGuid();
+            Id = 0;
             KeyNameHash = "";
             Header = "";
             Subject = "";
@@ -17,9 +17,9 @@ namespace Salt.Messages
             KeyStartPos = 0;
         }
 
-        public Message(string keyNameHash, string header, string subject, string content, int keyStartPos)
-            :this()
+        public Message(int id, string keyNameHash, string header, string subject, string content, int keyStartPos)
         {
+            Id = id;
             KeyNameHash = keyNameHash;
             Header = header;
             Subject = subject;
@@ -27,7 +27,7 @@ namespace Salt.Messages
             KeyStartPos = keyStartPos;
         }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string KeyNameHash { get; set; }
         public string Header { get; set; }
         public string Subject { get; set; }

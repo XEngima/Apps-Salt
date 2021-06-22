@@ -12,9 +12,9 @@ namespace Salt.Contacts
         {
             return new List<IContactItem>
             {
-                new ContactItem { Id = Guid.NewGuid(), Name = "Tobias", KeyName = "abc" },
-                new ContactItem { Id = Guid.NewGuid(), Name = "Samuel", KeyName = "abc" },
-                new ContactItem { Id = Guid.NewGuid(), Name = "Daniel", KeyName = "abc" },
+                new ContactItem { Id = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf200"), Name = "Tobias", KeyName = "abc" },
+                new ContactItem { Id = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf300"), Name = "Samuel", KeyName = "abc" },
+                new ContactItem { Id = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf400"), Name = "Hanna", KeyName = "abc" },
             };
         }
     }

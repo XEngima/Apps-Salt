@@ -6,7 +6,7 @@ namespace Salt.Interfaces
 {
     public interface IMessage
     {
-        Guid Id { get; set; }
+        int Id { get; set; }
 
         string KeyNameHash { get; set; }
 

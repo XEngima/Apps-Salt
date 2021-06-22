@@ -1,0 +1,12 @@
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\bin\Debug\netstandard2.0\Salt.Messages.deps.json
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\bin\Debug\netstandard2.0\Salt.Messages.dll
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\bin\Debug\netstandard2.0\Salt.Messages.pdb
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\bin\Debug\netstandard2.0\Salt.Interfaces.dll
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\bin\Debug\netstandard2.0\Salt.Interfaces.pdb
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\obj\Debug\netstandard2.0\Salt.Messages.csproj.AssemblyReference.cache
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\obj\Debug\netstandard2.0\Salt.Messages.AssemblyInfoInputs.cache
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\obj\Debug\netstandard2.0\Salt.Messages.AssemblyInfo.cs
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\obj\Debug\netstandard2.0\Salt.Messages.csproj.CoreCompileInputs.cache
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\obj\Debug\netstandard2.0\Salt.Messages.csproj.CopyComplete
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\obj\Debug\netstandard2.0\Salt.Messages.dll
+C:\Projekt\Salt\Salt.Messages\Salt.Messages\obj\Debug\netstandard2.0\Salt.Messages.pdb

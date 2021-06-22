@@ -8,6 +8,8 @@ namespace Salt.Interfaces
     {
         IEnumerable<IContactItem> GetContacts();
 
-        IEnumerable<IMessage> GetMessagesByKeyName(string contactId, string keyName);
+        IEnumerable<IMessage> GetMessages(Guid contactId);
+
+        IMessage GetMessage(int id);
     }
 }

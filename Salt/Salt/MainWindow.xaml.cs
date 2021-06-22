@@ -30,7 +30,13 @@ namespace Salt
         private void ContactsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataContext.LoadMessageHeaders();
-            MessageBox.Show(DataContext.SelectedContactId.ToString());
+            DataContext.MessageContent = "";
+            //MessageBox.Show(DataContext.SelectedContactId.ToString());
+        }
+
+        private void HeaderListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataContext.ShowMessage();
         }
     }
 }
