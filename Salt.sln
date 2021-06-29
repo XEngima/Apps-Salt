@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salt.Contacts", "Salt.Conta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salt.Cypher", "Salt.Cypher\Salt.Cypher.csproj", "{5571866B-C215-4CAF-ADD5-E5EA485EAD94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salt.Test", "Salt.Test\Salt.Test.csproj", "{222A86AF-1E9D-4E82-839D-B7042475A887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5571866B-C215-4CAF-ADD5-E5EA485EAD94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5571866B-C215-4CAF-ADD5-E5EA485EAD94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5571866B-C215-4CAF-ADD5-E5EA485EAD94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222A86AF-1E9D-4E82-839D-B7042475A887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222A86AF-1E9D-4E82-839D-B7042475A887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222A86AF-1E9D-4E82-839D-B7042475A887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222A86AF-1E9D-4E82-839D-B7042475A887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
