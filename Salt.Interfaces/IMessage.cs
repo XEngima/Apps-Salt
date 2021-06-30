@@ -17,5 +17,7 @@ namespace Salt.Interfaces
         string Content { get; set; }
 
         int KeyStartPos { get; set; }
+
+        int TotalLength { get; }
     }
 }

@@ -15,6 +15,7 @@ namespace Salt.Messages
             Subject = "";
             Content = "";
             KeyStartPos = 0;
+            TotalLength = 0;
         }
 
         public Message(int id, string keyNameHash, string header, string subject, string content, int keyStartPos)
@@ -25,6 +26,7 @@ namespace Salt.Messages
             Subject = subject;
             Content = content;
             KeyStartPos = keyStartPos;
+            TotalLength = header.Length + subject.Length + content.Length;
         }
 
         public int Id { get; set; }
@@ -33,5 +35,6 @@ namespace Salt.Messages
         public string Subject { get; set; }
         public string Content { get; set; }
         public int KeyStartPos { get; set; }
+        public int TotalLength { get; private set; }
     }
 }

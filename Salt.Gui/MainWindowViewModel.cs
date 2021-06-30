@@ -30,7 +30,7 @@ namespace Salt
 
         public MainWindowViewModel()
         {
-            SaltApp = new SaltApp();
+            SaltApp = new SaltApp(Factory.CreateContactStore(), Factory.CreateMessageStore());
 
             Contacts = new ObservableCollection<IContactItem>();
             MessageHeaders = new ObservableCollection<IMessage>();
@@ -61,7 +61,7 @@ namespace Salt
 
         public void ShowMessage()
         {
-            MessageContent = SaltApp.GetMessage(SelectedMessageId).Content;
+            MessageContent = SaltApp.GetDecryptedMessage(SelectedMessageId).Content;
         }
 
         private ISaltApp SaltApp { get; set; }

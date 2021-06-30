@@ -10,6 +10,6 @@ namespace Salt.Interfaces
 
         IEnumerable<IMessage> GetMessages(Guid contactId);
 
-        IMessage GetMessage(int id);
+        IMessage GetDecryptedMessage(int id);
     }
 }
