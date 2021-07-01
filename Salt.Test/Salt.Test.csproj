@@ -49,10 +49,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KeyStoreTests.cs" />
     <Compile Include="SaltAppTests.cs" />
     <Compile Include="CryptographerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCryptographer.cs" />
+    <Compile Include="TestHashGenerator.cs" />
+    <Compile Include="TestKeyStore.cs" />
+    <Compile Include="TestKeyStoreItem.cs" />
     <Compile Include="TestMessageStore.cs" />
   </ItemGroup>
   <ItemGroup>

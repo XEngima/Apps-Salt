@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salt.Cypher", "Salt.Cypher\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salt.Test", "Salt.Test\Salt.Test.csproj", "{222A86AF-1E9D-4E82-839D-B7042475A887}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salt.Keys", "Salt.Keys\Salt.Keys.csproj", "{A0B5EC54-A5BA-475A-91AB-2A4F24A12160}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{222A86AF-1E9D-4E82-839D-B7042475A887}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{222A86AF-1E9D-4E82-839D-B7042475A887}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{222A86AF-1E9D-4E82-839D-B7042475A887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B5EC54-A5BA-475A-91AB-2A4F24A12160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B5EC54-A5BA-475A-91AB-2A4F24A12160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B5EC54-A5BA-475A-91AB-2A4F24A12160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B5EC54-A5BA-475A-91AB-2A4F24A12160}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

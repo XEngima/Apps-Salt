@@ -10,16 +10,24 @@ namespace Salt.Test
 {
     public class TestCryptographer : ICryptographer
     {
-        public string Decrypt(string message, string keyPart)
+        public string Decrypt(string text, string keyPart)
         {
-            if (message == "jeH")
+            if (!string.IsNullOrEmpty(keyPart))
             {
-                return "Hej";
-            }
+                if (text == "redaeh")
+                {
+                    return "header";
+                }
 
-            if (message == "nasjeH")
-            {
-                return "Hejsan";
+                if (text == "jeH")
+                {
+                    return "Hej";
+                }
+
+                if (text == "nasjeH")
+                {
+                    return "Hejsan";
+                }
             }
 
             return "";

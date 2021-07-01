@@ -10,6 +10,13 @@ namespace Salt.Test
 {
     public class TestMessageStore : IMessageStore
     {
+        public TestMessageStore()
+        {
+            Messages = new List<IMessage>();
+        }
+
+        public IEnumerable<IMessage> Messages { get; set; }
+
         public IEnumerable<IMessage> FetchMessages(string keyName)
         {
             return null;
@@ -17,9 +24,12 @@ namespace Salt.Test
 
         public IMessage GetMessage(int id)
         {
-            if (id == 10)
+            foreach (var message in Messages)
             {
-                return new Message(10, "", "header", "jeH", "nasjeH", 0);
+                if (message.Id == id)
+                {
+                    return message;
+                }
             }
 
             return null;

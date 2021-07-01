@@ -6,8 +6,8 @@ namespace Salt.Interfaces
 {
     public interface ICryptographer
     {
-        string Encrypt(string message, string keyPart);
+        string Encrypt(string text, string keyPart);
 
-        string Decrypt(string message, string keyPart);
+        string Decrypt(string text, string keyPart);
     }
 }
