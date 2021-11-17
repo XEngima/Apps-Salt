@@ -54,10 +54,10 @@ namespace Salt.Business
             return ContactStore.GetAllContacts();
         }
 
-        public IMessage GetDecryptedMessage(int id)
+        public IMessage GetDecryptedMessage(Guid id)
         {
             var message = MessageStore.GetMessage(id);
-            var key = KeyStore.GetKeyPart(message.KeyNameHash, message.KeyStartPos, message.TotalLength);
+            var key = KeyStore.GetKeyPart(message.KeyName, message.KeyStartPos, message.Header.Length + message.Subject.Length + message.Content.Length);
 
             return message.Decrypt(Cryptographer, key);
         }

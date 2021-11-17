@@ -15,7 +15,7 @@ namespace Salt.Business
             string subjectKeyPart = keyPart.Substring(message.Header.Length, message.Subject.Length);
             string contentKeyPart = keyPart.Substring(message.Header.Length + message.Subject.Length, message.Content.Length);
 
-            return new Message(message.Id, message.KeyNameHash, cryptographer.Decrypt(message.Header, headerKeyPart), cryptographer.Decrypt(message.Subject, subjectKeyPart), cryptographer.Decrypt(message.Content, contentKeyPart), message.KeyStartPos);
+            return new Message(message.Id, message.KeyName, cryptographer.Decrypt(message.Header, headerKeyPart), cryptographer.Decrypt(message.Subject, subjectKeyPart), cryptographer.Decrypt(message.Content, contentKeyPart), message.KeyStartPos);
         }
     }
 }

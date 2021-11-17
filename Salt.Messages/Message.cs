@@ -9,8 +9,8 @@ namespace Salt.Messages
     {
         public Message()
         {
-            Id = 0;
-            KeyNameHash = "";
+            Id = Guid.NewGuid();
+            KeyName = "";
             Header = "";
             Subject = "";
             Content = "";
@@ -18,10 +18,10 @@ namespace Salt.Messages
             TotalLength = 0;
         }
 
-        public Message(int id, string keyNameHash, string header, string subject, string content, int keyStartPos)
+        public Message(Guid id, string keyName, string header, string subject, string content, int keyStartPos)
         {
             Id = id;
-            KeyNameHash = keyNameHash;
+            KeyName = keyName;
             Header = header;
             Subject = subject;
             Content = content;
@@ -29,8 +29,8 @@ namespace Salt.Messages
             TotalLength = header.Length + subject.Length + content.Length;
         }
 
-        public int Id { get; set; }
-        public string KeyNameHash { get; set; }
+        public Guid Id { get; set; }
+        public string KeyName { get; set; }
         public string Header { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }

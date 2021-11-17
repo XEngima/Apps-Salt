@@ -22,7 +22,7 @@ namespace Salt.Test
             {
                 Messages = new List<IMessage>
                 {
-                    new Message(10, "MyKey123", "redaeh", "jeH", "nasjeH", 0)
+                    new Message(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "MyKey123", "redaeh", "jeH", "nasjeH", 0)
                 }
             };
 
@@ -38,7 +38,7 @@ namespace Salt.Test
             var saltApp = new SaltApp(null, messageStore, keyStore, hashGenerator, cryptographer);
 
             // Act
-            var message = saltApp.GetDecryptedMessage(10);
+            var message = saltApp.GetDecryptedMessage(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"));
 
             // Assert
             Assert.AreEqual("header", message.Header);

@@ -85,9 +85,9 @@ namespace Salt
             }
         }
 
-        private int _selectedMessageId { get; set; }
+        private Guid _selectedMessageId { get; set; }
 
-        public int SelectedMessageId
+        public Guid SelectedMessageId
         {
             get { return _selectedMessageId; }
             set

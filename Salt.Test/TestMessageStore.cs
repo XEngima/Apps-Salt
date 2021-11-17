@@ -22,7 +22,7 @@ namespace Salt.Test
             return null;
         }
 
-        public IMessage GetMessage(int id)
+        public IMessage GetMessage(Guid id)
         {
             foreach (var message in Messages)
             {

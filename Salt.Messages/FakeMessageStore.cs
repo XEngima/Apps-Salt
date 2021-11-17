@@ -21,7 +21,7 @@ namespace Salt.Messages
                 Sender = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf200") // Tobias
             };
 
-            _messages.Add(new Message(0, "", JsonConvert.SerializeObject(header), "Stjärntecknet", "Det stämmer! Det är mäktigt detta!", 0));
+            _messages.Add(new Message(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "", JsonConvert.SerializeObject(header), "Stjärntecknet", "Det stämmer! Det är mäktigt detta!", 0));
 
             header = new MessageHeader
             {
@@ -29,7 +29,7 @@ namespace Salt.Messages
                 Sender = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf300") // Samuel
             };
 
-            _messages.Add(new Message(1, "", JsonConvert.SerializeObject(header), "Mike Lindell", "Grattis! Du får en kudde!", 0));
+            _messages.Add(new Message(Guid.Parse("00000002-9575-4f71-ba28-cf09c5fdf200"), "", JsonConvert.SerializeObject(header), "Mike Lindell", "Grattis! Du får en kudde!", 0));
         }
 
         public IEnumerable<IMessage> FetchMessages(string keyName)
@@ -37,7 +37,7 @@ namespace Salt.Messages
             return new List<IMessage>();
         }
 
-        public IMessage GetMessage(int id)
+        public IMessage GetMessage(Guid id)
         {
             return _messages.FirstOrDefault(m => m.Id == id);
         }

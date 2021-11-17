@@ -6,9 +6,9 @@ namespace Salt.Interfaces
 {
     public interface IMessage
     {
-        int Id { get; set; }
+        Guid Id { get; set; }
 
-        string KeyNameHash { get; set; }
+        string KeyName { get; set; }
 
         string Header { get; set; }
 
@@ -17,7 +17,5 @@ namespace Salt.Interfaces
         string Content { get; set; }
 
         int KeyStartPos { get; set; }
-
-        int TotalLength { get; }
     }
 }
