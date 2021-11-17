@@ -6,9 +6,9 @@ namespace Salt.Interfaces
 {
     public interface IMessageStore
     {
-        IEnumerable<IMessage> FetchMessages(string keyName);
+        IEnumerable<IMessage> GetMessagesByKeyName(string keyName);
 
-        IEnumerable<IMessage> GetMessages(Guid contactId);
+        void SaveMessage(IMessage message);
 
         IMessage GetMessage(Guid id);
     }

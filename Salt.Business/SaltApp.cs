@@ -64,7 +64,10 @@ namespace Salt.Business
 
         public IEnumerable<IMessage> GetMessages(Guid contactId)
         {
-            return MessageStore.GetMessages(contactId);
+            // JAG ÄR HÄR. Måste hämta nyckeln associerad med kontakten och dekryptera messageheadern för att hitta vilka meddelanden som hör till kontakten.
+            var messages = MessageStore.GetMessagesByKeyName("");
+
+            return messages;
         }
     }
 }

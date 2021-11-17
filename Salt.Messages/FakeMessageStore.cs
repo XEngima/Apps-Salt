@@ -42,21 +42,26 @@ namespace Salt.Messages
             return _messages.FirstOrDefault(m => m.Id == id);
         }
 
-        public IEnumerable<IMessage> GetMessages(Guid contactId)
+        public IEnumerable<IMessage> GetMessagesByKeyName(string keyName)
         {
             var messages = new List<IMessage>();
 
             foreach (var message in _messages)
             {
-                var header = JsonConvert.DeserializeObject<MessageHeader>(message.Header);
+                //var header = JsonConvert.DeserializeObject<MessageHeader>(message.Header);
 
-                if (header.Sender == contactId)
+                if (message.KeyName == keyName)
                 {
                     messages.Add(message);
                 }
             }
 
             return messages;
+        }
+
+        public void SaveMessage(IMessage message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

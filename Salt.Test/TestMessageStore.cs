@@ -17,11 +17,6 @@ namespace Salt.Test
 
         public IEnumerable<IMessage> Messages { get; set; }
 
-        public IEnumerable<IMessage> FetchMessages(string keyName)
-        {
-            return null;
-        }
-
         public IMessage GetMessage(Guid id)
         {
             foreach (var message in Messages)
@@ -35,9 +30,14 @@ namespace Salt.Test
             return null;
         }
 
-        public IEnumerable<IMessage> GetMessages(Guid contactId)
+        public IEnumerable<IMessage> GetMessagesByKeyName(string keyName)
         {
             return null;
+        }
+
+        public void SaveMessage(IMessage message)
+        {
+            throw new NotImplementedException();
         }
     }
 }
