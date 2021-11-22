@@ -12,14 +12,14 @@ namespace Salt.Test
     {
         public TestMessageStore()
         {
-            Messages = new List<IMessageStoreItem>();
+            MessageStoreItems = new List<IMessageStoreItem>();
         }
 
-        public IEnumerable<IMessageStoreItem> Messages { get; set; }
+        public IEnumerable<IMessageStoreItem> MessageStoreItems { get; set; }
 
         public IMessageStoreItem GetMessageStoreItem(Guid id)
         {
-            foreach (var message in Messages)
+            foreach (var message in MessageStoreItems)
             {
                 if (message.Id == id)
                 {
@@ -32,7 +32,17 @@ namespace Salt.Test
 
         public IEnumerable<IMessageStoreItem> GetMessagesByKeyName(string keyName)
         {
-            return null;
+            var items = new List<IMessageStoreItem>();
+
+            foreach (var messageStoreItem in MessageStoreItems)
+            {
+                if (messageStoreItem.KeyName == keyName)
+                {
+                    items.Add(messageStoreItem);
+                }
+            }
+
+            return new List<IMessageStoreItem>();
         }
 
         public void SaveMessage(IMessageStoreItem message)

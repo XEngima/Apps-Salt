@@ -47,7 +47,7 @@ namespace Salt.Business
         private ICryptographer Cryptographer { get; set; }
 
 
-        public IEnumerable<IContactItem> GetContacts()
+        public IEnumerable<IContactStoreItem> GetContacts()
         {
             return ContactStore.GetAllContacts();
         }

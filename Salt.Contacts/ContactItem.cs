@@ -3,7 +3,7 @@ using System;
 
 namespace Salt.Contacts
 {
-    public class ContactItem : IContactItem
+    public class ContactItem : IContactStoreItem
     {
         public Guid Id { get; set; }
 

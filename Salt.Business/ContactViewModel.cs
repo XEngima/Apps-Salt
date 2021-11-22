@@ -4,7 +4,7 @@ using Salt.Contacts;
 
 namespace Salt.Business
 {
-    public class ContactViewModel : IContactItem
+    public class ContactViewModel : IContactStoreItem
     {
         public Guid Id { get; set; }
 

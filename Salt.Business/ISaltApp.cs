@@ -9,7 +9,7 @@ namespace Salt.Business
 {
     public interface ISaltApp
     {
-        IEnumerable<IContactItem> GetContacts();
+        IEnumerable<IContactStoreItem> GetContacts();
 
         IEnumerable<IMessageStoreItem> GetMessageStoreItemsByContactId(Guid contactId);
 

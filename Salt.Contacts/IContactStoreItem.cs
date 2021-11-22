@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Salt.Contacts
 {
-    public interface IContactItem
+    public interface IContactStoreItem
     {
         Guid Id { get; set; }
 

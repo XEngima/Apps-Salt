@@ -6,6 +6,6 @@ namespace Salt.Contacts
 {
     public interface IContactStore
     {
-        IEnumerable<IContactItem> GetAllContacts();
+        IEnumerable<IContactStoreItem> GetAllContacts();
     }
 }

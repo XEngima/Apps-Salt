@@ -32,8 +32,8 @@ namespace Salt
         {
             SaltApp = new SaltApp(Factory.CreateContactStore(), Factory.CreateMessageStore());
 
-            Contacts = new ObservableCollection<IContactItem>();
-            MessageHeaders = new ObservableCollection<IMessageStoreItem>();
+            Contacts = new ObservableCollection<IContactStoreItem>();
+            MessageHeaders = new ObservableCollection<IMessageHeader>();
             MessageContent = "";
 
             LoadContacts();
@@ -53,7 +53,10 @@ namespace Salt
 
             foreach (var message in SaltApp.GetMessageStoreItemsByContactId(SelectedContactId))
             {
-                MessageHeaders.Add(message);
+                // HÄR ÄR JAG.
+                // Här måste jag läsa ut och dekryptera headern.
+
+                //MessageHeaders.Add(message);
             }
         }
 
@@ -64,9 +67,9 @@ namespace Salt
 
         private ISaltApp SaltApp { get; set; }
 
-        public ObservableCollection<IContactItem> Contacts { get; set; }
+        public ObservableCollection<IContactStoreItem> Contacts { get; set; }
 
-        public ObservableCollection<IMessageStoreItem> MessageHeaders { get; set; }
+        public ObservableCollection<IMessageHeader> MessageHeaders { get; set; }
 
         private Guid _selectedContactId { get; set; }
 
