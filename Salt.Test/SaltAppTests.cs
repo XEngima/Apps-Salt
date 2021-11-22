@@ -12,38 +12,34 @@ namespace Salt.Test
     public class SaltAppTests
     {
         [TestMethod]
-        public void EncryptedMessageInStore_GettingFromStore_DeliversDecryptedMessage()
+        public void EncryptedMessageInStore_GetMessageFromStore_GotDecryptedMessage()
         {
             // Arrange
             var cryptographer = new TestCryptographer();
-            var hashGenerator = new TestHashGenerator();
 
             var messageStore = new TestMessageStore()
             {
-                Messages = new List<IMessage>
+                Messages = new List<IMessageStoreItem>
                 {
-                    new Message(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "MyKey123", "redaeh", "jeH", "nasjeH", 0)
+                    new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "MyKey123", 0, "ABCD")
                 }
             };
 
-
-            var keyStore = new TestKeyStore(hashGenerator)
+            var keyStore = new TestKeyStore()
             {
                 Items = new List<TestKeyStoreItem>
                 {
-                    new TestKeyStoreItem("MyKey", 0, 15, "backwardsbackwa")
+                    new TestKeyStoreItem("MyKey123", 0, 4, "case")
                 }
             };
 
-            var saltApp = new SaltApp(null, messageStore, keyStore, hashGenerator, cryptographer);
+            var saltApp = new SaltApp(null, messageStore, keyStore, cryptographer);
 
             // Act
             var message = saltApp.GetDecryptedMessage(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"));
 
             // Assert
-            Assert.AreEqual("header", message.Header);
-            Assert.AreEqual("Hej", message.Subject);
-            Assert.AreEqual("Hejsan", message.Content);
+            Assert.AreEqual("abcd", message.Content);
         }
     }
 }

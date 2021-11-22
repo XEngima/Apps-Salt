@@ -10,31 +10,41 @@ namespace Salt.Test
 {
     public class TestCryptographer : ICryptographer
     {
-        public string Decrypt(string text, string keyPart)
+        /// <summary>
+        /// Encrypts a text using a key - but very weak, since it is for test only.
+        /// </summary>
+        /// <param name="text">The text to be encrypted.</param>
+        /// <param name="key">The key - values "case" or "brackets" are possible values.</param>
+        /// <returns>The encrypted text.</returns>
+        public string Encrypt(string text, string key)
         {
-            if (!string.IsNullOrEmpty(keyPart))
+            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
             {
-                if (text == "redaeh")
+                if (key == "case")
                 {
-                    return "header";
-                }
-
-                if (text == "jeH")
-                {
-                    return "Hej";
-                }
-
-                if (text == "nasjeH")
-                {
-                    return "Hejsan";
+                    return text.ToUpper();
                 }
             }
 
             return "";
         }
 
-        public string Encrypt(string message, string keyPart)
+        /// <summary>
+        /// Decrypts a text using a key - for test only.
+        /// </summary>
+        /// <param name="text">The text to be decrypted.</param>
+        /// <param name="key">The key - values "case" or "brackets" are possible values.</param>
+        /// <returns>The decrypted text.</returns>
+        public string Decrypt(string text, string key)
         {
+            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
+            {
+                if (key == "case")
+                {
+                    return text.ToLower();
+                }
+            }
+
             return "";
         }
     }

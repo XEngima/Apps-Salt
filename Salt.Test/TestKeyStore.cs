@@ -9,13 +9,10 @@ namespace Salt.Test
 {
     public class TestKeyStore : IKeyStore
     {
-        public TestKeyStore(IHashGenerator hashGenerator)
+        public TestKeyStore()
         {
             Items = new List<TestKeyStoreItem>();
-            HashGenerator = hashGenerator;
         }
-
-        private IHashGenerator HashGenerator { get; set; }
 
         public IEnumerable<TestKeyStoreItem> Items { get; set; }
 
@@ -23,7 +20,7 @@ namespace Salt.Test
         {
             foreach (var item in Items)
             {
-                if (HashGenerator.CreateHash(item.KeyName) == keyNameHash && pos == item.StartPos && item.Length == length)
+                if (item.KeyName == item.KeyName && pos == item.StartPos && item.Length == length)
                 {
                     return item.KeyPart;
                 }

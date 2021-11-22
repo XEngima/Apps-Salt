@@ -1,9 +1,9 @@
 ﻿using Salt.Business;
 using Salt.Interfaces;
-using Salt.Shared;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Salt.Contacts;
 
 namespace Salt
 {
@@ -33,7 +33,7 @@ namespace Salt
             SaltApp = new SaltApp(Factory.CreateContactStore(), Factory.CreateMessageStore());
 
             Contacts = new ObservableCollection<IContactItem>();
-            MessageHeaders = new ObservableCollection<IMessage>();
+            MessageHeaders = new ObservableCollection<IMessageStoreItem>();
             MessageContent = "";
 
             LoadContacts();
@@ -51,9 +51,7 @@ namespace Salt
         {
             MessageHeaders.Clear();
 
-            string keyName = "";
-
-            foreach (var message in SaltApp.GetMessages(SelectedContactId))
+            foreach (var message in SaltApp.GetMessageStoreItemsByContactId(SelectedContactId))
             {
                 MessageHeaders.Add(message);
             }
@@ -68,7 +66,7 @@ namespace Salt
 
         public ObservableCollection<IContactItem> Contacts { get; set; }
 
-        public ObservableCollection<IMessage> MessageHeaders { get; set; }
+        public ObservableCollection<IMessageStoreItem> MessageHeaders { get; set; }
 
         private Guid _selectedContactId { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿using Salt.Interfaces;
 using System;
 
-namespace Salt.Shared
+namespace Salt.Contacts
 {
     public class ContactItem : IContactItem
     {

@@ -9,13 +9,12 @@ namespace Salt.Business
 {
     public static class MessageExtensions
     {
-        public static IMessage Decrypt(this IMessage message, ICryptographer cryptographer, string keyPart)
+        public static MessageViewModel Decrypt(this IMessageStoreItem messageStoreItem, ICryptographer cryptographer, string keyPart)
         {
-            string headerKeyPart = keyPart.Substring(0, message.Header.Length);
-            string subjectKeyPart = keyPart.Substring(message.Header.Length, message.Subject.Length);
-            string contentKeyPart = keyPart.Substring(message.Header.Length + message.Subject.Length, message.Content.Length);
 
-            return new Message(message.Id, message.KeyName, cryptographer.Decrypt(message.Header, headerKeyPart), cryptographer.Decrypt(message.Subject, subjectKeyPart), cryptographer.Decrypt(message.Content, contentKeyPart), message.KeyStartPos);
+            var message = cryptographer.Decrypt(messageStoreItem.Message, keyPart);
+
+            return new MessageViewModel(messageStoreItem.Id, DateTime.Now, "", "", "", message);
         }
     }
 }

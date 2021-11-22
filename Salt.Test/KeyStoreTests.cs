@@ -11,13 +11,13 @@ namespace Salt.Test
         public void UnencryptedText_Encrypting_EncryptionCorrect()
         {
             // Arrange
-            var cryptographer = new Cryptographer();
+            var cryptographer = new TestCryptographer();
 
             // Act
-            string encryptedString = cryptographer.Encrypt("abc", "aaa");
+            string encryptedString = cryptographer.Encrypt("abc", "case");
 
             // Assert
-            Assert.AreEqual("bcd", encryptedString);
+            Assert.AreEqual("ABC", encryptedString);
         }
     }
 }

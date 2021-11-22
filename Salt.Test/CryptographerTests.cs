@@ -8,26 +8,26 @@ namespace Salt.Test
     public class CryptographerTests
     {
         [TestMethod]
-        public void UnencryptedText_Encrypting_EncryptionCorrect()
+        public void NormalText_Encrypting_TextCorrectlyEncrypted()
         {
             // Arrange
             var cryptographer = new Cryptographer();
 
             // Act
-            string encryptedString = cryptographer.Encrypt("abc", "aaa");
+            string encryptedString = cryptographer.Encrypt("abc", "case");
 
             // Assert
-            Assert.AreEqual("bcd", encryptedString);
+            Assert.AreEqual("ABC", encryptedString);
         }
 
         [TestMethod]
-        public void EncryptedText_Decrypting_DecryptionCorrect()
+        public void EncryptedText_Decrypting_TextCorrectlyDecrypted()
         {
             // Arrange
             var cryptographer = new Cryptographer();
 
             // Act
-            string decryptedString = cryptographer.Decrypt("bcd", "aaa");
+            string decryptedString = cryptographer.Decrypt("ABC", "case");
 
             // Assert
             Assert.AreEqual("abc", decryptedString);

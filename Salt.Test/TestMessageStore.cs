@@ -12,12 +12,12 @@ namespace Salt.Test
     {
         public TestMessageStore()
         {
-            Messages = new List<IMessage>();
+            Messages = new List<IMessageStoreItem>();
         }
 
-        public IEnumerable<IMessage> Messages { get; set; }
+        public IEnumerable<IMessageStoreItem> Messages { get; set; }
 
-        public IMessage GetMessage(Guid id)
+        public IMessageStoreItem GetMessageStoreItem(Guid id)
         {
             foreach (var message in Messages)
             {
@@ -30,12 +30,12 @@ namespace Salt.Test
             return null;
         }
 
-        public IEnumerable<IMessage> GetMessagesByKeyName(string keyName)
+        public IEnumerable<IMessageStoreItem> GetMessagesByKeyName(string keyName)
         {
             return null;
         }
 
-        public void SaveMessage(IMessage message)
+        public void SaveMessage(IMessageStoreItem message)
         {
             throw new NotImplementedException();
         }

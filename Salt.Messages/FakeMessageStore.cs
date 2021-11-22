@@ -9,44 +9,47 @@ namespace Salt.Messages
 {
     public class FakeMessageStore : IMessageStore
     {
-        private List<IMessage> _messages;
+        private List<IMessageStoreItem> _messageStoreItems;
 
         public FakeMessageStore()
         {
-            _messages = new List<IMessage>();
+            _messageStoreItems = new List<IMessageStoreItem>();
 
-            var header = new MessageHeader
+            var message = new Message
             {
                 Date = DateTime.Now,
-                Sender = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf200") // Tobias
+                Sender = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf200"), // Tobias
+                Recievers = "2d782cd5-9575-4f71-ba28-cf09c5fdf200", // Också Tobias
+                Subject = "Stjärntecknet",
+                Content = "Det stämmer! Det är mäktigt detta!"
             };
 
-            _messages.Add(new Message(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "", JsonConvert.SerializeObject(header), "Stjärntecknet", "Det stämmer! Det är mäktigt detta!", 0));
+            _messageStoreItems.Add(new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "KEYNAME", 0, JsonConvert.SerializeObject(message)));
 
-            header = new MessageHeader
-            {
-                Date = DateTime.Now,
-                Sender = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf300") // Samuel
-            };
+            //header = new MessageHeader
+            //{
+            //    Date = DateTime.Now,
+            //    Sender = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf300") // Samuel
+            //};
 
-            _messages.Add(new Message(Guid.Parse("00000002-9575-4f71-ba28-cf09c5fdf200"), "", JsonConvert.SerializeObject(header), "Mike Lindell", "Grattis! Du får en kudde!", 0));
+            //_messageStoreItems.Add(new MessageStoreItem(Guid.Parse("00000002-9575-4f71-ba28-cf09c5fdf200"), "", JsonConvert.SerializeObject(header), "Mike Lindell", "Grattis! Du får en kudde!", 0));
         }
 
-        public IEnumerable<IMessage> FetchMessages(string keyName)
+        public IEnumerable<IMessageStoreItem> FetchMessages(string keyName)
         {
-            return new List<IMessage>();
+            return new List<IMessageStoreItem>();
         }
 
-        public IMessage GetMessage(Guid id)
+        public IMessageStoreItem GetMessageStoreItem(Guid id)
         {
-            return _messages.FirstOrDefault(m => m.Id == id);
+            return _messageStoreItems.FirstOrDefault(m => m.Id == id);
         }
 
-        public IEnumerable<IMessage> GetMessagesByKeyName(string keyName)
+        public IEnumerable<IMessageStoreItem> GetMessagesByKeyName(string keyName)
         {
-            var messages = new List<IMessage>();
+            var messages = new List<IMessageStoreItem>();
 
-            foreach (var message in _messages)
+            foreach (var message in _messageStoreItems)
             {
                 //var header = JsonConvert.DeserializeObject<MessageHeader>(message.Header);
 
@@ -59,7 +62,7 @@ namespace Salt.Messages
             return messages;
         }
 
-        public void SaveMessage(IMessage message)
+        public void SaveMessage(IMessageStoreItem message)
         {
             throw new NotImplementedException();
         }

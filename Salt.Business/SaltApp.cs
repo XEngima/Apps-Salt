@@ -4,17 +4,17 @@ using Salt.Keys;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Salt.Contacts;
 
 namespace Salt.Business
 {
     public class SaltApp : ISaltApp
     {
-        public SaltApp(IContactStore contactStore = null, IMessageStore messageStore = null, IKeyStore keyStore = null, IHashGenerator hashGenerator = null, ICryptographer cryptographer = null)
+        public SaltApp(IContactStore contactStore = null, IMessageStore messageStore = null, IKeyStore keyStore = null, ICryptographer cryptographer = null)
         {
             ContactStore = contactStore;
             MessageStore = messageStore;
             Cryptographer = cryptographer;
-            HashGenerator = hashGenerator;
             KeyStore = keyStore;
 
             if (contactStore == null)
@@ -44,8 +44,6 @@ namespace Salt.Business
 
         private IKeyStore KeyStore { get; set; }
 
-        private IHashGenerator HashGenerator { get; set; }
-
         private ICryptographer Cryptographer { get; set; }
 
 
@@ -54,15 +52,15 @@ namespace Salt.Business
             return ContactStore.GetAllContacts();
         }
 
-        public IMessage GetDecryptedMessage(Guid id)
+        public MessageViewModel GetDecryptedMessage(Guid id)
         {
-            var message = MessageStore.GetMessage(id);
-            var key = KeyStore.GetKeyPart(message.KeyName, message.KeyStartPos, message.Header.Length + message.Subject.Length + message.Content.Length);
+            var messageStoreItem = MessageStore.GetMessageStoreItem(id);
+            var key = KeyStore.GetKeyPart(messageStoreItem.KeyName, messageStoreItem.KeyStartPos, messageStoreItem.Message.Length);
 
-            return message.Decrypt(Cryptographer, key);
+            return messageStoreItem.Decrypt(Cryptographer, key);
         }
 
-        public IEnumerable<IMessage> GetMessages(Guid contactId)
+        public IEnumerable<IMessageStoreItem> GetMessageStoreItemsByContactId(Guid contactId)
         {
             // JAG ÄR HÄR. Måste hämta nyckeln associerad med kontakten och dekryptera messageheadern för att hitta vilka meddelanden som hör till kontakten.
             var messages = MessageStore.GetMessagesByKeyName("");

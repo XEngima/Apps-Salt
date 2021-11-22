@@ -5,24 +5,42 @@ namespace Salt.Cypher
 {
     public class Cryptographer : ICryptographer
     {
-        public string Decrypt(string message, string keyPart)
+        /// <summary>
+        /// Encrypts a text using a key - but very weak, since it is for test only.
+        /// </summary>
+        /// <param name="text">The text to be encrypted.</param>
+        /// <param name="key">The key - values "case" or "brackets" are possible values.</param>
+        /// <returns>The encrypted text.</returns>
+        public string Encrypt(string text, string key)
         {
-            if (message == "bcd" && keyPart == "aaa")
+            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
             {
-                return "abc";
+                if (key == "case")
+                {
+                    return text.ToUpper();
+                }
             }
 
-            return message;
+            return "";
         }
 
-        public string Encrypt(string message, string keyPart)
+        /// <summary>
+        /// Decrypts a text using a key - for test only.
+        /// </summary>
+        /// <param name="text">The text to be decrypted.</param>
+        /// <param name="key">The key - values "case" or "brackets" are possible values.</param>
+        /// <returns>The decrypted text.</returns>
+        public string Decrypt(string text, string key)
         {
-            if (message == "abc" && keyPart == "aaa")
+            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
             {
-                return "bcd";
+                if (key == "case")
+                {
+                    return text.ToLower();
+                }
             }
 
-            return message;
+            return "";
         }
     }
 }
