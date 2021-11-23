@@ -1,9 +1,9 @@
 ﻿using Salt.Business;
-using Salt.Interfaces;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Salt.Contacts;
+using Salt.Messages;
 
 namespace Salt
 {

@@ -1,5 +1,4 @@
-﻿using Salt.Interfaces;
-using System;
+﻿using System;
 using Salt.Contacts;
 
 namespace Salt.Business

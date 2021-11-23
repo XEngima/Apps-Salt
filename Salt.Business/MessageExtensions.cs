@@ -1,5 +1,4 @@
 ﻿using Salt.Cypher;
-using Salt.Interfaces;
 using Salt.Messages;
 using System;
 using System.Collections.Generic;

@@ -78,10 +78,6 @@
       <Project>{5571866b-c215-4caf-add5-e5ea485ead94}</Project>
       <Name>Salt.Cypher</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Salt.Interfaces\Salt.Interfaces.csproj">
-      <Project>{94a4b064-1d7c-484e-ae2f-5823b8152822}</Project>
-      <Name>Salt.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Salt.Keys\Salt.Keys.csproj">
       <Project>{a0b5ec54-a5ba-475a-91ab-2a4f24a12160}</Project>
       <Name>Salt.Keys</Name>

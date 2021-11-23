@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Salt.Contacts;
-using Salt.Interfaces;
 using Salt.Messages;
 
 namespace Salt.Business

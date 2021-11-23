@@ -1,5 +1,4 @@
-﻿using Salt.Interfaces;
-using Salt.Contacts;
+﻿using Salt.Contacts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

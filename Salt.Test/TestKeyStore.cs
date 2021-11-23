@@ -1,5 +1,4 @@
-﻿using Salt.Interfaces;
-using Salt.Keys;
+﻿using Salt.Keys;
 using System;
 using System.Collections.Generic;
 using System.Linq;

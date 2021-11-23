@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Salt.Business;
 using Salt.Cypher;
-using Salt.Interfaces;
 using Salt.Messages;
 using Salt.Contacts;
 using System;

@@ -1,5 +1,4 @@
-﻿using Salt.Interfaces;
-using System;
+﻿using System;
 
 namespace Salt.Contacts
 {

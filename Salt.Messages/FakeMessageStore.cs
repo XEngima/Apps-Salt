@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Salt.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

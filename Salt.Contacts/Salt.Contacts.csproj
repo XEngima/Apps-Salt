@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Salt.Interfaces\Salt.Interfaces.csproj" />
     <ProjectReference Include="..\Salt.Shared\Salt.Shared.csproj" />
   </ItemGroup>
 

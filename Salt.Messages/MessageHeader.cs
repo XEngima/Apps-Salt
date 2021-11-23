@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
-using Salt.Interfaces;
 
 namespace Salt.Messages
 {
