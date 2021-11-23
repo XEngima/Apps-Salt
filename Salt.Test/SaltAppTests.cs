@@ -24,7 +24,7 @@ namespace Salt.Test
             {
                 MessageStoreItems = new List<IMessageStoreItem>
                 {
-                    new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "MyKey123", 0, "ABCD")
+                    new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "MyKey123", 0, "", "ABCD")
                 }
             };
 
@@ -66,11 +66,15 @@ namespace Salt.Test
                 }
             };
 
-            var message = new Message
+            var header = new MessageHeader
             {
                 Date = DateTime.Now,
                 Sender = tobiasContactId, // Tobias
-                Recievers = "",
+                Recipients = new List<Guid>()
+            };
+
+            var message = new Message
+            {
                 Subject = "Stjärntecknet",
                 Content = "Det stämmer! Det är mäktigt detta!"
             };
@@ -79,7 +83,7 @@ namespace Salt.Test
             {
                 MessageStoreItems = new List<IMessageStoreItem>
                 {
-                    new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "MyKey123", 0, JsonConvert.SerializeObject(message))
+                    new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "MyKey123", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message))
                 }
             };
 

@@ -14,6 +14,8 @@ namespace Salt.Interfaces
 
         int KeyStartPos { get; set; }
 
+        string Header { get; set; }
+
         string Message { get; set; }
     }
 }

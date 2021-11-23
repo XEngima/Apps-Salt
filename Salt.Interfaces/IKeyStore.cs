@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Salt.Interfaces
 {
@@ -10,6 +11,12 @@ namespace Salt.Interfaces
         /// <param name="keyNameHash">The name to check for.</param>
         /// <returns>true if the key exists, otherwise false.</returns>
         bool HasKey(string keyNameHash);
+
+        /// <summary>
+        /// Gets a list of all keys in the keystore.
+        /// </summary>
+        /// <returns>An enumerable list of key names.</returns>
+        IEnumerable<string> GetAllKeyNames();
 
         /// <summary>
         /// Gets a part of a key.
@@ -25,6 +32,6 @@ namespace Salt.Interfaces
         /// </summary>
         /// <param name="keyName">The name of the key.</param>
         /// <param name="fullPath"></param>
-        void SaveItem(string keyName, string fullPath);
+        void AddKey(string keyName, string fullPath);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Salt.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace Salt.Keys
 {
@@ -15,8 +16,13 @@ namespace Salt.Keys
             return false;
         }
 
-        public void SaveItem(string keyName, string fullPath)
+        public void AddKey(string keyName, string fullPath)
         {
+        }
+
+        public IEnumerable<string> GetAllKeyNames()
+        {
+            return new List<string>();
         }
     }
 }

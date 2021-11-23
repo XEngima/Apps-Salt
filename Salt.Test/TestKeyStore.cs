@@ -16,6 +16,11 @@ namespace Salt.Test
 
         public IEnumerable<TestKeyStoreItem> Items { get; set; }
 
+        public IEnumerable<string> GetAllKeyNames()
+        {
+            return Items.Select(x => x.KeyName).ToList();
+        }
+
         public string GetKeyPart(string keyNameHash, int pos, int length)
         {
             foreach (var item in Items)
@@ -34,8 +39,9 @@ namespace Salt.Test
             return false;
         }
 
-        public void SaveItem(string keyName, string fullPath)
+        public void AddKey(string keyName, string fullPath)
         {
+            throw new NotImplementedException();
         }
     }
 }

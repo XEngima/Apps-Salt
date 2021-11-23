@@ -15,24 +15,22 @@ namespace Salt.Messages
         {
             _messageStoreItems = new List<IMessageStoreItem>();
 
-            var message = new Message
+            var header = new MessageHeader
             {
                 Date = DateTime.Now,
                 Sender = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf200"), // Tobias
-                Recievers = "2d782cd5-9575-4f71-ba28-cf09c5fdf200", // Också Tobias
+                Recipients = new List<Guid> {
+                    Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf200") // Också Tobias
+                }
+            };
+
+            var message = new Message
+            {
                 Subject = "Stjärntecknet",
                 Content = "Det stämmer! Det är mäktigt detta!"
             };
 
-            _messageStoreItems.Add(new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "KEYNAME", 0, JsonConvert.SerializeObject(message)));
-
-            //header = new MessageHeader
-            //{
-            //    Date = DateTime.Now,
-            //    Sender = Guid.Parse("2d782cd5-9575-4f71-ba28-cf09c5fdf300") // Samuel
-            //};
-
-            //_messageStoreItems.Add(new MessageStoreItem(Guid.Parse("00000002-9575-4f71-ba28-cf09c5fdf200"), "", JsonConvert.SerializeObject(header), "Mike Lindell", "Grattis! Du får en kudde!", 0));
+            _messageStoreItems.Add(new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "KEYNAME", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
         }
 
         public IEnumerable<IMessageStoreItem> FetchMessages(string keyName)

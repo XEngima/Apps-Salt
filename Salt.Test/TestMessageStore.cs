@@ -42,7 +42,7 @@ namespace Salt.Test
                 }
             }
 
-            return new List<IMessageStoreItem>();
+            return items;
         }
 
         public void SaveMessage(IMessageStoreItem message)
