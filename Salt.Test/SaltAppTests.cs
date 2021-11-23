@@ -46,6 +46,65 @@ namespace Salt.Test
         }
 
         [TestMethod]
+        public void EncryptedMessagesInStore_GetMessageHeadersByContactId_CorrectMessagesReturned()
+        {
+            // Arrange
+            var cryptographer = new TestCryptographer();
+
+            Guid tobiasContactId = Guid.Parse("00000001-f760-4cf6-a84d-526397dc8b2a");
+
+            var contactStore = new TestContactStore()
+            {
+                Contacts = new List<IContactStoreItem>
+                {
+                    new ContactItem
+                    {
+                        Id = tobiasContactId,
+                        Name = "Tobias",
+                        KeyName = "MyKey123"
+                    }
+                }
+            };
+
+            var header = new MessageHeader
+            {
+                Date = new DateTime(2021, 01, 01, 12, 00, 00),
+                Sender = tobiasContactId, // Tobias
+                Recipients = new List<Guid>()
+            };
+
+            var message = new Message
+            {
+                Subject = "Stjärntecknet",
+                Content = "Det stämmer! Det är mäktigt detta!"
+            };
+
+            var messageStore = new TestMessageStore()
+            {
+                MessageStoreItems = new List<IMessageStoreItem>
+                {
+                    new MessageStoreItem(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"), "MyKey123", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message))
+                }
+            };
+
+            var keyStore = new TestKeyStore()
+            {
+                Items = new List<TestKeyStoreItem>
+                {
+                    new TestKeyStoreItem("MyKey123", 0, 4, "case")
+                }
+            };
+
+            var saltApp = new SaltApp(contactStore, messageStore, keyStore, cryptographer);
+
+            // Act
+            var messageHeader = saltApp.GetMessageHeadersByContactId(tobiasContactId);
+
+            // Assert
+            Assert.AreEqual(1, messageHeader.Count());
+        }
+
+        [TestMethod]
         public void EncryptedMessagesInStore_GetMessageStoreItemsByContactId_CorrectMessagesReturned()
         {
             // Arrange

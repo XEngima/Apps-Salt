@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Salt.Contacts;
+using Salt.Messages;
 
 namespace Salt.Business
 {
@@ -34,7 +35,7 @@ namespace Salt.Business
 
             if (keyStore == null)
             {
-                KeyStore = new KeyStore();
+                KeyStore = new FakeKeyStore();
             }
         }
 
@@ -60,6 +61,30 @@ namespace Salt.Business
             return messageStoreItem.Decrypt(Cryptographer, key);
         }
 
+        private IMessageHeader EncryptMessageHeader(IMessageHeaderItem messageHeaderItem)
+        {
+            return new MessageHeader();
+        }
+
+        public IEnumerable<IMessageHeader> GetMessageHeadersByContactId(Guid contactId)
+        {
+            var keyNames = KeyStore.GetAllKeyNames();
+
+            var messageHeaders = new List<IMessageHeader>();
+
+            foreach (var keyName in keyNames)
+            {
+                var headerItems = MessageStore.GetMessageHeadersByKeyName(keyName);
+
+                foreach (var headerItem in headerItems)
+                {
+                    messageHeaders.Add(EncryptMessageHeader(headerItem));
+                }
+            }
+
+            return messageHeaders;
+        }
+
         public IEnumerable<IMessageStoreItem> GetMessageStoreItemsByContactId(Guid contactId)
         {
             var keyNames = KeyStore.GetAllKeyNames();
@@ -68,7 +93,7 @@ namespace Salt.Business
 
             foreach (var keyName in keyNames)
             {
-                var messages = MessageStore.GetMessagesByKeyName(keyName);
+                var messages = MessageStore.GetMessageStoreItemsByKeyName(keyName);
                 messageStoreItems.AddRange(messages);
             }
 

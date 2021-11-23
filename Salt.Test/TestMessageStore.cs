@@ -17,6 +17,21 @@ namespace Salt.Test
 
         public IEnumerable<IMessageStoreItem> MessageStoreItems { get; set; }
 
+        public IEnumerable<IMessageHeaderItem> GetMessageHeadersByKeyName(string keyName)
+        {
+            var items = new List<IMessageHeaderItem>();
+
+            foreach (var messageStoreItem in MessageStoreItems)
+            {
+                if (messageStoreItem.KeyName == keyName)
+                {
+                    items.Add(new MessageHeaderItem(messageStoreItem.Id, messageStoreItem.Message));
+                }
+            }
+
+            return items;
+        }
+
         public IMessageStoreItem GetMessageStoreItem(Guid id)
         {
             foreach (var message in MessageStoreItems)
@@ -30,7 +45,7 @@ namespace Salt.Test
             return null;
         }
 
-        public IEnumerable<IMessageStoreItem> GetMessagesByKeyName(string keyName)
+        public IEnumerable<IMessageStoreItem> GetMessageStoreItemsByKeyName(string keyName)
         {
             var items = new List<IMessageStoreItem>();
 

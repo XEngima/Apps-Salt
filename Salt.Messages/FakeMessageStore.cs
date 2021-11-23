@@ -38,12 +38,27 @@ namespace Salt.Messages
             return new List<IMessageStoreItem>();
         }
 
+        public IEnumerable<IMessageHeaderItem> GetMessageHeadersByKeyName(string keyName)
+        {
+            var headers = new List<MessageHeaderItem>();
+
+            foreach (var item in _messageStoreItems)
+            {
+                if (item.KeyName == keyName)
+                {
+                    headers.Add(new MessageHeaderItem(item.Id, item.Header));
+                }
+            }
+
+            return headers;
+        }
+
         public IMessageStoreItem GetMessageStoreItem(Guid id)
         {
             return _messageStoreItems.FirstOrDefault(m => m.Id == id);
         }
 
-        public IEnumerable<IMessageStoreItem> GetMessagesByKeyName(string keyName)
+        public IEnumerable<IMessageStoreItem> GetMessageStoreItemsByKeyName(string keyName)
         {
             var messages = new List<IMessageStoreItem>();
 

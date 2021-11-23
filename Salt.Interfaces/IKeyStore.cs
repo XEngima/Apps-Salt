@@ -21,11 +21,11 @@ namespace Salt.Interfaces
         /// <summary>
         /// Gets a part of a key.
         /// </summary>
-        /// <param name="keyNameHash">The name (hashed) of the key to get.</param>
+        /// <param name="keyName">The name (hashed) of the key to get.</param>
         /// <param name="pos">The start position within the key.</param>
         /// <param name="length">The length of the part to recieve.</param>
         /// <returns>A key part.</returns>
-        string GetKeyPart(string keyNameHash, int pos, int length);
+        string GetKeyPart(string keyName, int pos, int length);
 
         /// <summary>
         /// Saves a key store item.
