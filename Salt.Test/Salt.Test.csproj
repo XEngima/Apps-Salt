@@ -82,6 +82,10 @@
       <Project>{94a4b064-1d7c-484e-ae2f-5823b8152822}</Project>
       <Name>Salt.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Salt.Keys\Salt.Keys.csproj">
+      <Project>{a0b5ec54-a5ba-475a-91ab-2a4f24a12160}</Project>
+      <Name>Salt.Keys</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Salt.Messages\Salt.Messages.csproj">
       <Project>{e91d82d3-8edc-428e-80d1-75d898fa1c29}</Project>
       <Name>Salt.Messages</Name>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Salt.Interfaces
+namespace Salt.Keys
 {
     public interface IKeyStore
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Salt.Interfaces
+namespace Salt.Keys
 {
     public interface IKeyStoreItem
     {
