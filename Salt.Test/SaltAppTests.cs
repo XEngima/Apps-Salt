@@ -17,6 +17,16 @@ namespace Salt.Test
         {
             Cryptographer = new TestCryptographer();
 
+            // Key Store
+
+            KeyStore = new TestKeyStore()
+            {
+                Items = new List<TestKeyStoreItem>
+                {
+                    new TestKeyStoreItem("DanielTobiasKey", 0, 4, "case")
+                }
+            };
+
             // Create messages in the test message store
 
             TobiasContactId = Guid.Parse("00000001-f760-4cf6-a84d-526397dc8b2a");
@@ -24,6 +34,12 @@ namespace Salt.Test
             SamuelContactId = Guid.Parse("00000003-f760-4cf6-a84d-526397dc8b2a");
 
             var messageStoreItems = new List<IMessageStoreItem>();
+
+            MessageTobiasToDanielId = Guid.Parse("10000001-9575-4f71-ba28-cf09c5fdf200");
+            MessageSamuelToDanielId = Guid.Parse("10000002-9575-4f71-ba28-cf09c5fdf200");
+            MessageDanielToSamuelId = Guid.Parse("10000003-9575-4f71-ba28-cf09c5fdf200");
+
+            // Message from Tobias to Daniel
 
             var header = new MessageHeader
             {
@@ -34,11 +50,13 @@ namespace Salt.Test
 
             var message = new Message
             {
-                Subject = "A sign in the stars",
-                Content = "That's correct! This is awesome!"
+                Subject = "A SIGN IN THE STARS",
+                Content = "THAT'S CORRECT! THIS IS AWESOME!"
             };
 
-            messageStoreItems.Add(new MessageStoreItem(Guid.Parse("10000001-9575-4f71-ba28-cf09c5fdf200"), "DanielTobiasKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(MessageTobiasToDanielId, "DanielTobiasKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+
+            // Message from Samuel to Daniel
 
             header = new MessageHeader
             {
@@ -49,11 +67,13 @@ namespace Salt.Test
 
             message = new Message
             {
-                Subject = "Lin Wood?",
-                Content = "Is he corrupt?"
+                Subject = "LIN WOOD?",
+                Content = "IS HE CORRUPT?"
             };
 
-            messageStoreItems.Add(new MessageStoreItem(Guid.Parse("10000002-9575-4f71-ba28-cf09c5fdf200"), "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(MessageSamuelToDanielId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+
+            // Message from Daniel to Samuel
 
             header = new MessageHeader
             {
@@ -64,11 +84,11 @@ namespace Salt.Test
 
             message = new Message
             {
-                Subject = "Re: Lin Wood?",
-                Content = "No, he's not corrupt!"
+                Subject = "RE: LIN WOOD?",
+                Content = "NO, HE IS NOT CORRUPT!"
             };
 
-            messageStoreItems.Add(new MessageStoreItem(Guid.Parse("10000003-9575-4f71-ba28-cf09c5fdf200"), "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(MessageDanielToSamuelId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
 
             MessageStore = new TestMessageStore
             {
@@ -78,30 +98,30 @@ namespace Salt.Test
 
         private TestCryptographer Cryptographer { get; set; }
         private TestMessageStore MessageStore { get; set; }
+        private TestKeyStore KeyStore { get; set; }
 
         private Guid TobiasContactId { get; set; }
         private Guid DanielContactId { get; set; }
         private Guid SamuelContactId { get; set; }
 
+        private Guid MessageTobiasToDanielId { get; set; }
+        private Guid MessageSamuelToDanielId { get; set; }
+        private Guid MessageDanielToSamuelId { get; set; }
+
         [TestMethod]
         public void EncryptedMessageInStore_GetMessageFromStore_GotDecryptedMessage()
         {
             // Arrange
-            var keyStore = new TestKeyStore()
-            {
-                Items = new List<TestKeyStoreItem>
-                {
-                    new TestKeyStoreItem("MyKey123", 0, 4, "case")
-                }
-            };
-
-            var saltApp = new SaltApp(null, MessageStore, keyStore, Cryptographer);
+            var saltApp = new SaltApp(null, MessageStore, KeyStore, Cryptographer);
 
             // Act
-            var message = saltApp.GetDecryptedMessage(Guid.Parse("00000001-9575-4f71-ba28-cf09c5fdf200"));
+            var jsonMessage = saltApp.GetDecryptedMessage(MessageTobiasToDanielId);
+
+            var message = JsonConvert.DeserializeObject<Message>(jsonMessage.Content);
 
             // Assert
-            Assert.AreEqual("abcd", message.Content);
+            Assert.AreEqual("a sign in the stars", message.Subject);
+            Assert.AreEqual("that's correct! this is awesome!", message.Content);
         }
 
         [TestMethod]

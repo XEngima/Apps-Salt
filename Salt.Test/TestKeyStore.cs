@@ -25,7 +25,7 @@ namespace Salt.Test
         {
             foreach (var item in Items)
             {
-                if (item.KeyName == item.KeyName && pos == item.StartPos && item.Length == length)
+                if (item.KeyName == item.KeyName && pos == item.StartPos)
                 {
                     return item.KeyPart;
                 }
