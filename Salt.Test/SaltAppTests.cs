@@ -17,6 +17,21 @@ namespace Salt.Test
         {
             Cryptographer = new TestCryptographer();
 
+            // Contact Store
+
+            ContactStore = new TestContactStore()
+            {
+                Contacts = new List<IContactStoreItem>
+                {
+                    new ContactItem
+                    {
+                        Id = TobiasContactId,
+                        Name = "Tobias",
+                        KeyName = "DanielTobiasKey"
+                    }
+                }
+            };
+
             // Key Store
 
             KeyStore = new TestKeyStore()
@@ -99,6 +114,7 @@ namespace Salt.Test
         private TestCryptographer Cryptographer { get; set; }
         private TestMessageStore MessageStore { get; set; }
         private TestKeyStore KeyStore { get; set; }
+        private TestContactStore ContactStore { get; set; }
 
         private Guid TobiasContactId { get; set; }
         private Guid DanielContactId { get; set; }
@@ -128,28 +144,7 @@ namespace Salt.Test
         public void EncryptedMessagesInStore_GetMessageHeadersByContactId_CorrectMessagesReturned()
         {
             // Arrange
-            var contactStore = new TestContactStore()
-            {
-                Contacts = new List<IContactStoreItem>
-                {
-                    new ContactItem
-                    {
-                        Id = TobiasContactId,
-                        Name = "Tobias",
-                        KeyName = "MyKey123"
-                    }
-                }
-            };
-
-            var keyStore = new TestKeyStore()
-            {
-                Items = new List<TestKeyStoreItem>
-                {
-                    new TestKeyStoreItem("MyKey123", 0, 4, "case")
-                }
-            };
-
-            var saltApp = new SaltApp(contactStore, MessageStore, keyStore, Cryptographer);
+            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
             var messageHeader = saltApp.GetMessageHeadersByContactId(TobiasContactId);
