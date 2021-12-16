@@ -10,7 +10,7 @@ namespace Salt.Business
     {
         IEnumerable<IContactStoreItem> GetContacts();
 
-        IEnumerable<IMessageHeader> GetMessageHeadersByContactId(Guid contactId);
+        IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByRecipientId(Guid contactId);
 
         IEnumerable<IMessageStoreItem> GetMessageStoreItemsByContactId(Guid contactId);
 

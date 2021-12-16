@@ -15,5 +15,10 @@ namespace Salt.Messages
 
         [JsonProperty(PropertyName = "R")]
         public List<Guid> Recipients { get; set; }
+
+        public override string ToString()
+        {
+            return "Date: " + Date.ToShortDateString() + ", Sender: " + Sender;
+        }
     }
 }

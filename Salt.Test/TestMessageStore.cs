@@ -24,7 +24,7 @@ namespace Salt.Test
             {
                 if (messageStoreItem.KeyName == keyName)
                 {
-                    items.Add(new MessageHeaderItem(messageStoreItem.Id, messageStoreItem.Message));
+                    items.Add(new MessageHeaderItem(messageStoreItem.Id, messageStoreItem.Header));
                 }
             }
 

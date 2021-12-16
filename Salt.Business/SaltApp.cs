@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Salt.Contacts;
 using Salt.Messages;
+using Newtonsoft.Json;
 
 namespace Salt.Business
 {
@@ -60,16 +61,11 @@ namespace Salt.Business
             return messageStoreItem.Decrypt(Cryptographer, key);
         }
 
-        private IMessageHeader EncryptMessageHeader(IMessageHeaderItem messageHeaderItem)
-        {
-            return new MessageHeader();
-        }
-
-        public IEnumerable<IMessageHeader> GetMessageHeadersByContactId(Guid contactId)
+        public IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByRecipientId(Guid recipientId)
         {
             var keyNames = KeyStore.GetAllKeyNames();
 
-            var messageHeaders = new List<IMessageHeader>();
+            var messageHeaders = new List<SaltMessageHeader>();
 
             foreach (var keyName in keyNames)
             {
@@ -77,7 +73,12 @@ namespace Salt.Business
 
                 foreach (var headerItem in headerItems)
                 {
-                    messageHeaders.Add(EncryptMessageHeader(headerItem));
+                    var header = JsonConvert.DeserializeObject<MessageHeader>(headerItem.Content);
+
+                    if (header.Recipients.Contains(recipientId))
+                    {
+                        messageHeaders.Add(new SaltMessageHeader());
+                    }
                 }
             }
 

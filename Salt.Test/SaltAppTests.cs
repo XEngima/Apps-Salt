@@ -28,7 +28,13 @@ namespace Salt.Test
                         Id = TobiasContactId,
                         Name = "Tobias",
                         KeyName = "DanielTobiasKey"
-                    }
+                    },
+                    new ContactItem
+                    {
+                        Id = SamuelContactId,
+                        Name = "Samuel",
+                        KeyName = "DanielSamuelKey"
+                    },
                 }
             };
 
@@ -38,7 +44,8 @@ namespace Salt.Test
             {
                 Items = new List<TestKeyStoreItem>
                 {
-                    new TestKeyStoreItem("DanielTobiasKey", 0, 4, "case")
+                    new TestKeyStoreItem("DanielTobiasKey", 0, 4, "case"),
+                    new TestKeyStoreItem("DanielSamuelKey", 0, 4, "case"),
                 }
             };
 
@@ -141,50 +148,28 @@ namespace Salt.Test
         }
 
         [TestMethod]
-        public void EncryptedMessagesInStore_GetMessageHeadersByContactId_CorrectMessagesReturned()
+        public void EncryptedMessagesInStore_GetMessageHeadersByRecipientId_CorrectMessagesReturned()
         {
             // Arrange
             var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
-            var messageHeader = saltApp.GetMessageHeadersByContactId(TobiasContactId);
+            var messageHeader = saltApp.GetDecryptedMessageHeadersByRecipientId(DanielContactId);
 
             // Assert
-            Assert.AreEqual(1, messageHeader.Count());
+            Assert.AreEqual(2, messageHeader.Count());
         }
 
         [TestMethod]
-        public void EncryptedMessagesInStore_GetMessageStoreItemsByContactId_CorrectMessagesReturned()
+        public void EncryptedMessagesInStore_GetMessageStoreItemsByRecipientId_CorrectMessagesReturned()
         {
-            // Arrange
-            var contactStore = new TestContactStore()
-            {
-                Contacts = new List<IContactStoreItem>
-                {
-                    new ContactItem
-                    {
-                        Id = TobiasContactId,
-                        Name = "Tobias",
-                        KeyName = "MyKey123"
-                    }
-                }
-            };
-
-            var keyStore = new TestKeyStore()
-            {
-                Items = new List<TestKeyStoreItem>
-                {
-                    new TestKeyStoreItem("MyKey123", 0, 4, "case")
-                }
-            };
-
-            var saltApp = new SaltApp(contactStore, MessageStore, keyStore, Cryptographer);
+            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
-            var messageStoreItems = saltApp.GetMessageStoreItemsByContactId(TobiasContactId);
+            var messageStoreItems = saltApp.GetMessageStoreItemsByContactId(DanielContactId);
 
             // Assert
-            Assert.AreEqual(1, messageStoreItems.Count());
+            Assert.AreEqual(2, messageStoreItems.Count());
         }
     }
 }

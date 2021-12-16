@@ -15,5 +15,10 @@ namespace Salt.Messages
         public Guid MessageId { get; private set; }
 
         public string Content { get; private set; }
+
+        public override string ToString()
+        {
+            return Content;
+        }
     }
 }
