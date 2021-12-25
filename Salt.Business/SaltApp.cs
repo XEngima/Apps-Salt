@@ -85,19 +85,30 @@ namespace Salt.Business
             return messageHeaders;
         }
 
-        public IEnumerable<IMessageStoreItem> GetMessageStoreItemsByContactId(Guid contactId)
+        public IEnumerable<IMessageStoreItem> GetDecryptedMessageStoreItemsByRecipientId(Guid recipientId)
         {
             var keyNames = KeyStore.GetAllKeyNames();
 
-            var messageStoreItems = new List<IMessageStoreItem>();
+            var returnItems = new List<IMessageStoreItem>();
 
             foreach (var keyName in keyNames)
             {
-                var messages = MessageStore.GetMessageStoreItemsByKeyName(keyName);
-                messageStoreItems.AddRange(messages);
+                var messageStoreItems = MessageStore.GetMessageStoreItemsByKeyName(keyName);
+
+                foreach (var messageStoreItem in messageStoreItems)
+                {
+                    var headerItem = messageStoreItem.Header;
+                    var header = JsonConvert.DeserializeObject<MessageHeader>(headerItem);
+
+                    if (header.Recipients.Contains(recipientId))
+                    {
+                        returnItems.Add(messageStoreItem);
+                    }
+                }
+
             }
 
-            return messageStoreItems;
+            return returnItems;
         }
     }
 }

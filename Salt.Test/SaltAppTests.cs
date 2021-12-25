@@ -166,7 +166,7 @@ namespace Salt.Test
             var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
-            var messageStoreItems = saltApp.GetMessageStoreItemsByContactId(DanielContactId);
+            var messageStoreItems = saltApp.GetDecryptedMessageStoreItemsByRecipientId(DanielContactId);
 
             // Assert
             Assert.AreEqual(2, messageStoreItems.Count());

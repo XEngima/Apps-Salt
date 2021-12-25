@@ -51,7 +51,7 @@ namespace Salt
         {
             MessageHeaders.Clear();
 
-            foreach (var message in SaltApp.GetMessageStoreItemsByContactId(SelectedContactId))
+            foreach (var message in SaltApp.GetDecryptedMessageStoreItemsByRecipientId(SelectedContactId))
             {
                 // HÄR ÄR JAG.
                 // Här måste jag läsa ut och dekryptera headern.
