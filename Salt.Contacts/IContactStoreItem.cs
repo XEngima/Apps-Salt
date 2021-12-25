@@ -6,10 +6,10 @@ namespace Salt.Contacts
 {
     public interface IContactStoreItem
     {
-        Guid Id { get; set; }
+        Guid Id { get; }
 
-        string Name { get; set; }
+        string Name { get; }
 
-        string KeyName { get; set; }
+        string KeyName { get; }
     }
 }

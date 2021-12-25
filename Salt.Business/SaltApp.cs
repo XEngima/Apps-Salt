@@ -6,6 +6,7 @@ using System.Text;
 using Salt.Contacts;
 using Salt.Messages;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace Salt.Business
 {
@@ -59,6 +60,36 @@ namespace Salt.Business
             var key = KeyStore.GetKeyPart(messageStoreItem.KeyName, messageStoreItem.KeyStartPos, messageStoreItem.Message.Length);
 
             return messageStoreItem.Decrypt(Cryptographer, key);
+        }
+
+        public IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByAnyContactId(Guid contactId)
+        {
+            var keyNames = KeyStore.GetAllKeyNames();
+            var contactStoreItems = ContactStore.GetAllContacts();
+
+            var messageHeaders = new List<SaltMessageHeader>();
+
+            foreach (var keyName in keyNames)
+            {
+                var headerItems = MessageStore.GetMessageHeadersByKeyName(keyName);
+
+                foreach (var headerItem in headerItems)
+                {
+                    var header = JsonConvert.DeserializeObject<ItemHeader>(headerItem.Content);
+
+                    if (header.Recipient == contactId || header.Sender == contactId)
+                    {
+                        var senderContactItem = contactStoreItems.FirstOrDefault(c => c.Id == header.Sender);
+                        var recipientContactItem = contactStoreItems.FirstOrDefault(c => c.Id == header.Recipient);
+
+                        var saltMessageHeader = new SaltMessageHeader(headerItem.MessageId, header.Date, header.Sender, senderContactItem?.Name, header.Recipient, recipientContactItem?.Name);
+
+                        messageHeaders.Add(saltMessageHeader);
+                    }
+                }
+            }
+
+            return messageHeaders;
         }
 
         public IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByRecipientId(Guid recipientId)

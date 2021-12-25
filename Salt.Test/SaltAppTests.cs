@@ -19,22 +19,16 @@ namespace Salt.Test
 
             // Contact Store
 
+            TobiasContactId = Guid.Parse("00000001-f760-4cf6-a84d-526397dc8b2a");
+            DanielContactId = Guid.Parse("00000002-f760-4cf6-a84d-526397dc8b2a");
+            SamuelContactId = Guid.Parse("00000003-f760-4cf6-a84d-526397dc8b2a");
+
             ContactStore = new TestContactStore()
             {
                 Contacts = new List<IContactStoreItem>
                 {
-                    new ContactItem
-                    {
-                        Id = TobiasContactId,
-                        Name = "Tobias",
-                        KeyName = "DanielTobiasKey"
-                    },
-                    new ContactItem
-                    {
-                        Id = SamuelContactId,
-                        Name = "Samuel",
-                        KeyName = "DanielSamuelKey"
-                    },
+                    new ContactItem(TobiasContactId, "Tobias", "DanielTobiasKey"),
+                    new ContactItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
                 }
             };
 
@@ -50,10 +44,6 @@ namespace Salt.Test
             };
 
             // Create messages in the test message store
-
-            TobiasContactId = Guid.Parse("00000001-f760-4cf6-a84d-526397dc8b2a");
-            DanielContactId = Guid.Parse("00000002-f760-4cf6-a84d-526397dc8b2a");
-            SamuelContactId = Guid.Parse("00000003-f760-4cf6-a84d-526397dc8b2a");
 
             var messageStoreItems = new List<IMessageStoreItem>();
 
@@ -158,6 +148,22 @@ namespace Salt.Test
 
             // Assert
             Assert.AreEqual(2, messageHeader.Count());
+        }
+
+        [TestMethod]
+        public void EncryptedMessagesInStore_GetMessageHeadersByAnyContactId_CorrectMessagesReturned()
+        {
+            // Arrange
+            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
+
+            // Act
+            var messageHeaders = saltApp.GetDecryptedMessageHeadersByAnyContactId(TobiasContactId);
+
+            // Assert
+            Assert.AreEqual(1, messageHeaders.Count());
+
+            var header = messageHeaders.First();
+            Assert.AreEqual("Tobias", header.SenderName);
         }
 
         [TestMethod]

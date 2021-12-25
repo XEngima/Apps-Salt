@@ -39,7 +39,7 @@ namespace Salt.Test
             return false;
         }
 
-        public void AddKey(string keyName, string fullPath)
+        public void Add(string keyName, string fullPath)
         {
             throw new NotImplementedException();
         }

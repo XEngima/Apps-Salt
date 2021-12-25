@@ -32,6 +32,6 @@ namespace Salt.Keys
         /// </summary>
         /// <param name="keyName">The name of the key.</param>
         /// <param name="fullPath"></param>
-        void AddKey(string keyName, string fullPath);
+        void Add(string keyName, string fullPath);
     }
 }

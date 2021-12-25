@@ -35,13 +35,14 @@ namespace Salt.Keys
             return false;
         }
 
-        public void AddKey(string keyName, string fullPath)
+        public void Add(string keyName, string fullPath)
         {
+            Items.Add(new KeyStoreItem(keyName, ""));
         }
 
         public IEnumerable<string> GetAllKeyNames()
         {
-            return new List<string>();
+            return Items.Select(x => x.KeyName);
         }
     }
 }

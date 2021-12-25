@@ -17,26 +17,9 @@ namespace Salt.Business
             var samuelContactId = Guid.Parse("00000003-f760-4cf6-a84d-526397dc8b2a");
             var danielContactId = Guid.Parse("00000002-f760-4cf6-a84d-526397dc8b2a");
 
-            contactStore.Add(new ContactItem
-            {
-                Id = tobiasContactId,
-                Name = "Tobias",
-                KeyName = "DanielTobiasKey"
-            });
-
-            contactStore.Add(new ContactItem
-            {
-                Id = samuelContactId,
-                Name = "Samuel",
-                KeyName = "DanielSamuelKey"
-            });
-
-            contactStore.Add(new ContactItem
-            {
-                Id = danielContactId,
-                Name = "Daniel",
-                KeyName = ""
-            });
+            contactStore.Add(new ContactItem(tobiasContactId, "Tobias", "DanielTobiasKey"));
+            contactStore.Add(new ContactItem(samuelContactId, "Samuel", "DanielSamuelKey"));
+            contactStore.Add(new ContactItem(tobiasContactId, "Daniel", ""));
 
             return contactStore;
         }
@@ -126,8 +109,8 @@ namespace Salt.Business
         {
             var keyStore = new LetterKeyStore();
 
-            keyStore.AddKey("DanielSamuelKey", "");
-            keyStore.AddKey("DanielTobiasKey", "");
+            keyStore.Add("DanielSamuelKey", "");
+            keyStore.Add("DanielTobiasKey", "");
 
             return keyStore;
         }
