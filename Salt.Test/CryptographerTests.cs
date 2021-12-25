@@ -11,7 +11,7 @@ namespace Salt.Test
         public void NormalText_Encrypting_TextCorrectlyEncrypted()
         {
             // Arrange
-            var cryptographer = new Cryptographer();
+            var cryptographer = new CaseCryptographer();
 
             // Act
             string encryptedString = cryptographer.Encrypt("abc", "case");
@@ -24,7 +24,7 @@ namespace Salt.Test
         public void EncryptedText_Decrypting_TextCorrectlyDecrypted()
         {
             // Arrange
-            var cryptographer = new Cryptographer();
+            var cryptographer = new CaseCryptographer();
 
             // Act
             string decryptedString = cryptographer.Decrypt("ABC", "case");

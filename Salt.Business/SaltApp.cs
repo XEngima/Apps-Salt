@@ -20,22 +20,22 @@ namespace Salt.Business
 
             if (contactStore == null)
             {
-                ContactStore = Factory.CreateContactStore();
+                ContactStore = Factory.CreateMemoryContactStore();
             }
 
             if (messageStore == null)
             {
-                MessageStore = Factory.CreateMessageStore();
+                MessageStore = Factory.CreateMemoryMessageStore();
             }
 
             if (cryptographer == null)
             {
-                Cryptographer = new Cryptographer();
+                Cryptographer = new CaseCryptographer();
             }
 
             if (keyStore == null)
             {
-                KeyStore = new FakeKeyStore();
+                KeyStore = Factory.CreateLetterKeyStore();
             }
         }
 

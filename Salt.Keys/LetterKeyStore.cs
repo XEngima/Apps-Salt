@@ -1,31 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Salt.Keys
 {
-    public class FakeKeyStore : IKeyStore
+    public class LetterKeyStore : IKeyStore
     {
-        public FakeKeyStore()
+        public LetterKeyStore()
         {
-            Items = new List<IKeyStoreItem>
-            {
-                new KeyStoreItem("KEYNAME", "case")
-            };
+            Items = new List<IKeyStoreItem>();
         }
 
         private List<IKeyStoreItem> Items { get; set; }
 
         public string GetKeyPart(string keyName, int pos, int length)
         {
+            var sbKeyPart = new StringBuilder();
             var keyStoreItem = Items.FirstOrDefault(x => x.KeyName == keyName);
 
             if (keyStoreItem != null)
             {
-                return keyStoreItem.Key.Substring(pos, length);
+                for (int i = 0; i < length; i++)
+                {
+                    sbKeyPart.Append("a");
+                }
             }
 
-            return "";
+            return sbKeyPart.ToString();
         }
 
         public bool HasKey(string keyNameHash)

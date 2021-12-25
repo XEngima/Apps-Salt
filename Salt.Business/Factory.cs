@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Salt.Contacts;
+using Salt.Keys;
 using Salt.Messages;
 
 namespace Salt.Business
@@ -40,7 +41,7 @@ namespace Salt.Business
             return contactStore;
         }
 
-        public static IContactStore CreateContactStore()
+        public static IContactStore CreateMemoryContactStore()
         {
             return InitializeMemoryContactStore();
         }
@@ -116,9 +117,19 @@ namespace Salt.Business
             };
         }
 
-        public static IMessageStore CreateMessageStore()
+        public static IMessageStore CreateMemoryMessageStore()
         {
             return InitializeMemoryMessageStore();
+        }
+
+        public static IKeyStore CreateLetterKeyStore()
+        {
+            var keyStore = new LetterKeyStore();
+
+            keyStore.AddKey("DanielSamuelKey", "");
+            keyStore.AddKey("DanielTobiasKey", "");
+
+            return keyStore;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Salt.Cypher
 {
-    public class Cryptographer : ICryptographer
+    public class CaseCryptographer : ICryptographer
     {
         /// <summary>
         /// Encrypts a text using a key - but very weak, since it is for test only.
@@ -14,10 +14,7 @@ namespace Salt.Cypher
         {
             if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
             {
-                if (key == "case")
-                {
-                    return text.ToUpper();
-                }
+                return text.ToUpper();
             }
 
             return "";
@@ -33,10 +30,7 @@ namespace Salt.Cypher
         {
             if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
             {
-                if (key == "case")
-                {
-                    return text.ToLower();
-                }
+                return text.ToLower();
             }
 
             return "";
