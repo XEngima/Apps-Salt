@@ -8,9 +8,41 @@ namespace Salt.Business
 {
     public static class Factory
     {
+        private static MemoryContactStore InitializeMemoryContactStore()
+        {
+            var contactStore = new MemoryContactStore();
+
+            var tobiasContactId = Guid.Parse("00000001-f760-4cf6-a84d-526397dc8b2a");
+            var samuelContactId = Guid.Parse("00000003-f760-4cf6-a84d-526397dc8b2a");
+            var danielContactId = Guid.Parse("00000002-f760-4cf6-a84d-526397dc8b2a");
+
+            contactStore.Add(new ContactItem
+            {
+                Id = tobiasContactId,
+                Name = "Tobias",
+                KeyName = "DanielTobiasKey"
+            });
+
+            contactStore.Add(new ContactItem
+            {
+                Id = samuelContactId,
+                Name = "Samuel",
+                KeyName = "DanielSamuelKey"
+            });
+
+            contactStore.Add(new ContactItem
+            {
+                Id = danielContactId,
+                Name = "Daniel",
+                KeyName = ""
+            });
+
+            return contactStore;
+        }
+
         public static IContactStore CreateContactStore()
         {
-            return new FakeContactStore();
+            return InitializeMemoryContactStore();
         }
 
         private static MemoryMessageStore InitializeMemoryMessageStore()

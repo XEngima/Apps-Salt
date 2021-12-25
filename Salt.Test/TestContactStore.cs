@@ -16,6 +16,11 @@ namespace Salt.Test
 
         public IEnumerable<IContactStoreItem> Contacts { get; set; }
 
+        public void Add(IContactStoreItem contactStoreItem)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<IContactStoreItem> GetAllContacts()
         {
             return Contacts;
