@@ -73,9 +73,9 @@ namespace Salt.Business
 
                 foreach (var headerItem in headerItems)
                 {
-                    var header = JsonConvert.DeserializeObject<MessageHeader>(headerItem.Content);
+                    var header = JsonConvert.DeserializeObject<ItemHeader>(headerItem.Content);
 
-                    if (header.Recipients.Contains(recipientId))
+                    if (header.Recipient == recipientId)
                     {
                         messageHeaders.Add(new SaltMessageHeader());
                     }
@@ -98,9 +98,9 @@ namespace Salt.Business
                 foreach (var messageStoreItem in messageStoreItems)
                 {
                     var headerItem = messageStoreItem.Header;
-                    var header = JsonConvert.DeserializeObject<MessageHeader>(headerItem);
+                    var header = JsonConvert.DeserializeObject<ItemHeader>(headerItem);
 
-                    if (header.Recipients.Contains(recipientId))
+                    if (header.Recipient == recipientId)
                     {
                         returnItems.Add(messageStoreItem);
                     }

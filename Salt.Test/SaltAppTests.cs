@@ -63,14 +63,14 @@ namespace Salt.Test
 
             // Message from Tobias to Daniel
 
-            var header = new MessageHeader
+            var header = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 01, 12, 00, 00),
                 Sender = TobiasContactId,
-                Recipients = new List<Guid>() { DanielContactId }
+                Recipient = DanielContactId
             };
 
-            var message = new Message
+            var message = new ItemMessage
             {
                 Subject = "A SIGN IN THE STARS",
                 Content = "THAT'S CORRECT! THIS IS AWESOME!"
@@ -80,14 +80,14 @@ namespace Salt.Test
 
             // Message from Samuel to Daniel
 
-            header = new MessageHeader
+            header = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 02, 12, 00, 00),
                 Sender = SamuelContactId,
-                Recipients = new List<Guid>() { DanielContactId }
+                Recipient = DanielContactId
             };
 
-            message = new Message
+            message = new ItemMessage
             {
                 Subject = "LIN WOOD?",
                 Content = "IS HE CORRUPT?"
@@ -97,14 +97,14 @@ namespace Salt.Test
 
             // Message from Daniel to Samuel
 
-            header = new MessageHeader
+            header = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 03, 12, 00, 00),
                 Sender = DanielContactId,
-                Recipients = new List<Guid>() { SamuelContactId }
+                Recipient = SamuelContactId
             };
 
-            message = new Message
+            message = new ItemMessage
             {
                 Subject = "RE: LIN WOOD?",
                 Content = "NO, HE IS NOT CORRUPT!"
@@ -140,7 +140,7 @@ namespace Salt.Test
             // Act
             var jsonMessage = saltApp.GetDecryptedMessage(MessageTobiasToDanielId);
 
-            var message = JsonConvert.DeserializeObject<Message>(jsonMessage.Content);
+            var message = JsonConvert.DeserializeObject<ItemMessage>(jsonMessage.Content);
 
             // Assert
             Assert.AreEqual("a sign in the stars", message.Subject);

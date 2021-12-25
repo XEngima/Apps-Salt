@@ -62,14 +62,14 @@ namespace Salt.Business
 
             // Message from Tobias to Daniel
 
-            var header = new MessageHeader
+            var header = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 01, 12, 00, 00),
                 Sender = tobiasContactId,
-                Recipients = new List<Guid>() { danielContactId }
+                Recipient = danielContactId
             };
 
-            var message = new Message
+            var message = new ItemMessage
             {
                 Subject = "A SIGN IN THE STARS",
                 Content = "THAT'S CORRECT! THIS IS AWESOME!"
@@ -79,14 +79,14 @@ namespace Salt.Business
 
             // Message from Samuel to Daniel
 
-            header = new MessageHeader
+            header = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 02, 12, 00, 00),
                 Sender = samuelContactId,
-                Recipients = new List<Guid>() { danielContactId }
+                Recipient = danielContactId
             };
 
-            message = new Message
+            message = new ItemMessage
             {
                 Subject = "LIN WOOD?",
                 Content = "IS HE CORRUPT?"
@@ -96,14 +96,14 @@ namespace Salt.Business
 
             // Message from Daniel to Samuel
 
-            header = new MessageHeader
+            header = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 03, 12, 00, 00),
                 Sender = danielContactId,
-                Recipients = new List<Guid>() { samuelContactId }
+                Recipient = samuelContactId
             };
 
-            message = new Message
+            message = new ItemMessage
             {
                 Subject = "RE: LIN WOOD?",
                 Content = "NO, HE IS NOT CORRUPT!"

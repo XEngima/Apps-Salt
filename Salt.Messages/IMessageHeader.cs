@@ -10,6 +10,6 @@ namespace Salt.Messages
 
         Guid Sender { get; set; }
 
-        List<Guid> Recipients { get; set; }
+        Guid Recipient { get; set; }
     }
 }

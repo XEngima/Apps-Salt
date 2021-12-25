@@ -6,7 +6,7 @@ using System.Text;
 namespace Salt.Messages
 {
     [Serializable]
-    public class Message
+    public class ItemMessage
     {
         /// <summary>
         /// Gets or sets the subject (header) of the message.
