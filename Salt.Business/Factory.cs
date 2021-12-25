@@ -13,7 +13,7 @@ namespace Salt.Business
 
         public static IMessageStore CreateMessageStore()
         {
-            return new FakeMessageStore();
+            return new MemoryMessageStore();
         }
     }
 }

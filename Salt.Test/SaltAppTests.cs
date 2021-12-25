@@ -112,14 +112,14 @@ namespace Salt.Test
 
             messageStoreItems.Add(new MessageStoreItem(MessageDanielToSamuelId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
 
-            MessageStore = new TestMessageStore
+            MessageStore = new MemoryMessageStore
             {
                 MessageStoreItems = messageStoreItems
             };
         }
 
         private TestCryptographer Cryptographer { get; set; }
-        private TestMessageStore MessageStore { get; set; }
+        private MemoryMessageStore MessageStore { get; set; }
         private TestKeyStore KeyStore { get; set; }
         private TestContactStore ContactStore { get; set; }
 

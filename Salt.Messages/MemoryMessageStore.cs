@@ -1,15 +1,14 @@
-﻿using Salt.Messages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Salt.Test
+namespace Salt.Messages
 {
-    public class TestMessageStore : IMessageStore
+    public class MemoryMessageStore : IMessageStore
     {
-        public TestMessageStore()
+        public MemoryMessageStore()
         {
             MessageStoreItems = new List<IMessageStoreItem>();
         }
