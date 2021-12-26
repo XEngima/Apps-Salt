@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ListBox x:Name="ContactsListBox" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Contacts}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding SelectedContactId}" SelectionChanged="ContactsListBox_SelectionChanged" />
-            <ListBox x:Name="HeaderListBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding MessageStoreItems}" DisplayMemberPath="Subject" SelectedValuePath="Id" SelectedValue="{Binding SelectedMessageId}" SelectionChanged="HeaderListBox_SelectionChanged" />
+            <ListBox x:Name="HeaderListBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding MessageHeaders}" DisplayMemberPath="Subject" SelectedValuePath="Id" SelectedValue="{Binding SelectedMessageId}" SelectionChanged="HeaderListBox_SelectionChanged" />
             <TextBox Grid.Column="3" Margin="0,0,0,0" Text="{Binding MessageContent, Mode=TwoWay}" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
     </DockPanel>

@@ -57,12 +57,12 @@ namespace Salt.Test
             {
                 Date = new DateTime(2021, 01, 01, 12, 00, 00),
                 Sender = TobiasContactId,
-                Recipient = DanielContactId
+                Recipient = DanielContactId,
+                Subject = "A SIGN IN THE STARS",
             };
 
             var message = new ItemMessage
             {
-                Subject = "A SIGN IN THE STARS",
                 Content = "THAT'S CORRECT! THIS IS AWESOME!"
             };
 
@@ -74,12 +74,12 @@ namespace Salt.Test
             {
                 Date = new DateTime(2021, 01, 02, 12, 00, 00),
                 Sender = SamuelContactId,
-                Recipient = DanielContactId
+                Recipient = DanielContactId,
+                Subject = "LIN WOOD?",
             };
 
             message = new ItemMessage
             {
-                Subject = "LIN WOOD?",
                 Content = "IS HE CORRUPT?"
             };
 
@@ -91,12 +91,12 @@ namespace Salt.Test
             {
                 Date = new DateTime(2021, 01, 03, 12, 00, 00),
                 Sender = DanielContactId,
-                Recipient = SamuelContactId
+                Recipient = SamuelContactId,
+                Subject = "RE: LIN WOOD?",
             };
 
             message = new ItemMessage
             {
-                Subject = "RE: LIN WOOD?",
                 Content = "NO, HE IS NOT CORRUPT!"
             };
 
@@ -133,7 +133,6 @@ namespace Salt.Test
             var message = JsonConvert.DeserializeObject<ItemMessage>(jsonMessage.Content);
 
             // Assert
-            Assert.AreEqual("a sign in the stars", message.Subject);
             Assert.AreEqual("that's correct! this is awesome!", message.Content);
         }
 

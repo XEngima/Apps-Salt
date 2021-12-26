@@ -82,7 +82,7 @@ namespace Salt.Business
                         var senderContactItem = contactStoreItems.FirstOrDefault(c => c.Id == header.Sender);
                         var recipientContactItem = contactStoreItems.FirstOrDefault(c => c.Id == header.Recipient);
 
-                        var saltMessageHeader = new SaltMessageHeader(headerItem.MessageId, header.Date, header.Sender, senderContactItem?.Name, header.Recipient, recipientContactItem?.Name);
+                        var saltMessageHeader = new SaltMessageHeader(headerItem.MessageId, header.Date, header.Sender, senderContactItem?.Name, header.Recipient, recipientContactItem?.Name, header.Subject);
 
                         messageHeaders.Add(saltMessageHeader);
                     }

@@ -49,12 +49,12 @@ namespace Salt.Business
             {
                 Date = new DateTime(2021, 01, 01, 12, 00, 00),
                 Sender = tobiasContactId,
-                Recipient = danielContactId
+                Recipient = danielContactId,
+                Subject = "A SIGN IN THE STARS",
             };
 
             var message = new ItemMessage
             {
-                Subject = "A SIGN IN THE STARS",
                 Content = "THAT'S CORRECT! THIS IS AWESOME!"
             };
 
@@ -66,12 +66,12 @@ namespace Salt.Business
             {
                 Date = new DateTime(2021, 01, 02, 12, 00, 00),
                 Sender = samuelContactId,
-                Recipient = danielContactId
+                Recipient = danielContactId,
+                Subject = "LIN WOOD?",
             };
 
             message = new ItemMessage
             {
-                Subject = "LIN WOOD?",
                 Content = "IS HE CORRUPT?"
             };
 
@@ -83,12 +83,12 @@ namespace Salt.Business
             {
                 Date = new DateTime(2021, 01, 03, 12, 00, 00),
                 Sender = danielContactId,
-                Recipient = samuelContactId
+                Recipient = samuelContactId,
+                Subject = "RE: LIN WOOD?",
             };
 
             message = new ItemMessage
             {
-                Subject = "RE: LIN WOOD?",
                 Content = "NO, HE IS NOT CORRUPT!"
             };
 

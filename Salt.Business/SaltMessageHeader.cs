@@ -10,7 +10,7 @@ namespace Salt.Business
         {
         }
 
-        public SaltMessageHeader(Guid messageId, DateTime date, Guid senderId, string senderName, Guid recipientId, string recipientName)
+        public SaltMessageHeader(Guid messageId, DateTime date, Guid senderId, string senderName, Guid recipientId, string recipientName, string subject)
         {
             MessageId = messageId;
             Date = date;
@@ -18,6 +18,7 @@ namespace Salt.Business
             SenderName = senderName;
             RecipientId = recipientId;
             RecipientName = recipientName;
+            Subject = subject;
         }
 
         public Guid MessageId { get; private set; }
@@ -31,6 +32,8 @@ namespace Salt.Business
         public Guid RecipientId { get; private set; }
 
         public string RecipientName { get; private set; }
+
+        public string Subject { get; private set; }
 
         public override string ToString()
         {
