@@ -26,12 +26,5 @@ namespace Salt.Keys
         /// <param name="length">The length of the part to recieve.</param>
         /// <returns>A key part.</returns>
         string GetKeyPart(string keyName, int pos, int length);
-
-        /// <summary>
-        /// Saves a key store item.
-        /// </summary>
-        /// <param name="keyName">The name of the key.</param>
-        /// <param name="fullPath"></param>
-        void Add(string keyName, string fullPath);
     }
 }
