@@ -16,6 +16,6 @@ namespace Salt.Business
 
         IEnumerable<IMessageStoreItem> GetDecryptedMessageStoreItemsByRecipientId(Guid contactId);
 
-        MessageViewModel GetDecryptedMessage(Guid id);
+        SaltMessage GetDecryptedMessage(Guid id);
     }
 }

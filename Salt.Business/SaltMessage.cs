@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Salt.Business
 {
-    public class MessageViewModel
+    public class SaltMessage
     {
-        public MessageViewModel()
+        public SaltMessage()
         {
         }
 
-        public MessageViewModel(Guid id, DateTime date, string sender, string recipients, string subject, string content)
+        public SaltMessage(Guid id, DateTime date, string sender, string recipients, string subject, string content)
         {
             Id = id;
             Date = date;

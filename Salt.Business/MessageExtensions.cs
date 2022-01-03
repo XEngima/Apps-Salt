@@ -8,12 +8,12 @@ namespace Salt.Business
 {
     public static class MessageExtensions
     {
-        public static MessageViewModel Decrypt(this IMessageStoreItem messageStoreItem, ICryptographer cryptographer, string keyPart)
+        public static SaltMessage Decrypt(this IMessageStoreItem messageStoreItem, ICryptographer cryptographer, string keyPart)
         {
 
             var message = cryptographer.Decrypt(messageStoreItem.Message, keyPart);
 
-            return new MessageViewModel(messageStoreItem.Id, DateTime.Now, "", "", "", message);
+            return new SaltMessage(messageStoreItem.Id, DateTime.Now, "", "", "", message);
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Salt.Business
             return ContactStore.GetAllContacts();
         }
 
-        public MessageViewModel GetDecryptedMessage(Guid id)
+        public SaltMessage GetDecryptedMessage(Guid id)
         {
             var messageStoreItem = MessageStore.GetMessageStoreItem(id);
             var key = KeyStore.GetKeyPart(messageStoreItem.KeyName, messageStoreItem.KeyStartPos, messageStoreItem.Message.Length);
