@@ -12,8 +12,8 @@ namespace Salt.Keys
             Key = key;
         }
 
-        public string KeyName { get; set; }
+        public string KeyName { get; private set; }
 
-        public string Key { get; set; }
+        public string Key { get; private set; }
     }
 }
