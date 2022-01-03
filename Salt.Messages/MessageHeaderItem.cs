@@ -16,6 +16,8 @@ namespace Salt.Messages
 
         public string Content { get; private set; }
 
+        public int KeyStartPos { get { return 0; } }
+
         public override string ToString()
         {
             return Content;

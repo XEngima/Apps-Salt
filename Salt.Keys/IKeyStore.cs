@@ -16,7 +16,7 @@ namespace Salt.Keys
         /// Gets a list of all keys in the keystore.
         /// </summary>
         /// <returns>An enumerable list of key names.</returns>
-        IEnumerable<string> GetAllKeyNames();
+        IList<IKeyStoreItem> Items { get; }
 
         /// <summary>
         /// Gets a part of a key.

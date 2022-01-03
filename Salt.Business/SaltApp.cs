@@ -64,18 +64,20 @@ namespace Salt.Business
 
         public IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByAnyContactId(Guid contactId)
         {
-            var keyNames = KeyStore.GetAllKeyNames();
+            var keyItems = KeyStore.Items;
             var contactStoreItems = ContactStore.GetAllContacts();
 
             var messageHeaders = new List<SaltMessageHeader>();
 
-            foreach (var keyName in keyNames)
+            foreach (var keyItem in keyItems)
             {
-                var headerItems = MessageStore.GetMessageHeadersByKeyName(keyName);
+                var headerItems = MessageStore.GetMessageHeadersByKeyName(keyItem.KeyName);
 
                 foreach (var headerItem in headerItems)
                 {
-                    var header = JsonConvert.DeserializeObject<ItemHeader>(headerItem.Content);
+                    string keyPart = keyItem.Key.Substring(headerItem.KeyStartPos, headerItem.Content.Length);
+                    var jsonHeader = Cryptographer.Decrypt(headerItem.Content, keyPart);
+                    var header = JsonConvert.DeserializeObject<ItemHeader>(jsonHeader);
 
                     if (header.Recipient == contactId || header.Sender == contactId)
                     {
@@ -94,13 +96,13 @@ namespace Salt.Business
 
         public IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByRecipientId(Guid recipientId)
         {
-            var keyNames = KeyStore.GetAllKeyNames();
+            var keyItems = KeyStore.Items;
 
             var messageHeaders = new List<SaltMessageHeader>();
 
-            foreach (var keyName in keyNames)
+            foreach (var keyItem in keyItems)
             {
-                var headerItems = MessageStore.GetMessageHeadersByKeyName(keyName);
+                var headerItems = MessageStore.GetMessageHeadersByKeyName(keyItem.KeyName);
 
                 foreach (var headerItem in headerItems)
                 {
@@ -118,13 +120,13 @@ namespace Salt.Business
 
         public IEnumerable<IMessageStoreItem> GetDecryptedMessageStoreItemsByRecipientId(Guid recipientId)
         {
-            var keyNames = KeyStore.GetAllKeyNames();
+            var keyItems = KeyStore.Items;
 
             var returnItems = new List<IMessageStoreItem>();
 
-            foreach (var keyName in keyNames)
+            foreach (var keyItem in keyItems)
             {
-                var messageStoreItems = MessageStore.GetMessageStoreItemsByKeyName(keyName);
+                var messageStoreItems = MessageStore.GetMessageStoreItemsByKeyName(keyItem.KeyName);
 
                 foreach (var messageStoreItem in messageStoreItems)
                 {

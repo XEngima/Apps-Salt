@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
+using Salt.Keys;
 
 namespace Salt.Test
 {
@@ -34,14 +35,9 @@ namespace Salt.Test
 
             // Key Store
 
-            KeyStore = new TestKeyStore()
-            {
-                Items = new List<TestKeyStoreItem>
-                {
-                    new TestKeyStoreItem("DanielTobiasKey", 0, 4, "case"),
-                    new TestKeyStoreItem("DanielSamuelKey", 0, 4, "case"),
-                }
-            };
+            KeyStore = new TestKeyStore();
+            KeyStore.Add(new TestKeyStoreItem("DanielTobiasKey", 0, 200, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+            KeyStore.Add(new TestKeyStoreItem("DanielSamuelKey", 0, 200, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
 
             // Create messages in the test message store
 
@@ -163,6 +159,7 @@ namespace Salt.Test
 
             var header = messageHeaders.First();
             Assert.AreEqual("Tobias", header.SenderName);
+            Assert.AreEqual("a sign in the stars", header.Subject);
         }
 
         [TestMethod]

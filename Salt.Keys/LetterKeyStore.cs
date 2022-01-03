@@ -12,7 +12,7 @@ namespace Salt.Keys
             Items = new List<IKeyStoreItem>();
         }
 
-        private List<IKeyStoreItem> Items { get; set; }
+        public IList<IKeyStoreItem> Items { get; private set; }
 
         public string GetKeyPart(string keyName, int pos, int length)
         {
@@ -38,11 +38,6 @@ namespace Salt.Keys
         public void Add(string keyName, string fullPath)
         {
             Items.Add(new KeyStoreItem(keyName, ""));
-        }
-
-        public IEnumerable<string> GetAllKeyNames()
-        {
-            return Items.Select(x => x.KeyName);
         }
     }
 }

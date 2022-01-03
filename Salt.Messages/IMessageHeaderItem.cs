@@ -9,5 +9,7 @@ namespace Salt.Messages
         Guid MessageId { get; }
 
         string Content { get; }
+
+        int KeyStartPos { get; }
     }
 }

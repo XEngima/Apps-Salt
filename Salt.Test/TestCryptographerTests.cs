@@ -5,7 +5,7 @@ using System;
 namespace Salt.Test
 {
     [TestClass]
-    public class KeyStoreTests
+    public class TestCryptographerTests
     {
         [TestMethod]
         public void UnencryptedText_Encrypting_EncryptionCorrect()
@@ -14,10 +14,10 @@ namespace Salt.Test
             var cryptographer = new TestCryptographer();
 
             // Act
-            string encryptedString = cryptographer.Encrypt("abc", "case");
+            string encryptedString = cryptographer.Encrypt("abcd", "aaaa");
 
             // Assert
-            Assert.AreEqual("ABC", encryptedString);
+            Assert.AreEqual("ABCD", encryptedString);
         }
     }
 }

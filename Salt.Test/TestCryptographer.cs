@@ -17,15 +17,26 @@ namespace Salt.Test
         /// <returns>The encrypted text.</returns>
         public string Encrypt(string text, string key)
         {
-            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
+            if (text.Length != key.Length)
             {
-                if (key == "case")
+                throw new ArgumentException("The text being encrypted need to have a key as long as the text.");
+            }
+
+            var sbText = new StringBuilder();
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (key[i] == 'a')
                 {
-                    return text.ToUpper();
+                    sbText.Append(text[i].ToString().ToUpper());
+                }
+                else
+                {
+                    sbText.Append("*");
                 }
             }
 
-            return "";
+            return sbText.ToString();
         }
 
         /// <summary>
@@ -36,15 +47,26 @@ namespace Salt.Test
         /// <returns>The decrypted text.</returns>
         public string Decrypt(string text, string key)
         {
-            if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(key))
+            if (text.Length != key.Length)
             {
-                if (key == "case")
+                throw new ArgumentException("The text being decrypted need to have a key as long as the text.");
+            }
+
+            var sbText = new StringBuilder();
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (key[i] == 'a')
                 {
-                    return text.ToLower();
+                    sbText.Append(text[i].ToString().ToLower());
+                }
+                else
+                {
+                    sbText.Append("*");
                 }
             }
 
-            return "";
+            return sbText.ToString();
         }
     }
 }

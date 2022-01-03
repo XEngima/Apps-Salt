@@ -11,23 +11,18 @@ namespace Salt.Test
     {
         public TestKeyStore()
         {
-            Items = new List<TestKeyStoreItem>();
+            Items = new List<IKeyStoreItem>();
         }
 
-        public IEnumerable<TestKeyStoreItem> Items { get; set; }
+        public IList<IKeyStoreItem> Items { get; private set; }
 
-        public IEnumerable<string> GetAllKeyNames()
-        {
-            return Items.Select(x => x.KeyName).ToList();
-        }
-
-        public string GetKeyPart(string keyNameHash, int pos, int length)
+        public string GetKeyPart(string keyName, int pos, int length)
         {
             foreach (var item in Items)
             {
-                if (item.KeyName == item.KeyName && pos == item.StartPos)
+                if (item.KeyName == keyName)
                 {
-                    return item.KeyPart;
+                    return item.Key.Substring(pos, length);
                 }
             }
 
@@ -42,6 +37,11 @@ namespace Salt.Test
         public void Add(string keyName, string fullPath)
         {
             throw new NotImplementedException();
+        }
+
+        public void Add(IKeyStoreItem keyStoreItem)
+        {
+            Items.Add(keyStoreItem);
         }
     }
 }

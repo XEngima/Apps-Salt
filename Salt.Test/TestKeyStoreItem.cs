@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salt.Keys;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Salt.Test
 {
-    public class TestKeyStoreItem
+    public class TestKeyStoreItem : IKeyStoreItem
     {
-        public TestKeyStoreItem(string keyName, int startPos, int length, string keyPart)
+        public TestKeyStoreItem(string keyName, int startPos, int length, string key)
         {
-            if (keyPart.Length != length)
+            if (key.Length != length)
             {
                 throw new ArgumentException("The key part must have the length of the length argument.");
             }
@@ -18,7 +19,7 @@ namespace Salt.Test
             KeyName = keyName;
             StartPos = startPos;
             Length = length;
-            KeyPart = keyPart;
+            Key = key;
         }
 
         public string KeyName { get; private set; }
@@ -27,6 +28,6 @@ namespace Salt.Test
 
         public int Length { get; private set; }
 
-        public string KeyPart { get; private set; }
+        public string Key { get; private set; }
     }
 }
