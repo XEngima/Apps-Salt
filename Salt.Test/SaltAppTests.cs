@@ -49,45 +49,50 @@ namespace Salt.Test
 
             // Message from Tobias to Daniel
 
-            var header = new ItemHeader
+            var itemHeader = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 01, 12, 00, 00),
                 Sender = TobiasContactId,
                 Recipient = DanielContactId,
             };
 
+            string header = JsonConvert.SerializeObject(itemHeader);
             string subject = "A SIGN IN THE STARS";
             string message = "THAT'S CORRECT! THIS IS AWESOME!";
 
-            messageStoreItems.Add(new MessageStoreItem(MessageTobiasToDanielId, "DanielTobiasKey", 0, JsonConvert.SerializeObject(header), subject, message));
+            messageStoreItems.Add(new MessageStoreItem(MessageTobiasToDanielId, "DanielTobiasKey", 0, header, subject, message));
 
             // Message from Samuel to Daniel
 
-            header = new ItemHeader
+            itemHeader = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 02, 12, 00, 00),
                 Sender = SamuelContactId,
                 Recipient = DanielContactId,
             };
 
+            header = JsonConvert.SerializeObject(itemHeader);
             subject = "LIN WOOD?";
             message = "IS HE CORRUPT?";
+            var length = header.Length + subject.Length + message.Length;
 
-            messageStoreItems.Add(new MessageStoreItem(MessageSamuelToDanielId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), subject, message));
+            messageStoreItems.Add(new MessageStoreItem(MessageSamuelToDanielId, "DanielSamuelKey", 0, header, subject, message));
 
             // Message from Daniel to Samuel
 
-            header = new ItemHeader
+            itemHeader = new ItemHeader
             {
                 Date = new DateTime(2021, 01, 03, 12, 00, 00),
                 Sender = DanielContactId,
                 Recipient = SamuelContactId,
             };
 
+            header = JsonConvert.SerializeObject(itemHeader);
             subject = "RE: LIN WOOD?";
             message = "NO, HE IS NOT CORRUPT!";
 
-            messageStoreItems.Add(new MessageStoreItem(MessageDanielToSamuelId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), subject, message));
+            length = length + header.Length + subject.Length + message.Length;
+            messageStoreItems.Add(new MessageStoreItem(MessageDanielToSamuelId, "DanielSamuelKey", 136, header, subject, message));
 
             MessageStore = new MemoryMessageStore
             {
@@ -173,6 +178,11 @@ namespace Salt.Test
 
             // Assert
             Assert.AreEqual(4, MessageStore.MessageStoreItems.Count());
+
+            var messageItem = MessageStore.MessageStoreItems.FirstOrDefault(m => m.Subject == "about lin wood");
+            Assert.IsNotNull(messageItem);
+            Assert.AreEqual(284, messageItem.KeyStartPos);
+            //Assert.AreEqual("[header]", messageItem.Header);
         }
     }
 }

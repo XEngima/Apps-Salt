@@ -152,6 +152,8 @@ namespace Salt.Business
 
         public void SendMessage(Guid recipient, string subject, string message, string keyName)
         {
+            MessageStoreItem item = new MessageStoreItem(Guid.NewGuid(), keyName, 0, "", subject, message);
+            MessageStore.SendMessage(item);
         }
     }
 }
