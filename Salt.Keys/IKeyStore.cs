@@ -6,13 +6,6 @@ namespace Salt.Keys
     public interface IKeyStore
     {
         /// <summary>
-        /// Checks if a key with a certain name exists in the key store.
-        /// </summary>
-        /// <param name="keyNameHash">The name to check for.</param>
-        /// <returns>true if the key exists, otherwise false.</returns>
-        bool HasKey(string keyNameHash);
-
-        /// <summary>
         /// Gets a list of all keys in the keystore.
         /// </summary>
         /// <returns>An enumerable list of key names.</returns>

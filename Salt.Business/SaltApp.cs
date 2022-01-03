@@ -149,5 +149,9 @@ namespace Salt.Business
 
             return returnItems;
         }
+
+        public void SendMessage(Guid recipient, string subject, string message, string keyName)
+        {
+        }
     }
 }

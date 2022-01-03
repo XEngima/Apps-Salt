@@ -29,15 +29,5 @@ namespace Salt.Keys
 
             return sbKeyPart.ToString();
         }
-
-        public bool HasKey(string keyNameHash)
-        {
-            return false;
-        }
-
-        public void Add(string keyName, string fullPath)
-        {
-            Items.Add(new KeyStoreItem(keyName, ""));
-        }
     }
 }

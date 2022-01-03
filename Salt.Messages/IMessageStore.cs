@@ -12,8 +12,8 @@ namespace Salt.Messages
 
         IEnumerable<IMessageStoreItem> GetMessageStoreItemsByKeyName(string keyName);
 
-        void SaveMessage(IMessageStoreItem message);
-
         IMessageStoreItem GetMessageStoreItem(Guid id);
+
+        void SendMessage(IMessageStoreItem message);
     }
 }

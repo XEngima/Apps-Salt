@@ -18,8 +18,8 @@
             </Menu.ItemsPanel>
             <MenuItem Header="_File">
                 <MenuItem Header="New _project" Command="{Binding NewProjectCommand}" InputGestureText="Ctrl-Shift-N" />
-                <MenuItem Header="New _file" Command="{Binding NewFileCommand}" InputGestureText="Ctrl-N" />
                 <Separator />
+                <MenuItem Header="New _file" Command="{Binding NewFileCommand}" InputGestureText="Ctrl-N" />
             </MenuItem>
         </Menu>
         <Grid>

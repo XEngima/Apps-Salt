@@ -162,5 +162,17 @@ namespace Salt.Test
             // Assert
             Assert.AreEqual(2, messageStoreItems.Count());
         }
+
+        [TestMethod]
+        public void SomeMessagesInStore_SendingMessage_MessageSent()
+        {
+            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
+
+            // Act
+            saltApp.SendMessage(SamuelContactId, "about lin wood", "he's actually a real hero!", "DanielSamuelKey");
+
+            // Assert
+            Assert.AreEqual(4, MessageStore.MessageStoreItems.Count());
+        }
     }
 }

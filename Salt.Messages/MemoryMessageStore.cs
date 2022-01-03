@@ -13,7 +13,7 @@ namespace Salt.Messages
             MessageStoreItems = new List<IMessageStoreItem>();
         }
 
-        public IEnumerable<IMessageStoreItem> MessageStoreItems { get; set; }
+        public IList<IMessageStoreItem> MessageStoreItems { get; set; }
 
         public IEnumerable<IMessageHeaderItem> GetMessageHeadersByKeyName(string keyName)
         {
@@ -71,9 +71,9 @@ namespace Salt.Messages
             return items;
         }
 
-        public void SaveMessage(IMessageStoreItem message)
+        public void SendMessage(IMessageStoreItem message)
         {
-            throw new NotImplementedException();
+            MessageStoreItems.Add(message);
         }
     }
 }

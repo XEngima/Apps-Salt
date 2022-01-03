@@ -29,16 +29,6 @@ namespace Salt.Test
             return string.Empty;
         }
 
-        public bool HasKey(string keyName)
-        {
-            return false;
-        }
-
-        public void Add(string keyName, string fullPath)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Add(IKeyStoreItem keyStoreItem)
         {
             Items.Add(keyStoreItem);

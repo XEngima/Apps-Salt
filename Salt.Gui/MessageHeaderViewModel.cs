@@ -21,7 +21,7 @@ namespace Salt
 
         public string Subject { get; private set; }
 
-        public string Text { get { return Time.ToString("yyyy-MM-dd HH:mm") + " " + Subject; } }
+        public string Text { get { return Time.ToString("yyyy-MM-dd HH:mm") + " - " + Subject; } }
 
         public override string ToString()
         {
