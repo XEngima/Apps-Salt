@@ -8,6 +8,8 @@ namespace Salt.Messages
     {
         IEnumerable<IMessageHeaderItem> GetMessageHeadersByKeyName(string keyName);
 
+        string GetSubjectByMessageId(Guid messageId);
+
         IEnumerable<IMessageStoreItem> GetMessageStoreItemsByKeyName(string keyName);
 
         void SaveMessage(IMessageStoreItem message);

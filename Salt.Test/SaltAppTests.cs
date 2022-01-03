@@ -54,15 +54,12 @@ namespace Salt.Test
                 Date = new DateTime(2021, 01, 01, 12, 00, 00),
                 Sender = TobiasContactId,
                 Recipient = DanielContactId,
-                Subject = "A SIGN IN THE STARS",
             };
 
-            var message = new ItemMessage
-            {
-                Content = "THAT'S CORRECT! THIS IS AWESOME!"
-            };
+            string subject = "A SIGN IN THE STARS";
+            string message = "THAT'S CORRECT! THIS IS AWESOME!";
 
-            messageStoreItems.Add(new MessageStoreItem(MessageTobiasToDanielId, "DanielTobiasKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(MessageTobiasToDanielId, "DanielTobiasKey", 0, JsonConvert.SerializeObject(header), subject, message));
 
             // Message from Samuel to Daniel
 
@@ -71,15 +68,12 @@ namespace Salt.Test
                 Date = new DateTime(2021, 01, 02, 12, 00, 00),
                 Sender = SamuelContactId,
                 Recipient = DanielContactId,
-                Subject = "LIN WOOD?",
             };
 
-            message = new ItemMessage
-            {
-                Content = "IS HE CORRUPT?"
-            };
+            subject = "LIN WOOD?";
+            message = "IS HE CORRUPT?";
 
-            messageStoreItems.Add(new MessageStoreItem(MessageSamuelToDanielId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(MessageSamuelToDanielId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), subject, message));
 
             // Message from Daniel to Samuel
 
@@ -88,15 +82,12 @@ namespace Salt.Test
                 Date = new DateTime(2021, 01, 03, 12, 00, 00),
                 Sender = DanielContactId,
                 Recipient = SamuelContactId,
-                Subject = "RE: LIN WOOD?",
             };
 
-            message = new ItemMessage
-            {
-                Content = "NO, HE IS NOT CORRUPT!"
-            };
+            subject = "RE: LIN WOOD?";
+            message = "NO, HE IS NOT CORRUPT!";
 
-            messageStoreItems.Add(new MessageStoreItem(MessageDanielToSamuelId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(MessageDanielToSamuelId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), subject, message));
 
             MessageStore = new MemoryMessageStore
             {
@@ -124,9 +115,7 @@ namespace Salt.Test
             var saltApp = new SaltApp(null, MessageStore, KeyStore, Cryptographer);
 
             // Act
-            var jsonMessage = saltApp.GetDecryptedMessage(MessageTobiasToDanielId);
-
-            var message = JsonConvert.DeserializeObject<ItemMessage>(jsonMessage.Content);
+            var message = saltApp.GetDecryptedMessage(MessageTobiasToDanielId);
 
             // Assert
             Assert.AreEqual("that's correct! this is awesome!", message.Content);

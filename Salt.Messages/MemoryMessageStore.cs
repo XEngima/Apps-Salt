@@ -30,6 +30,19 @@ namespace Salt.Messages
             return items;
         }
 
+        public string GetSubjectByMessageId(Guid messageId)
+        {
+            foreach (var messageStoreItem in MessageStoreItems)
+            {
+                if (messageStoreItem.Id == messageId)
+                {
+                    return messageStoreItem.Subject;
+                }
+            }
+
+            return "";
+        }
+
         public IMessageStoreItem GetMessageStoreItem(Guid id)
         {
             foreach (var message in MessageStoreItems)

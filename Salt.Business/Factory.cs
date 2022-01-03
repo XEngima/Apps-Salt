@@ -50,15 +50,12 @@ namespace Salt.Business
                 Date = new DateTime(2021, 01, 01, 12, 00, 00),
                 Sender = tobiasContactId,
                 Recipient = danielContactId,
-                Subject = "A SIGN IN THE STARS",
             };
 
-            var message = new ItemMessage
-            {
-                Content = "THAT'S CORRECT! THIS IS AWESOME!"
-            };
+            string subject = "A SIGN IN THE STARS";
+            string message = "THAT'S CORRECT! THIS IS AWESOME!";
 
-            messageStoreItems.Add(new MessageStoreItem(messageTobiasToDanielId, "DanielTobiasKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(messageTobiasToDanielId, "DanielTobiasKey", 0, JsonConvert.SerializeObject(header), subject, message));
 
             // Message from Samuel to Daniel
 
@@ -67,15 +64,12 @@ namespace Salt.Business
                 Date = new DateTime(2021, 01, 02, 12, 00, 00),
                 Sender = samuelContactId,
                 Recipient = danielContactId,
-                Subject = "LIN WOOD?",
             };
 
-            message = new ItemMessage
-            {
-                Content = "IS HE CORRUPT?"
-            };
+            subject = "LIN WOOD?";
+            message = "IS HE CORRUPT?";
 
-            messageStoreItems.Add(new MessageStoreItem(messageSamuelToDanielId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(messageSamuelToDanielId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), subject, message));
 
             // Message from Daniel to Samuel
 
@@ -84,15 +78,12 @@ namespace Salt.Business
                 Date = new DateTime(2021, 01, 03, 12, 00, 00),
                 Sender = danielContactId,
                 Recipient = samuelContactId,
-                Subject = "RE: LIN WOOD?",
             };
 
-            message = new ItemMessage
-            {
-                Content = "NO, HE IS NOT CORRUPT!"
-            };
+            subject = "RE: LIN WOOD?";
+            message = "NO, HE IS NOT CORRUPT!";
 
-            messageStoreItems.Add(new MessageStoreItem(messageDanielToSamuelId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), JsonConvert.SerializeObject(message)));
+            messageStoreItems.Add(new MessageStoreItem(messageDanielToSamuelId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), subject, message));
 
             return new MemoryMessageStore
             {

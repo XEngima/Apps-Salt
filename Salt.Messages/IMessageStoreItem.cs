@@ -6,16 +6,18 @@ namespace Salt.Messages
 {
     public interface IMessageStoreItem
     {
-        Guid Id { get; set; }
+        Guid Id { get; }
 
-        int CryptoVersion { get; set; }
+        int CryptoVersion { get; }
 
-        string KeyName { get; set; }
+        string KeyName { get; }
 
-        int KeyStartPos { get; set; }
+        int KeyStartPos { get; }
 
-        string Header { get; set; }
+        string Header { get; }
 
-        string Message { get; set; }
+        string Subject { get; }
+
+        string Message { get; }
     }
 }

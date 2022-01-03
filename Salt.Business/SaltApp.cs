@@ -75,16 +75,22 @@ namespace Salt.Business
 
                 foreach (var headerItem in headerItems)
                 {
-                    string keyPart = keyItem.Key.Substring(headerItem.KeyStartPos, headerItem.Content.Length);
-                    var jsonHeader = Cryptographer.Decrypt(headerItem.Content, keyPart);
-                    var header = JsonConvert.DeserializeObject<ItemHeader>(jsonHeader);
+                    string encryptedSubject = MessageStore.GetSubjectByMessageId(headerItem.MessageId);
+                    string keyPart = keyItem.Key.Substring(headerItem.KeyStartPos, headerItem.Content.Length + encryptedSubject.Length);
+
+                    // Decrypt header
+                    string jsonHeader = Cryptographer.Decrypt(headerItem.Content, keyPart.Substring(0, headerItem.Content.Length));
+                    ItemHeader header = JsonConvert.DeserializeObject<ItemHeader>(jsonHeader);
+
+                    // Decrypt subject
+                    string subject = Cryptographer.Decrypt(encryptedSubject, keyPart.Substring(headerItem.Content.Length));
 
                     if (header.Recipient == contactId || header.Sender == contactId)
                     {
                         var senderContactItem = contactStoreItems.FirstOrDefault(c => c.Id == header.Sender);
                         var recipientContactItem = contactStoreItems.FirstOrDefault(c => c.Id == header.Recipient);
 
-                        var saltMessageHeader = new SaltMessageHeader(headerItem.MessageId, header.Date, header.Sender, senderContactItem?.Name, header.Recipient, recipientContactItem?.Name, header.Subject);
+                        var saltMessageHeader = new SaltMessageHeader(headerItem.MessageId, header.Date, header.Sender, senderContactItem?.Name, header.Recipient, recipientContactItem?.Name, subject);
 
                         messageHeaders.Add(saltMessageHeader);
                     }
