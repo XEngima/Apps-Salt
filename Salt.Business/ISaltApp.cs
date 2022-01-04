@@ -10,13 +10,11 @@ namespace Salt.Business
     {
         IEnumerable<IContactStoreItem> GetContacts();
 
-        IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByRecipientId(Guid contactId);
+        IEnumerable<SaltMessageHeader> GetMessageHeadersByRecipientId(Guid contactId);
 
-        IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByAnyContactId(Guid contactId);
+        IEnumerable<SaltMessageHeader> GetMessageHeadersByAnyContactId(Guid contactId);
 
-        IEnumerable<IMessageStoreItem> GetDecryptedMessageStoreItemsByRecipientId(Guid contactId);
-
-        SaltMessage GetDecryptedMessage(Guid id);
+        SaltMessage GetMessage(Guid id);
 
         void SendMessage(Guid recipient, string subject, string message, string keyName);
     }

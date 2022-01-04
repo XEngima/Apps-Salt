@@ -125,7 +125,7 @@ namespace Salt.Test
             var saltApp = new SaltApp(null, MessageStore, KeyStore, Cryptographer);
 
             // Act
-            var message = saltApp.GetDecryptedMessage(MessageTobiasToDanielId);
+            var message = saltApp.GetMessage(MessageTobiasToDanielId);
 
             // Assert
             Assert.AreEqual("that's correct! this is awesome!", message.Content);
@@ -138,7 +138,7 @@ namespace Salt.Test
             var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
-            var messageHeader = saltApp.GetDecryptedMessageHeadersByRecipientId(DanielContactId);
+            var messageHeader = saltApp.GetMessageHeadersByRecipientId(DanielContactId);
 
             // Assert
             Assert.AreEqual(2, messageHeader.Count());
@@ -151,7 +151,7 @@ namespace Salt.Test
             var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
-            var messageHeaders = saltApp.GetDecryptedMessageHeadersByAnyContactId(TobiasContactId);
+            var messageHeaders = saltApp.GetMessageHeadersByAnyContactId(TobiasContactId);
 
             // Assert
             Assert.AreEqual(1, messageHeaders.Count());
@@ -159,18 +159,6 @@ namespace Salt.Test
             var header = messageHeaders.First();
             Assert.AreEqual("Tobias", header.SenderName);
             Assert.AreEqual("a sign in the stars", header.Subject);
-        }
-
-        [TestMethod]
-        public void EncryptedMessagesInStore_GetMessageStoreItemsByRecipientId_CorrectMessagesReturned()
-        {
-            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
-
-            // Act
-            var messageStoreItems = saltApp.GetDecryptedMessageStoreItemsByRecipientId(DanielContactId);
-
-            // Assert
-            Assert.AreEqual(2, messageStoreItems.Count());
         }
 
         [TestMethod]

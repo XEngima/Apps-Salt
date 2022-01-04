@@ -54,7 +54,7 @@ namespace Salt.Business
             return ContactStore.GetAllContacts();
         }
 
-        public SaltMessage GetDecryptedMessage(Guid id)
+        public SaltMessage GetMessage(Guid id)
         {
             var messageStoreItem = MessageStore.GetMessageStoreItem(id);
             var key = KeyStore.GetKeyPart(messageStoreItem.KeyName, messageStoreItem.KeyStartPos, messageStoreItem.Message.Length);
@@ -62,7 +62,7 @@ namespace Salt.Business
             return messageStoreItem.Decrypt(Cryptographer, key);
         }
 
-        public IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByAnyContactId(Guid contactId)
+        public IEnumerable<SaltMessageHeader> GetMessageHeadersByAnyContactId(Guid contactId)
         {
             var keyItems = KeyStore.Items;
             var contactStoreItems = ContactStore.GetAllContacts();
@@ -100,7 +100,7 @@ namespace Salt.Business
             return messageHeaders;
         }
 
-        public IEnumerable<SaltMessageHeader> GetDecryptedMessageHeadersByRecipientId(Guid recipientId)
+        public IEnumerable<SaltMessageHeader> GetMessageHeadersByRecipientId(Guid recipientId)
         {
             var keyItems = KeyStore.Items;
 
@@ -124,7 +124,7 @@ namespace Salt.Business
             return messageHeaders;
         }
 
-        public IEnumerable<IMessageStoreItem> GetDecryptedMessageStoreItemsByRecipientId(Guid recipientId)
+        public IEnumerable<IMessageStoreItem> GetMessageStoreItemsByRecipientId(Guid recipientId)
         {
             var keyItems = KeyStore.Items;
 

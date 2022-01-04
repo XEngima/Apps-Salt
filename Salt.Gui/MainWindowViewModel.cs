@@ -51,7 +51,7 @@ namespace Salt
         {
             MessageHeaders.Clear();
 
-            foreach (var message in SaltApp.GetDecryptedMessageHeadersByAnyContactId(SelectedContactId))
+            foreach (var message in SaltApp.GetMessageHeadersByAnyContactId(SelectedContactId))
             {
                 MessageHeaders.Add(message.ToMessageHeaderViewModel());
             }
@@ -59,7 +59,7 @@ namespace Salt
 
         public void ShowMessage()
         {
-            MessageContent = SaltApp.GetDecryptedMessage(SelectedMessageId).Content;
+            MessageContent = SaltApp.GetMessage(SelectedMessageId).Content;
         }
 
         private ISaltApp SaltApp { get; set; }
