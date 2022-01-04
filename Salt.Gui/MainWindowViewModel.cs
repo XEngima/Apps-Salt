@@ -30,7 +30,7 @@ namespace Salt
 
         public MainWindowViewModel()
         {
-            SaltApp = new SaltApp(Factory.CreateMemoryContactStore(), Factory.CreateMemoryMessageStore());
+            SaltApp = new SaltApp(new Settings(), Factory.CreateMemoryContactStore(), Factory.CreateMemoryMessageStore());
 
             Contacts = new ObservableCollection<IContactStoreItem>();
             MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();

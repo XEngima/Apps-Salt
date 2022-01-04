@@ -60,6 +60,7 @@
     <Compile Include="TestKeyStore.cs" />
     <Compile Include="TestKeyStoreItem.cs" />
     <Compile Include="TestContactStore.cs" />
+    <Compile Include="TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

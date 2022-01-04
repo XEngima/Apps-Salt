@@ -12,8 +12,9 @@ namespace Salt.Business
 {
     public class SaltApp : ISaltApp
     {
-        public SaltApp(IContactStore contactStore = null, IMessageStore messageStore = null, IKeyStore keyStore = null, ICryptographer cryptographer = null)
+        public SaltApp(ISettings settings, IContactStore contactStore = null, IMessageStore messageStore = null, IKeyStore keyStore = null, ICryptographer cryptographer = null)
         {
+            Settings = settings;
             ContactStore = contactStore;
             MessageStore = messageStore;
             Cryptographer = cryptographer;
@@ -39,6 +40,8 @@ namespace Salt.Business
                 KeyStore = Factory.CreateLetterKeyStore();
             }
         }
+
+        private ISettings Settings { get; set; }
 
         private IContactStore ContactStore { get; set; }
 
@@ -158,7 +161,7 @@ namespace Salt.Business
 
             // Create the message store item
 
-            var itemHeader = new ItemHeader(DateTime.Now, Guid.Empty, recipient);
+            var itemHeader = new ItemHeader(DateTime.Now, Settings.MyId, recipient);
 
             // Encrypt it
 

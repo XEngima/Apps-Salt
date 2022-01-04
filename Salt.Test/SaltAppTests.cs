@@ -16,6 +16,7 @@ namespace Salt.Test
         [TestInitialize]
         public void Initialize()
         {
+            Settings = new TestSettings();
             Cryptographer = new TestCryptographer();
 
             // Contact Store
@@ -104,6 +105,7 @@ namespace Salt.Test
             };
         }
 
+        private TestSettings Settings { get; set; }
         private TestCryptographer Cryptographer { get; set; }
         private MemoryMessageStore MessageStore { get; set; }
         private TestKeyStore KeyStore { get; set; }
@@ -122,7 +124,7 @@ namespace Salt.Test
         public void EncryptedMessageInStore_GetMessageFromStore_GotDecryptedMessage()
         {
             // Arrange
-            var saltApp = new SaltApp(null, MessageStore, KeyStore, Cryptographer);
+            var saltApp = new SaltApp(Settings, null, MessageStore, KeyStore, Cryptographer);
 
             // Act
             var message = saltApp.GetMessage(MessageTobiasToDanielId);
@@ -135,7 +137,7 @@ namespace Salt.Test
         public void EncryptedMessagesInStore_GetMessageHeadersByRecipientId_CorrectMessagesReturned()
         {
             // Arrange
-            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
             var messageHeader = saltApp.GetMessageHeadersByRecipientId(DanielContactId);
@@ -148,7 +150,7 @@ namespace Salt.Test
         public void EncryptedMessagesInStore_GetMessageHeadersByAnyContactId_CorrectMessagesReturned()
         {
             // Arrange
-            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
             var messageHeaders = saltApp.GetMessageHeadersByAnyContactId(TobiasContactId);
@@ -164,7 +166,7 @@ namespace Salt.Test
         [TestMethod]
         public void SomeMessagesInStore_SendingMessage_MessageEncryptedAndSent()
         {
-            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
             saltApp.SendMessage(SamuelContactId, "about lin wood", "he's actually a real hero!", "DanielSamuelKey");
@@ -185,7 +187,7 @@ namespace Salt.Test
         [TestMethod]
         public void UnusedKey_SendingMessage_StartingFromKeyPosZero()
         {
-            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
 
             // Act
             saltApp.SendMessage(HannaContactId, "have you heard?", "the world is going down!", "UnusedKey");
