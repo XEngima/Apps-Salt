@@ -156,9 +156,24 @@ namespace Salt.Business
 
             int keyPos = MessageStore.FindNextKeyPos(keyName);
 
-            // Create the message store item and send it
+            // Create the message store item
 
-            MessageStoreItem item = new MessageStoreItem(Guid.NewGuid(), keyName, keyPos, "", subject, message);
+            var itemHeader = new ItemHeader(DateTime.Now, Guid.Empty, recipient);
+
+            // Encrypt it
+
+
+            string header = itemHeader.ToJson();
+
+            string keyPart = KeyStore.GetKeyPart(keyName, keyPos, header.Length + subject.Length + message.Length);
+
+            string encryptedHeader = Cryptographer.Encrypt(header, keyPart.Substring(0, header.Length));
+            string encryptedSubject = Cryptographer.Encrypt(subject, keyPart.Substring(header.Length, subject.Length));
+            string encryptedMessage = Cryptographer.Encrypt(message, keyPart.Substring(header.Length + subject.Length, message.Length));
+
+            // Send it
+
+            MessageStoreItem item = new MessageStoreItem(Guid.NewGuid(), keyName, keyPos, encryptedHeader, encryptedSubject, encryptedMessage);
             MessageStore.SendMessage(item);
         }
     }
