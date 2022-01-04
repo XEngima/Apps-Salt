@@ -162,20 +162,6 @@ namespace Salt.Test
         }
 
         [TestMethod]
-        public void UnusedKey_SendingMessage_StartingFromKeyPosZero()
-        {
-            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
-
-            // Act
-            saltApp.SendMessage(HannaContactId, "have you heard?", "the world is going down!", "UnusedKey");
-
-            // Assert
-            var messageItem = MessageStore.MessageStoreItems.FirstOrDefault(m => m.Subject == "HAVE YOU HEARD?");
-            Assert.IsNotNull(messageItem);
-            Assert.AreEqual(0, messageItem.KeyStartPos);
-        }
-
-        [TestMethod]
         public void SomeMessagesInStore_SendingMessage_MessageEncryptedAndSent()
         {
             var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
@@ -190,6 +176,24 @@ namespace Salt.Test
             Assert.IsNotNull(messageItem);
             Assert.AreEqual("HE'S ACTUALLY A REAL HERO!", messageItem.Message);
             Assert.AreEqual(284, messageItem.KeyStartPos);
+
+            var header = JsonConvert.DeserializeObject<ItemHeader>(messageItem.Header);
+
+            Assert.AreEqual(DanielContactId, header.Sender);
+        }
+
+        [TestMethod]
+        public void UnusedKey_SendingMessage_StartingFromKeyPosZero()
+        {
+            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
+
+            // Act
+            saltApp.SendMessage(HannaContactId, "have you heard?", "the world is going down!", "UnusedKey");
+
+            // Assert
+            var messageItem = MessageStore.MessageStoreItems.FirstOrDefault(m => m.Subject == "HAVE YOU HEARD?");
+            Assert.IsNotNull(messageItem);
+            Assert.AreEqual(0, messageItem.KeyStartPos);
         }
     }
 }
