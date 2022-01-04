@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Salt.Messages
 {
@@ -26,9 +27,13 @@ namespace Salt.Messages
             Message = message;
         }
 
+        [XmlAttribute]
         public Guid Id { get; private set; }
+        [XmlAttribute]
         public int CryptoVersion { get; private set; }
+        [XmlAttribute]
         public string KeyName { get; private set; }
+        [XmlAttribute]
         public int KeyStartPos { get; private set; }
         public string Header { get; private set; }
         public string Subject { get; private set; }
