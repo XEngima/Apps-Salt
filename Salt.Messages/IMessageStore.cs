@@ -14,7 +14,7 @@ namespace Salt.Messages
 
         IMessageStoreItem GetMessageStoreItem(Guid id);
 
-        void SendMessage(IMessageStoreItem message);
+        void SendMessage(IMessageStoreItem messageStoreItem);
 
         /// <summary>
         /// Finds the first free key position for a key.

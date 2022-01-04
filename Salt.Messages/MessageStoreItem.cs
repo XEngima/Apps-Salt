@@ -28,16 +28,16 @@ namespace Salt.Messages
         }
 
         [XmlAttribute]
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         [XmlAttribute]
-        public int CryptoVersion { get; private set; }
+        public int CryptoVersion { get; set; }
         [XmlAttribute]
-        public string KeyName { get; private set; }
+        public string KeyName { get; set; }
         [XmlAttribute]
-        public int KeyStartPos { get; private set; }
-        public string Header { get; private set; }
-        public string Subject { get; private set; }
-        public string Message { get; private set; }
+        public int KeyStartPos { get; set; }
+        public string Header { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
 
         public override string ToString()
         {

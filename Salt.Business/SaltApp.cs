@@ -7,6 +7,8 @@ using Salt.Contacts;
 using Salt.Messages;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace Salt.Business
 {
@@ -164,7 +166,6 @@ namespace Salt.Business
             var itemHeader = new ItemHeader(DateTime.Now, Settings.MyId, recipient);
 
             // Encrypt it
-
 
             string header = itemHeader.ToJson();
 

@@ -38,5 +38,10 @@ namespace Salt
         {
             DataContext.ShowMessage();
         }
+
+        private void NewMessageMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext.SendMessage(Guid.Parse("00000001-f760-4cf6-a84d-526397dc8b2a"), "dynamic message", "hi tobias! this is a dynamic message, created for real by the application!", "DanielTobiasKey");
+        }
     }
 }

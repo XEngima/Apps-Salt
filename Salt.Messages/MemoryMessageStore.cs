@@ -71,11 +71,6 @@ namespace Salt.Messages
             return items;
         }
 
-        public void SendMessage(IMessageStoreItem message)
-        {
-            MessageStoreItems.Add(message);
-        }
-
         /// <summary>
         /// Finds the first free key position for a key.
         /// </summary>
@@ -91,6 +86,11 @@ namespace Salt.Messages
             }
 
             return 0;
+        }
+
+        public void SendMessage(IMessageStoreItem message)
+        {
+            MessageStoreItems.Add(message);
         }
     }
 }

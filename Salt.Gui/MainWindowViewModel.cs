@@ -30,7 +30,8 @@ namespace Salt
 
         public MainWindowViewModel()
         {
-            SaltApp = new SaltApp(new Settings(), Factory.CreateMemoryContactStore(), Factory.CreateMemoryMessageStore());
+            //SaltApp = new SaltApp(new Settings(), Factory.CreateMemoryContactStore(), Factory.CreateMemoryMessageStore());
+            SaltApp = new SaltApp(new Settings(), Factory.CreateMemoryContactStore(), Factory.CreateXmlMessageStore());
 
             Contacts = new ObservableCollection<IContactStoreItem>();
             MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();
@@ -110,6 +111,11 @@ namespace Salt
                     OnPropertyChanged("MessageContent");
                 }
             }
+        }
+
+        public void SendMessage(Guid recipient, string subject, string message, string keyName)
+        {
+            SaltApp.SendMessage(recipient, subject, message, keyName);
         }
     }
 }

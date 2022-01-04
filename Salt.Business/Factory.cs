@@ -83,7 +83,7 @@ namespace Salt.Business
             subject = "RE: LIN WOOD?";
             message = "NO, HE IS NOT CORRUPT!";
 
-            messageStoreItems.Add(new MessageStoreItem(messageDanielToSamuelId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), subject, message));
+            messageStoreItems.Add(new MessageStoreItem(messageDanielToSamuelId, "DanielSamuelKey", 136, JsonConvert.SerializeObject(header), subject, message));
 
             return new MemoryMessageStore
             {
@@ -94,6 +94,11 @@ namespace Salt.Business
         public static IMessageStore CreateMemoryMessageStore()
         {
             return InitializeMemoryMessageStore();
+        }
+
+        public static IMessageStore CreateXmlMessageStore()
+        {
+            return new XmlMessageStore(@"C:\Projekt\Salt\Data\MessageStore\");
         }
 
         public static IKeyStore CreateLetterKeyStore()
