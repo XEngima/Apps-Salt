@@ -23,6 +23,7 @@ namespace Salt.Test
             TobiasContactId = Guid.Parse("00000001-f760-4cf6-a84d-526397dc8b2a");
             DanielContactId = Guid.Parse("00000002-f760-4cf6-a84d-526397dc8b2a");
             SamuelContactId = Guid.Parse("00000003-f760-4cf6-a84d-526397dc8b2a");
+            HannaContactId = Guid.Parse("00000004-f760-4cf6-a84d-526397dc8b2a");
 
             ContactStore = new TestContactStore()
             {
@@ -30,6 +31,8 @@ namespace Salt.Test
                 {
                     new ContactItem(TobiasContactId, "Tobias", "DanielTobiasKey"),
                     new ContactItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
+                    new ContactItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
+                    new ContactItem(HannaContactId, "Hanna", "UnusedKey"),
                 }
             };
 
@@ -38,6 +41,7 @@ namespace Salt.Test
             KeyStore = new TestKeyStore();
             KeyStore.Add(new TestKeyStoreItem("DanielTobiasKey", 0, 200, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
             KeyStore.Add(new TestKeyStoreItem("DanielSamuelKey", 0, 200, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+            KeyStore.Add(new TestKeyStoreItem("UnusedKey", 0, 200, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
 
             // Create messages in the test message store
 
@@ -108,6 +112,7 @@ namespace Salt.Test
         private Guid TobiasContactId { get; set; }
         private Guid DanielContactId { get; set; }
         private Guid SamuelContactId { get; set; }
+        private Guid HannaContactId { get; set; }
 
         private Guid MessageTobiasToDanielId { get; set; }
         private Guid MessageSamuelToDanielId { get; set; }
@@ -166,6 +171,20 @@ namespace Salt.Test
 
             // Assert
             Assert.AreEqual(2, messageStoreItems.Count());
+        }
+
+        [TestMethod]
+        public void UnusedKey_SendingMessage_StartingFromKeyPosZero()
+        {
+            var saltApp = new SaltApp(ContactStore, MessageStore, KeyStore, Cryptographer);
+
+            // Act
+            saltApp.SendMessage(HannaContactId, "have you heard?", "the world is going down!", "UnusedKey");
+
+            // Assert
+            var messageItem = MessageStore.MessageStoreItems.FirstOrDefault(m => m.Subject == "have you heard?");
+            Assert.IsNotNull(messageItem);
+            Assert.AreEqual(0, messageItem.KeyStartPos);
         }
 
         [TestMethod]

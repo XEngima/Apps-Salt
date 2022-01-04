@@ -152,7 +152,13 @@ namespace Salt.Business
 
         public void SendMessage(Guid recipient, string subject, string message, string keyName)
         {
-            MessageStoreItem item = new MessageStoreItem(Guid.NewGuid(), keyName, 0, "", subject, message);
+            // Find next key position
+
+            int keyPos = MessageStore.FindNextKeyPos(keyName);
+
+            // Create the message store item and send it
+
+            MessageStoreItem item = new MessageStoreItem(Guid.NewGuid(), keyName, keyPos, "", subject, message);
             MessageStore.SendMessage(item);
         }
     }

@@ -75,5 +75,22 @@ namespace Salt.Messages
         {
             MessageStoreItems.Add(message);
         }
+
+        /// <summary>
+        /// Finds the first free key position for a key.
+        /// </summary>
+        /// <param name="keyName">The name of the key to be used.</param>
+        /// <returns>The first free key position.</returns>
+        public int FindNextKeyPos(string keyName)
+        {
+            var messageItem = MessageStoreItems.OrderByDescending(m => m.KeyStartPos).FirstOrDefault(m => m.KeyName == keyName);
+
+            if (messageItem != null)
+            {
+                return messageItem.KeyStartPos + messageItem.Header.Length + messageItem.Subject.Length + messageItem.Message.Length;
+            }
+
+            return 0;
+        }
     }
 }
