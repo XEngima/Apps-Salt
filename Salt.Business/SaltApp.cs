@@ -172,6 +172,8 @@ namespace Salt.Business
             string keyPart = KeyStore.GetKeyPart(keyName, keyPos, header.Length + subject.Length + message.Length);
 
             string encryptedHeader = Cryptographer.Encrypt(header, keyPart.Substring(0, header.Length));
+            //string decryptedHeader = Cryptographer.Decrypt(encryptedHeader, keyPart.Substring(0));
+
             string encryptedSubject = Cryptographer.Encrypt(subject, keyPart.Substring(header.Length, subject.Length));
             string encryptedMessage = Cryptographer.Encrypt(message, keyPart.Substring(header.Length + subject.Length, message.Length));
 

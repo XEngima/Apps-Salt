@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Salt.Contacts;
 using Salt.Messages;
+using Salt.Cypher;
 
 namespace Salt
 {
@@ -31,7 +32,7 @@ namespace Salt
         public MainWindowViewModel()
         {
             //SaltApp = new SaltApp(new Settings(), Factory.CreateMemoryContactStore(), Factory.CreateMemoryMessageStore());
-            SaltApp = new SaltApp(new Settings(), Factory.CreateMemoryContactStore(), Factory.CreateXmlMessageStore());
+            SaltApp = new SaltApp(new Settings(), Factory.CreateMemoryContactStore(), Factory.CreateXmlMessageStore(), null, new RealCryptographer());
 
             Contacts = new ObservableCollection<IContactStoreItem>();
             MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();
