@@ -10,12 +10,12 @@ namespace Salt.Business
         {
         }
 
-        public SaltMessage(Guid id, DateTime date, string sender, string recipients, string subject, string content)
+        public SaltMessage(Guid id, DateTime date, Guid sender, Guid recipient, string subject, string content)
         {
             Id = id;
             Date = date;
             Sender = sender;
-            Recipients = recipients;
+            Recipient = recipient;
             Subject = subject;
             Content = content;
         }
@@ -30,12 +30,12 @@ namespace Salt.Business
         /// <summary>
         /// Gets or sets the sender as a guid.
         /// </summary>
-        public string Sender { get; private set; }
+        public Guid Sender { get; private set; }
 
         /// <summary>
         /// Gets or sets the reciever(s) as a comma separated list of guids.
         /// </summary>
-        public string Recipients { get; private set; }
+        public Guid Recipient { get; private set; }
 
         /// <summary>
         /// Gets or sets the subject (header) of the message.

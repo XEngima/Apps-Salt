@@ -62,9 +62,14 @@ namespace Salt.Business
         public SaltMessage GetMessage(Guid id)
         {
             var messageStoreItem = MessageStore.GetMessageStoreItem(id);
-            var key = KeyStore.GetKeyPart(messageStoreItem.KeyName, messageStoreItem.KeyStartPos, messageStoreItem.Message.Length);
+            var keyPart = KeyStore.GetKeyPart(messageStoreItem.KeyName, messageStoreItem.KeyStartPos, messageStoreItem.KeyLength);
 
-            return messageStoreItem.Decrypt(Cryptographer, key);
+            string jsonHeader = Cryptographer.Decrypt(messageStoreItem.Header, keyPart);
+            ItemHeader header = JsonConvert.DeserializeObject<ItemHeader>(jsonHeader);
+            string subject = Cryptographer.Decrypt(messageStoreItem.Subject, keyPart.Substring(jsonHeader.Length));
+            string message = Cryptographer.Decrypt(messageStoreItem.Message, keyPart.Substring(jsonHeader.Length + subject.Length));
+
+            return new SaltMessage(messageStoreItem.Id, header.Date, header.Sender, header.Recipient, subject, message);
         }
 
         public IEnumerable<SaltMessageHeader> GetMessageHeadersByAnyContactId(Guid contactId)
@@ -81,14 +86,14 @@ namespace Salt.Business
                 foreach (var headerItem in headerItems)
                 {
                     string encryptedSubject = MessageStore.GetSubjectByMessageId(headerItem.MessageId);
-                    string keyPart = KeyStore.GetKeyPart(keyName, headerItem.KeyStartPos, headerItem.Content.Length + encryptedSubject.Length);
+                    string keyPart = KeyStore.GetKeyPart(keyName, headerItem.KeyStartPos, headerItem.KeyLength);
 
                     // Decrypt header
-                    string jsonHeader = Cryptographer.Decrypt(headerItem.Content, keyPart.Substring(0, headerItem.Content.Length));
+                    string jsonHeader = Cryptographer.Decrypt(headerItem.Content, keyPart);
                     ItemHeader header = JsonConvert.DeserializeObject<ItemHeader>(jsonHeader);
 
                     // Decrypt subject
-                    string subject = Cryptographer.Decrypt(encryptedSubject, keyPart.Substring(headerItem.Content.Length));
+                    string subject = Cryptographer.Decrypt(encryptedSubject, keyPart.Substring(jsonHeader.Length));
 
                     if (header.Recipient == contactId || header.Sender == contactId)
                     {
@@ -179,7 +184,7 @@ namespace Salt.Business
 
             // Send it
 
-            MessageStoreItem item = new MessageStoreItem(Guid.NewGuid(), keyName, keyPos, encryptedHeader, encryptedSubject, encryptedMessage);
+            MessageStoreItem item = new MessageStoreItem(Guid.NewGuid(), keyName, keyPos, keyPart.Length, encryptedHeader, encryptedSubject, encryptedMessage);
             MessageStore.SendMessage(item);
         }
     }

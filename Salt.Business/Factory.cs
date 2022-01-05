@@ -52,10 +52,11 @@ namespace Salt.Business
                 Recipient = danielContactId,
             };
 
+            string sHeader = JsonConvert.SerializeObject(header);
             string subject = "A SIGN IN THE STARS";
             string message = "THAT'S CORRECT! THIS IS AWESOME!";
 
-            messageStoreItems.Add(new MessageStoreItem(messageTobiasToDanielId, "DanielTobiasKey", 0, JsonConvert.SerializeObject(header), subject, message));
+            messageStoreItems.Add(new MessageStoreItem(messageTobiasToDanielId, "DanielTobiasKey", 0, sHeader.Length + subject.Length + message.Length, sHeader, subject, message));
 
             // Message from Samuel to Daniel
 
@@ -66,10 +67,11 @@ namespace Salt.Business
                 Recipient = danielContactId,
             };
 
+            sHeader = JsonConvert.SerializeObject(header);
             subject = "LIN WOOD?";
             message = "IS HE CORRUPT?";
 
-            messageStoreItems.Add(new MessageStoreItem(messageSamuelToDanielId, "DanielSamuelKey", 0, JsonConvert.SerializeObject(header), subject, message));
+            messageStoreItems.Add(new MessageStoreItem(messageSamuelToDanielId, "DanielSamuelKey", 0, sHeader.Length + subject.Length + message.Length, sHeader, subject, message));
 
             // Message from Daniel to Samuel
 
@@ -80,10 +82,11 @@ namespace Salt.Business
                 Recipient = samuelContactId,
             };
 
+            sHeader = JsonConvert.SerializeObject(header);
             subject = "RE: LIN WOOD?";
             message = "NO, HE IS NOT CORRUPT!";
 
-            messageStoreItems.Add(new MessageStoreItem(messageDanielToSamuelId, "DanielSamuelKey", 136, JsonConvert.SerializeObject(header), subject, message));
+            messageStoreItems.Add(new MessageStoreItem(messageDanielToSamuelId, "DanielSamuelKey", 136, sHeader.Length + subject.Length + message.Length, sHeader, subject, message));
 
             return new MemoryMessageStore
             {
@@ -109,6 +112,11 @@ namespace Salt.Business
             keyStore.Items.Add(new KeyStoreItem("DanielTobiasKey", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
 
             return keyStore;
+        }
+
+        public static IKeyStore CreateFileKeyStore(ISettings settings)
+        {
+            return new FileKeyStore(settings.KeyStoreFolderPath);
         }
     }
 }

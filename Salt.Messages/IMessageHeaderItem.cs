@@ -11,5 +11,7 @@ namespace Salt.Messages
         string Content { get; }
 
         int KeyStartPos { get; }
+
+        int KeyLength { get; }
     }
 }

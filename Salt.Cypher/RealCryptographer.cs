@@ -79,7 +79,7 @@ namespace Salt.Cypher
                 int keyValue = CharToValue(keyPart[i]);
                 int sum = textValue + keyValue;
 
-                if (sum > cMaxCharValue)
+                while (sum > cMaxCharValue)
                 {
                     sum -= cMaxCharValue;
                 }
@@ -119,7 +119,7 @@ namespace Salt.Cypher
                 int keyValue = CharToValue(keyPart[i]);
                 int sum = textValue - keyValue;
 
-                if (sum < 0)
+                while (sum < 0)
                 {
                     sum += cMaxCharValue;
                 }

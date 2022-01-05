@@ -35,7 +35,7 @@ namespace Salt
 
             var settings = new Settings();
 
-            SaltApp = new SaltApp(settings, Factory.CreateMemoryContactStore(), Factory.CreateXmlMessageStore(settings), null, new RealCryptographer());
+            SaltApp = new SaltApp(settings, Factory.CreateMemoryContactStore(), Factory.CreateXmlMessageStore(settings), Factory.CreateFileKeyStore(settings), new RealCryptographer());
 
             Contacts = new ObservableCollection<IContactStoreItem>();
             MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();

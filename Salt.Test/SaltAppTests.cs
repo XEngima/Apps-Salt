@@ -65,7 +65,7 @@ namespace Salt.Test
             string subject = "A SIGN IN THE STARS";
             string message = "THAT'S CORRECT! THIS IS AWESOME!";
 
-            messageStoreItems.Add(new MessageStoreItem(MessageTobiasToDanielId, "DanielTobiasKey", 0, header, subject, message));
+            messageStoreItems.Add(new MessageStoreItem(MessageTobiasToDanielId, "DanielTobiasKey", 0, header.Length + subject.Length + message.Length, header, subject, message));
 
             // Message from Samuel to Daniel
 
@@ -81,7 +81,7 @@ namespace Salt.Test
             message = "IS HE CORRUPT?";
             var length = header.Length + subject.Length + message.Length;
 
-            messageStoreItems.Add(new MessageStoreItem(MessageSamuelToDanielId, "DanielSamuelKey", 0, header, subject, message));
+            messageStoreItems.Add(new MessageStoreItem(MessageSamuelToDanielId, "DanielSamuelKey", 0, header.Length + subject.Length + message.Length, header, subject, message));
 
             // Message from Daniel to Samuel
 
@@ -97,7 +97,7 @@ namespace Salt.Test
             message = "NO, HE IS NOT CORRUPT!";
 
             length = length + header.Length + subject.Length + message.Length;
-            messageStoreItems.Add(new MessageStoreItem(MessageDanielToSamuelId, "DanielSamuelKey", 136, header, subject, message));
+            messageStoreItems.Add(new MessageStoreItem(MessageDanielToSamuelId, "DanielSamuelKey", 136, header.Length + subject.Length + message.Length, header, subject, message));
 
             MessageStore = new MemoryMessageStore
             {

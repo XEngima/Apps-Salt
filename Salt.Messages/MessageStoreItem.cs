@@ -17,11 +17,12 @@ namespace Salt.Messages
             Message = "";
         }
 
-        public MessageStoreItem(Guid id, string keyName, int keyStartPos, string header, string subject, string message)
+        public MessageStoreItem(Guid id, string keyName, int keyStartPos, int keyLength, string header, string subject, string message)
         {
             Id = id;
             KeyName = keyName;
             KeyStartPos = keyStartPos;
+            KeyLength = keyLength;
             Header = header;
             Subject = subject;
             Message = message;
@@ -35,6 +36,8 @@ namespace Salt.Messages
         public string KeyName { get; set; }
         [XmlAttribute]
         public int KeyStartPos { get; set; }
+        [XmlAttribute]
+        public int KeyLength { get; set; }
         public string Header { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }

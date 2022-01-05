@@ -47,7 +47,7 @@ namespace Salt.Messages
             {
                 if (messageStoreItem.KeyName == keyName)
                 {
-                    items.Add(new MessageHeaderItem(messageStoreItem.Id, messageStoreItem.Header));
+                    items.Add(new MessageHeaderItem(messageStoreItem.Id, messageStoreItem.Header, messageStoreItem.KeyStartPos, messageStoreItem.KeyLength));
                 }
             }
 
