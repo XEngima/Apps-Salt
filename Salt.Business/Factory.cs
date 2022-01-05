@@ -96,9 +96,9 @@ namespace Salt.Business
             return InitializeMemoryMessageStore();
         }
 
-        public static IMessageStore CreateXmlMessageStore()
+        public static IMessageStore CreateXmlMessageStore(ISettings settings)
         {
-            return new XmlMessageStore(@"C:\Projekt\Salt\Data\MessageStore\");
+            return new XmlMessageStore(settings.MessageStoreFolderPath);
         }
 
         public static IKeyStore CreateLetterKeyStore()

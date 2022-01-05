@@ -163,7 +163,7 @@ namespace Salt.Business
 
             // Create the message store item
 
-            var itemHeader = new ItemHeader(DateTime.Now, Settings.MyId, recipient);
+            var itemHeader = new ItemHeader(DateTime.Now, Settings.MyContactId, recipient);
 
             // Encrypt it
 
