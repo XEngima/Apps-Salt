@@ -6,10 +6,10 @@ namespace Salt.Keys
     public interface IKeyStore
     {
         /// <summary>
-        /// Gets a list of all keys in the keystore.
+        /// Gets all key names in the key store.
         /// </summary>
-        /// <returns>An enumerable list of key names.</returns>
-        IList<IKeyStoreItem> Items { get; }
+        /// <returns>A list of key names.</returns>
+        IEnumerable<string> GetAllKeyNames();
 
         /// <summary>
         /// Gets a part of a key.

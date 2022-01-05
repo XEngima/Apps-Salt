@@ -16,6 +16,11 @@ namespace Salt.Test
 
         public IList<IKeyStoreItem> Items { get; private set; }
 
+        public IEnumerable<string> GetAllKeyNames()
+        {
+            return Items.Select(k => k.KeyName).ToList();
+        }
+
         public string GetKeyPart(string keyName, int pos, int length)
         {
             foreach (var item in Items)
