@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MessageStoreItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="10000001-9575-4f71-ba28-cf09c5fdf200" CryptoVersion="0" KeyName="DanielTobiasKey" KeyStartPos="0">
-  <Header>{"D":"2021-01-01T12:00:00","S":"00000001-f760-4cf6-a84d-526397dc8b2a","R":"00000002-f760-4cf6-a84d-526397dc8b2a"}</Header>
-  <Subject>A SIGN IN THE STARS</Subject>
-  <Message>THAT'S CORRECT! THIS IS AWESOME!</Message>
-</MessageStoreItem>

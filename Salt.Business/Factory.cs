@@ -17,9 +17,9 @@ namespace Salt.Business
             var samuelContactId = Guid.Parse("00000003-f760-4cf6-a84d-526397dc8b2a");
             var danielContactId = Guid.Parse("00000002-f760-4cf6-a84d-526397dc8b2a");
 
-            contactStore.Add(new ContactItem(tobiasContactId, "Tobias", "DanielTobiasKey"));
-            contactStore.Add(new ContactItem(samuelContactId, "Samuel", "DanielSamuelKey"));
-            contactStore.Add(new ContactItem(tobiasContactId, "Daniel", ""));
+            contactStore.Add(new ContactStoreItem(tobiasContactId, "Tobias", "DanielTobiasKey"));
+            contactStore.Add(new ContactStoreItem(samuelContactId, "Samuel", "DanielSamuelKey"));
+            contactStore.Add(new ContactStoreItem(tobiasContactId, "Daniel", ""));
 
             return contactStore;
         }
@@ -27,6 +27,11 @@ namespace Salt.Business
         public static IContactStore CreateMemoryContactStore()
         {
             return InitializeMemoryContactStore();
+        }
+
+        public static IContactStore CreateXmlContactStore(ISettings settings)
+        {
+            return new XmlContactStore(settings.ContactStoreFolderPath);
         }
 
         private static MemoryMessageStore InitializeMemoryMessageStore()

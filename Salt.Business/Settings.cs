@@ -16,8 +16,15 @@ namespace Salt.Business
             set { }
         }
 
-        public string KeyStoreFolderPath {
+        public string KeyStoreFolderPath
+        {
             get { return @"C:\Projekt\Salt\Data\KeyStore\"; }
+            set { }
+        }
+
+        public string ContactStoreFolderPath
+        {
+            get { return @"C:\Projekt\Salt\Data\ContactStore\"; }
             set { }
         }
     }

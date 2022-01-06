@@ -32,7 +32,6 @@ namespace Salt.Messages
 
                 MessageStoreItems.Add(messageStoreItem);
             }
-
         }
 
         public string FolderPath { get; set; }

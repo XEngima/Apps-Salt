@@ -11,5 +11,7 @@ namespace Salt.Business
         string KeyStoreFolderPath { get; set; }
 
         string MessageStoreFolderPath { get; set; }
+
+        string ContactStoreFolderPath { get; set; }
     }
 }

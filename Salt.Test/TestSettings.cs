@@ -14,5 +14,7 @@ namespace Salt.Test
         public string KeyStoreFolderPath { get; set; }
 
         public string MessageStoreFolderPath { get; set; }
+
+        public string ContactStoreFolderPath { get; set; }
     }
 }

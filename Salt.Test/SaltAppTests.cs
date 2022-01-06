@@ -30,10 +30,10 @@ namespace Salt.Test
             {
                 Contacts = new List<IContactStoreItem>
                 {
-                    new ContactItem(TobiasContactId, "Tobias", "DanielTobiasKey"),
-                    new ContactItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
-                    new ContactItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
-                    new ContactItem(HannaContactId, "Hanna", "UnusedKey"),
+                    new ContactStoreItem(TobiasContactId, "Tobias", "DanielTobiasKey"),
+                    new ContactStoreItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
+                    new ContactStoreItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
+                    new ContactStoreItem(HannaContactId, "Hanna", "UnusedKey"),
                 }
             };
 
