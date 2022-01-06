@@ -11,7 +11,7 @@ namespace Salt
     {
         public static MessageHeaderViewModel ToMessageHeaderViewModel(this SaltMessageHeader messageHeader)
         {
-            return new MessageHeaderViewModel(messageHeader.MessageId, messageHeader.Date, messageHeader.Subject);
+            return new MessageHeaderViewModel(messageHeader.MessageId, messageHeader.Date, messageHeader.Subject, messageHeader.RecipientName);
         }
     }
 }

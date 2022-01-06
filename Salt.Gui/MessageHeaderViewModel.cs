@@ -8,11 +8,12 @@ namespace Salt
 {
     public class MessageHeaderViewModel
     {
-        public MessageHeaderViewModel(Guid messageId, DateTime time, string subject)
+        public MessageHeaderViewModel(Guid messageId, DateTime time, string subject, string recipientName)
         {
             MessageId = messageId;
             Time = time;
             Subject = subject;
+            RecipientName = recipientName;
         }
 
         public Guid MessageId { get; private set; }
@@ -21,7 +22,9 @@ namespace Salt
 
         public string Subject { get; private set; }
 
-        public string Text { get { return Time.ToString("yyyy-MM-dd HH:mm") + " - " + Subject; } }
+        public string RecipientName { get; private set; }
+
+        public string Text { get { return Time.ToString("yyyy-MM-dd HH:mm") + " - " + Subject + "\nTo: " + RecipientName; } }
 
         public override string ToString()
         {

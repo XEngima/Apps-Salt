@@ -26,9 +26,15 @@
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="ContactsListBox" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Contacts}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding SelectedContactId}" SelectionChanged="ContactsListBox_SelectionChanged" />
-            <ListBox x:Name="HeaderListBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding MessageHeaders}" DisplayMemberPath="Text" SelectedValuePath="MessageId" SelectedValue="{Binding SelectedMessageId}" SelectionChanged="HeaderListBox_SelectionChanged" />
-            <TextBox Grid.Column="3" Margin="0,0,0,0" Text="{Binding MessageContent, Mode=TwoWay}" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ListBox x:Name="ContactsListBox" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Contacts}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding SelectedContactId}" Padding="2,2,2,2" SelectionChanged="ContactsListBox_SelectionChanged" />
+            <ListBox x:Name="HeaderListBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding MessageHeaders}" DisplayMemberPath="Text" SelectedValuePath="MessageId" SelectedValue="{Binding SelectedMessageId}" SelectionChanged="HeaderListBox_SelectionChanged">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="2"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <TextBox Grid.Column="3" Margin="0,0,0,0" Text="{Binding MessageContent, Mode=TwoWay}" TextWrapping="Wrap" HorizontalAlignment="Stretch" Padding="5,5,5,5" VerticalAlignment="Stretch"/>
         </Grid>
     </DockPanel>
 </Window>
