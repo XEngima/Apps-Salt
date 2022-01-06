@@ -47,11 +47,6 @@ namespace Salt.Test
         /// <returns>The decrypted text.</returns>
         public string Decrypt(string text, string key)
         {
-            if (text.Length != key.Length)
-            {
-                throw new ArgumentException("The text being decrypted need to have a key as long as the text.");
-            }
-
             var sbText = new StringBuilder();
 
             for (int i = 0; i < text.Length; i++)

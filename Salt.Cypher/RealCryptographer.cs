@@ -7,7 +7,7 @@ namespace Salt.Cypher
 {
     public class RealCryptographer : ICryptographer
     {
-        private const int cMaxCharValue = 120;
+        private const int cCharValueCount = 221;
 
         private int CharToValue(char ch)
         {
@@ -35,7 +35,7 @@ namespace Salt.Cypher
             if (ch >= 158 && ch <= 255)
                 return ch - 35; // 123-220
 
-            throw new NotSupportedException("The character '" + ch + "' is not supported.");
+            return -1;
         }
 
         private char ValueToChar(int value)
@@ -75,16 +75,16 @@ namespace Salt.Cypher
 
             for (int i = 0; i < text.Length; i++)
             {
-                int textValue = CharToValue(text[i]);
-                int keyValue = CharToValue(keyPart[i]);
-                int sum = textValue + keyValue;
+                int textValue = text[i];
+                int keyValue = keyPart[i];
+                int newValue = textValue + keyValue;
 
-                while (sum > cMaxCharValue)
+                while (newValue >= cCharValueCount)
                 {
-                    sum -= cMaxCharValue;
+                    newValue -= cCharValueCount;
                 }
 
-                sbEncryptedText.Append(ValueToChar(sum));
+                sbEncryptedText.Append(ValueToChar(newValue));
             }
 
             // 2. Escape the escape character
@@ -116,15 +116,22 @@ namespace Salt.Cypher
             for (int i = 0; i < encryptedText.Length; i++)
             {
                 int textValue = CharToValue(encryptedText[i]);
-                int keyValue = CharToValue(keyPart[i]);
-                int sum = textValue - keyValue;
+                int keyValue = keyPart[i];
+                int newValue = textValue - keyValue;
 
-                while (sum < 0)
+                while (newValue < 0)
                 {
-                    sum += cMaxCharValue;
+                    newValue += cCharValueCount;
                 }
 
-                sbDecryptedText.Append(ValueToChar(sum));
+                // Check to see if this value actually is a printable character, otherwise it has gone around.
+
+                if (CharToValue((char)newValue) == -1)
+                {
+                    newValue += cCharValueCount;
+                }
+
+                sbDecryptedText.Append(Convert.ToChar(newValue));
             }
 
             return sbDecryptedText.ToString();

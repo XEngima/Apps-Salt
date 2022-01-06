@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salt.Gui;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Salt.Gui
+namespace Salt
 {
     /// <summary>
     /// Interaction logic for MessagingWindow.xaml
@@ -23,5 +24,29 @@ namespace Salt.Gui
         {
             InitializeComponent();
         }
+
+        private new MessagingWindowViewModel DataContext { get { return (MessagingWindowViewModel)base.DataContext; } }
+
+        public event SendMessageEventHandler SendMessage;
+
+        protected void OnSendMessage(SendMessageEventArgs e)
+        {
+            if (SendMessage != null)
+            {
+                SendMessage(this, e);
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            OnSendMessage(new SendMessageEventArgs(DataContext.Recipient, DataContext.KeyName, DataContext.Subject, DataContext.Message));
+        }
+
+        public delegate void SendMessageEventHandler(object sender, SendMessageEventArgs e);
     }
 }

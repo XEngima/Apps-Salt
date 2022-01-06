@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salt.Gui;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +42,21 @@ namespace Salt
 
         private void NewMessageMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            DataContext.SendMessage(Guid.Parse("15d439c1-e6a9-450a-a054-75c258c28a3e"), "fine breakfast today!", "hi maria!\n\nthis is a dynamic message, created for real by the application!", "DanielMariaKey");
+            //DataContext.SendMessage(Guid.Parse("15d439c1-e6a9-450a-a054-75c258c28a3e"), "fine breakfast today!", "hi maria!\n\nthis is a dynamic message, created for real by the application!", "DanielMariaKey");
+
+            var messagingWindow = new MessagingWindow();
+
+            messagingWindow.SendMessage += MessagingWindow_SendMessage;
+
+            messagingWindow.ShowDialog();
+        }
+
+        private void MessagingWindow_SendMessage(object sender, SendMessageEventArgs e)
+        {
+            var recipient = DataContext.Contacts.FirstOrDefault(c => c.Name == e.Recipient);
+            DataContext.SendMessage(recipient.Id, e.Subject, e.Message, recipient.KeyName);
+
+            MessageBox.Show(e.Subject);
         }
     }
 }

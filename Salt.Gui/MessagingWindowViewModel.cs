@@ -27,5 +27,13 @@ namespace Salt
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        public string Recipient { get; set; }
+
+        public string KeyName { get; set; }
+
+        public string Subject { get; set; }
+
+        public string Message { get; set; }
     }
 }
