@@ -8,53 +8,51 @@ namespace Salt.Test
     public class CryptographerTests
     {
         [TestMethod]
-        public void NormalText_Encrypting_TextCorrectlyEncrypted()
+        public void SwedishAlphabet_EncryptingAndDecrypting_TextCorrectlyEncryptedAndDecrypted()
         {
             // Arrange
             var cryptographer = new RealCryptographer();
 
-            // Act
-            string encryptedString = cryptographer.Encrypt("ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
-            Assert.AreEqual("¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾FEW", encryptedString);
-        }
-
-        [TestMethod]
-        public void NormalText_Encrypting_TextCorrectlyEncrypted2()
-        {
-            // Arrange
-            var cryptographer = new RealCryptographer();
+            string keyPart = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
             // Act
-            string encryptedString = cryptographer.Encrypt("Hej älskling!", "fafkjsdfuiglh");
+            string encryptedString = cryptographer.Encrypt("ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ", keyPart);
+            string decryptedString = cryptographer.Decrypt(encryptedString, keyPart);
 
-            Assert.AreEqual("Ñéó®\u0093\\rúô!õøö¬", encryptedString);
-        }
-
-        [TestMethod]
-        public void EncryptedText_Decrypting_TextCorrectlyDecrypted()
-        {
-            // Arrange
-            var cryptographer = new RealCryptographer();
-
-            // Act
-            string decryptedString = cryptographer.Decrypt("¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾FEW", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
-            // Assert
+            Assert.AreEqual("efghijklmnopqrstuvwxyz{|}~éèú", encryptedString);
             Assert.AreEqual("ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ", decryptedString);
         }
 
         [TestMethod]
-        public void EncryptedText_Decrypting_TextCorrectlyDecrypted2()
+        public void LowEndEdgeText_EncryptingAndDecrypting_TextCorrectlyEncryptedAndDecrypted()
         {
             // Arrange
             var cryptographer = new RealCryptographer();
 
-            // Act
-            string decryptedString = cryptographer.Decrypt("Ñéó®\u0093\\rúô!õøö¬", "fafkjsdfuiglh");
+            string keyPart = "\t";
 
-            // Assert
-            Assert.AreEqual("Hej älskling!", decryptedString);
+            // Act
+            string encryptedString = cryptographer.Encrypt("\t", keyPart);
+            string decryptedString = cryptographer.Decrypt(encryptedString, keyPart);
+
+            Assert.AreEqual("\t", encryptedString);
+            Assert.AreEqual("\t", decryptedString);
+        }
+
+        [TestMethod]
+        public void HighEndEdgeText_EncryptingAndDecrypting_TextCorrectlyEncryptedAndDecrypted()
+        {
+            // Arrange
+            var cryptographer = new RealCryptographer();
+
+            string keyPart = "ÿ";
+
+            // Act
+            string encryptedString = cryptographer.Encrypt("ÿ", keyPart);
+            string decryptedString = cryptographer.Decrypt(encryptedString, keyPart);
+
+            Assert.AreEqual("þ", encryptedString);
+            Assert.AreEqual("ÿ", decryptedString);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Salt.Cypher
             if (ch >= 158 && ch <= 255)
                 return ch - 35; // 123-220
 
-            return -1;
+            throw new NotSupportedException("The character '" + ch + "'(" + (int)ch + ") is not supported.");
         }
 
         private char ValueToChar(int value)
@@ -75,11 +75,11 @@ namespace Salt.Cypher
 
             for (int i = 0; i < text.Length; i++)
             {
-                int textValue = text[i];
-                int keyValue = keyPart[i];
+                int textValue = CharToValue(text[i]);
+                int keyValue = CharToValue(keyPart[i]);
                 int newValue = textValue + keyValue;
 
-                while (newValue >= cCharValueCount)
+                if (newValue >= cCharValueCount)
                 {
                     newValue -= cCharValueCount;
                 }
@@ -116,22 +116,22 @@ namespace Salt.Cypher
             for (int i = 0; i < encryptedText.Length; i++)
             {
                 int textValue = CharToValue(encryptedText[i]);
-                int keyValue = keyPart[i];
+                int keyValue = CharToValue(keyPart[i]);
                 int newValue = textValue - keyValue;
 
-                while (newValue < 0)
+                if (newValue < 0)
                 {
                     newValue += cCharValueCount;
                 }
 
-                // Check to see if this value actually is a printable character, otherwise it has gone around.
+                //// Check to see if this value actually is a printable character, otherwise it has gone around.
 
-                if (CharToValue((char)newValue) == -1)
-                {
-                    newValue += cCharValueCount;
-                }
+                //if (CharToValue((char)newValue) == -1)
+                //{
+                //    newValue += cCharValueCount;
+                //}
 
-                sbDecryptedText.Append(Convert.ToChar(newValue));
+                sbDecryptedText.Append(ValueToChar(newValue));
             }
 
             return sbDecryptedText.ToString();
