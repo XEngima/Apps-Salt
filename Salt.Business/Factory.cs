@@ -31,7 +31,7 @@ namespace Salt.Business
 
         public static IContactStore CreateXmlContactStore(ISettings settings)
         {
-            return new XmlContactStore(settings.ContactStoreFolderPath);
+            return new XmlContactStore(settings.ContactStoreFolderPath, settings.MyContactId);
         }
 
         private static MemoryMessageStore InitializeMemoryMessageStore()

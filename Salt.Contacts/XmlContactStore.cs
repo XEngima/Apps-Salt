@@ -8,7 +8,7 @@ namespace Salt.Contacts
 {
     public class XmlContactStore : IContactStore
     {
-        public XmlContactStore(string folderPath)
+        public XmlContactStore(string folderPath, Guid myId)
         {
             FolderPath = folderPath;
             ContactStoreItems = new List<ContactStoreItem>();
@@ -16,7 +16,27 @@ namespace Salt.Contacts
             // Create a new Serializer
             XmlSerializer serializer = new XmlSerializer(typeof(ContactStoreItem));
 
+            // If there are no files in the contact store, then create one with "my" id.
+
             var filePaths = Directory.GetFiles(FolderPath, "*.xml");
+
+            if (filePaths.Length == 0)
+            {
+                var meItem = new ContactStoreItem(myId, "Me", "");
+
+                // Create a new StreamWriter
+                TextWriter writer = new StreamWriter(Path.Combine(FolderPath, "Me.xml"));
+
+                // Serialize the file
+                serializer.Serialize(writer, meItem);
+
+                // Close the writer
+                writer.Close();
+            }
+
+            // Read all files
+
+            filePaths = Directory.GetFiles(FolderPath, "*.xml");
 
             foreach (var filePath in filePaths)
             {
