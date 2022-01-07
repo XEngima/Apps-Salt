@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Salt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="527" Width="938">
+        Title="Salt - Safe encryption" Height="527" Width="938" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <local:MainWindowViewModel></local:MainWindowViewModel>
     </Window.DataContext>

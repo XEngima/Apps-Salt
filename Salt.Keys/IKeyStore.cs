@@ -12,6 +12,13 @@ namespace Salt.Keys
         IEnumerable<string> GetAllKeyNames();
 
         /// <summary>
+        /// Checks if a key with a certain name exists in the key store.
+        /// </summary>
+        /// <param name="keyName">The key name to test.</param>
+        /// <returns>true if the key exists. Otherwise false.</returns>
+        bool KeyExists(string keyName);
+
+        /// <summary>
         /// Gets a part of a key.
         /// </summary>
         /// <param name="keyName">The name (hashed) of the key to get.</param>

@@ -174,7 +174,21 @@ namespace Salt.Business
 
             string header = itemHeader.ToJson();
 
-            string keyPart = KeyStore.GetKeyPart(keyName, keyPos, header.Length + subject.Length + message.Length);
+            if (!KeyStore.KeyExists(keyName))
+            {
+                throw new MessagingException("The key '" + keyName + "' does not exist in the key store.");
+            }
+
+            string keyPart;
+
+            try
+            {
+                keyPart = KeyStore.GetKeyPart(keyName, keyPos, header.Length + subject.Length + message.Length);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                throw new MessagingException("The key '" + keyName + "' is exceeded.");
+            }
 
             string encryptedHeader = Cryptographer.Encrypt(header, keyPart.Substring(0, header.Length));
             //string decryptedHeader = Cryptographer.Decrypt(encryptedHeader, keyPart.Substring(0));

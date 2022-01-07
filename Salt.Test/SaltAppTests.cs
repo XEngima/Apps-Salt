@@ -25,6 +25,7 @@ namespace Salt.Test
             DanielContactId = Guid.Parse("00000002-f760-4cf6-a84d-526397dc8b2a");
             SamuelContactId = Guid.Parse("00000003-f760-4cf6-a84d-526397dc8b2a");
             HannaContactId = Guid.Parse("00000004-f760-4cf6-a84d-526397dc8b2a");
+            SaraContactId = Guid.Parse("00000005-f760-4cf6-a84d-526397dc8b2a");
 
             ContactStore = new TestContactStore()
             {
@@ -34,6 +35,7 @@ namespace Salt.Test
                     new ContactStoreItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
                     new ContactStoreItem(SamuelContactId, "Samuel", "DanielSamuelKey"),
                     new ContactStoreItem(HannaContactId, "Hanna", "UnusedKey"),
+                    new ContactStoreItem(SaraContactId, "Hanna", ""),
                 }
             };
 
@@ -43,6 +45,7 @@ namespace Salt.Test
             KeyStore.Add(new TestKeyStoreItem("DanielTobiasKey", 0, 800, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
             KeyStore.Add(new TestKeyStoreItem("DanielSamuelKey", 0, 800, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
             KeyStore.Add(new TestKeyStoreItem("UnusedKey", 0, 800, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+            KeyStore.Add(new TestKeyStoreItem("VeryShortKey", 0, 10, "aaaaaaaaaa"));
 
             // Create messages in the test message store
 
@@ -115,6 +118,7 @@ namespace Salt.Test
         private Guid DanielContactId { get; set; }
         private Guid SamuelContactId { get; set; }
         private Guid HannaContactId { get; set; }
+        private Guid SaraContactId { get; set; }
 
         private Guid MessageTobiasToDanielId { get; set; }
         private Guid MessageSamuelToDanielId { get; set; }
@@ -196,6 +200,50 @@ namespace Salt.Test
             var messageItem = MessageStore.MessageStoreItems.FirstOrDefault(m => m.Subject == "HAVE YOU HEARD?");
             Assert.IsNotNull(messageItem);
             Assert.AreEqual(0, messageItem.KeyStartPos);
+        }
+
+        [TestMethod]
+        public void ContactWithNoKey_SendingMessage_CorrectException()
+        {
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
+            MessagingException messagingException = null;
+
+            // Act
+
+            try
+            {
+                saltApp.SendMessage(SaraContactId, "have you heard?", "the world is going down!", "NonExistingKey");
+            }
+            catch (MessagingException ex)
+            {
+                messagingException = ex;
+            }
+
+            // Assert
+            Assert.IsNotNull(messagingException);
+            Assert.AreEqual("The key 'NonExistingKey' does not exist in the key store.", messagingException.Message);
+        }
+
+        [TestMethod]
+        public void VeryShortKey_SendingMessage_CorrectException()
+        {
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
+            MessagingException messagingException = null;
+
+            // Act
+
+            try
+            {
+                saltApp.SendMessage(HannaContactId, "have you heard?", "the world is going down!", "VeryShortKey");
+            }
+            catch (MessagingException ex)
+            {
+                messagingException = ex;
+            }
+
+            // Assert
+            Assert.IsNotNull(messagingException);
+            Assert.AreEqual("The key 'VeryShortKey' is exceeded.", messagingException.Message);
         }
     }
 }

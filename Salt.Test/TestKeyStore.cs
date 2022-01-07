@@ -38,5 +38,10 @@ namespace Salt.Test
         {
             Items.Add(keyStoreItem);
         }
+
+        public bool KeyExists(string keyName)
+        {
+            return Items.FirstOrDefault(e => e.KeyName == keyName) != null;
+        }
     }
 }

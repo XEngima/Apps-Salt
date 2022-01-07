@@ -1,4 +1,5 @@
-﻿using Salt.Gui;
+﻿using Salt.Business;
+using Salt.Gui;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,9 +55,30 @@ namespace Salt
         private void MessagingWindow_SendMessage(object sender, SendMessageEventArgs e)
         {
             var recipient = DataContext.Contacts.FirstOrDefault(c => c.Name == e.Recipient);
-            DataContext.SendMessage(recipient.Id, e.Subject, e.Message, recipient.KeyName);
 
-            MessageBox.Show(e.Subject);
+            try
+            {
+                if (recipient != null)
+                {
+                    if (string.IsNullOrEmpty(recipient.KeyName))
+                    {
+                        MessageBox.Show("The recipient " + e.Recipient + " does not have an associated key. Make sure that the contact has a key specified and that the key exists in the key store.", "Message not sent", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        DataContext.SendMessage(recipient.Id, e.Subject, e.Message, recipient.KeyName);
+                        MessageBox.Show("Message sent to " + e.Recipient + ".", "Message sent", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The recipient " + e.Recipient + " could not be found in the contact store.", "Message not sent", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (MessagingException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

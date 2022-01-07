@@ -34,5 +34,10 @@ namespace Salt.Keys
 
             return sbKeyPart.ToString();
         }
+
+        public bool KeyExists(string keyName)
+        {
+            return Items.FirstOrDefault(e => e.KeyName == keyName) != null;
+        }
     }
 }
