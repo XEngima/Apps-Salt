@@ -5,6 +5,8 @@ using System.ComponentModel;
 using Salt.Contacts;
 using Salt.Messages;
 using Salt.Cypher;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Salt
 {
@@ -29,11 +31,51 @@ namespace Salt
             }
         }
 
+        /// <summary>
+        /// Loads the settings, or if file does not exist, creates a new settings object.
+        /// </summary>
+        /// <returns></returns>
+        private ISettings GetSettings()
+        {
+            string path = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
+            ISettings settings;
+
+            // Create a new Serializer
+            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+
+            if (File.Exists(path))
+            {
+                // Create a new StreamWriter
+                var reader = new StreamReader(path);
+
+                // Serialize the file
+                settings = (Settings)serializer.Deserialize(reader);
+
+                // Close the writer
+                reader.Close();
+            }
+            else
+            {
+                settings = new Settings(Environment.CurrentDirectory);
+
+                // Create a new StreamWriter
+                TextWriter writer = new StreamWriter(path);
+
+                // Serialize the file
+                serializer.Serialize(writer, settings);
+
+                // Close the writer
+                writer.Close();
+            }
+
+            return settings;
+        }
+
         public MainWindowViewModel()
         {
-            //SaltApp = new SaltApp(new Settings(), Factory.CreateMemoryContactStore(), Factory.CreateMemoryMessageStore());
+            // Create a settings object a
 
-            var settings = new Settings();
+            var settings = GetSettings();
 
             SaltApp = new SaltApp(settings, Factory.CreateXmlContactStore(settings), Factory.CreateXmlMessageStore(settings), Factory.CreateFileKeyStore(settings), new RealCryptographer());
 
