@@ -14,6 +14,13 @@ namespace Salt.Messages
             FolderPath = folderPath;
             MessageStoreItems = new List<IMessageStoreItem>();
 
+            // if the message store directory does not exist, then create it
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
             // Create a new Serializer
             XmlSerializer serializer = new XmlSerializer(typeof(MessageStoreItem));
 

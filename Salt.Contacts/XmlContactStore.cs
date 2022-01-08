@@ -16,6 +16,13 @@ namespace Salt.Contacts
             // Create a new Serializer
             XmlSerializer serializer = new XmlSerializer(typeof(ContactStoreItem));
 
+            // If the folder path does not exist, then create it
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
             // If there are no files in the contact store, then create one with "my" id.
 
             var filePaths = Directory.GetFiles(FolderPath, "*.xml");

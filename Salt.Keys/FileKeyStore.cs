@@ -13,6 +13,13 @@ namespace Salt.Keys
             FolderPath = folderPath;
             KeyStoreEntries = new List<FileKeyStoreEntry>();
 
+            // if the key store directory does not exist, then create it
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
             var filePaths = Directory.GetFiles(FolderPath, "*.key");
 
             foreach (var filePath in filePaths)

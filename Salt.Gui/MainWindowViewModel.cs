@@ -7,6 +7,7 @@ using Salt.Messages;
 using Salt.Cypher;
 using System.IO;
 using System.Xml.Serialization;
+using System.Windows;
 
 namespace Salt
 {
@@ -75,15 +76,22 @@ namespace Salt
         {
             // Create a settings object a
 
-            var settings = GetSettings();
+            try
+            {
+                var settings = GetSettings();
 
-            SaltApp = new SaltApp(settings, Factory.CreateXmlContactStore(settings), Factory.CreateXmlMessageStore(settings), Factory.CreateFileKeyStore(settings), new RealCryptographer());
+                SaltApp = new SaltApp(settings, Factory.CreateXmlContactStore(settings), Factory.CreateXmlMessageStore(settings), Factory.CreateFileKeyStore(settings), new RealCryptographer());
 
-            Contacts = new ObservableCollection<IContactStoreItem>();
-            MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();
-            MessageContent = "";
+                Contacts = new ObservableCollection<IContactStoreItem>();
+                MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();
+                MessageContent = "";
 
-            LoadContacts();
+                LoadContacts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LoadContacts()
