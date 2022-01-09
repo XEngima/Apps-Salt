@@ -7,9 +7,9 @@ namespace Salt.Cypher
 {
     public class RealCryptographer : ICryptographer
     {
-        private const int cCharValueCount = 221;
+        public const int cCharValueCount = 221;
 
-        private int CharToValue(char ch)
+        public static int CharToValue(char ch)
         {
             if (ch >= 9 && ch <= 10)
                 return ch - 9; // 0-1
@@ -38,7 +38,7 @@ namespace Salt.Cypher
             throw new NotSupportedException("The character '" + ch + "'(" + (int)ch + ") is not supported.");
         }
 
-        private char ValueToChar(int value)
+        public static char ValueToChar(int value)
         {
             if (value <= 1)
                 return Convert.ToChar(value + 9);

@@ -78,19 +78,47 @@ namespace Salt
 
             try
             {
+                string settingsFilePath = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
+                bool firstStartup = !File.Exists(settingsFilePath);
+
                 var settings = GetSettings();
 
-                SaltApp = new SaltApp(settings, Factory.CreateXmlContactStore(settings), Factory.CreateXmlMessageStore(settings), Factory.CreateFileKeyStore(settings), new RealCryptographer());
+                // if the key store directory does not exist, then create it
+
+                if (!Directory.Exists(settings.KeyStoreFolderPath))
+                {
+                    Directory.CreateDirectory(settings.KeyStoreFolderPath);
+                }
+
+                // If there are no key files - e.g. first startup - then create a key.
+
+                var filePaths = Directory.GetFiles(settings.KeyStoreFolderPath, "*.key");
+                var keyId = Guid.Empty;
+
+                if (filePaths.Length == 0)
+                {
+                    keyId = KeyFileGenerator.CreateNewKeyFile(settings.KeyStoreFolderPath, 300000);
+                }
+
+                var keyStore = Factory.CreateFileKeyStore(settings);
+
+                SaltApp = new SaltApp(settings, Factory.CreateXmlContactStore(settings, keyId), Factory.CreateXmlMessageStore(settings), keyStore, new RealCryptographer());
 
                 Contacts = new ObservableCollection<IContactStoreItem>();
                 MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();
                 MessageContent = "";
+
+                if (firstStartup)
+                {
+                    SaltApp.SendMessage(settings.MyContactId, "Welcome!", "Hi\n\nThis is a default message, encrypted with the automatically created first key.\n\nRegards!", keyId.ToString());
+                }
 
                 LoadContacts();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
             }
         }
 

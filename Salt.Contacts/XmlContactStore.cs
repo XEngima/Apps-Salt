@@ -8,7 +8,7 @@ namespace Salt.Contacts
 {
     public class XmlContactStore : IContactStore
     {
-        public XmlContactStore(string folderPath, Guid myId)
+        public XmlContactStore(string folderPath, Guid myId, Guid myKeyId)
         {
             FolderPath = folderPath;
             ContactStoreItems = new List<ContactStoreItem>();
@@ -29,7 +29,7 @@ namespace Salt.Contacts
 
             if (filePaths.Length == 0)
             {
-                var meItem = new ContactStoreItem(myId, "Me", "");
+                var meItem = new ContactStoreItem(myId, "Me", myKeyId.ToString());
 
                 // Create a new StreamWriter
                 TextWriter writer = new StreamWriter(Path.Combine(FolderPath, "Me.xml"));

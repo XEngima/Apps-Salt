@@ -124,7 +124,7 @@ namespace Salt.Messages
             XmlSerializer serializer = new XmlSerializer(messageStoreItem.GetType());
 
             // Create a new StreamWriter
-            TextWriter writer = new StreamWriter(FolderPath + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00") + "_" + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + "_" + messageStoreItem.KeyName + "_" + messageStoreItem.KeyStartPos + ".xml");
+            TextWriter writer = new StreamWriter(Path.Combine(FolderPath, DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00") + "_" + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + "_" + messageStoreItem.KeyName + "_" + messageStoreItem.KeyStartPos + ".xml"));
 
             // Serialize the file
             serializer.Serialize(writer, messageStoreItem);
