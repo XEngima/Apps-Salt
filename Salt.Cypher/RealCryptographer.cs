@@ -84,7 +84,8 @@ namespace Salt.Cypher
                     newValue -= cCharValueCount;
                 }
 
-                sbEncryptedText.Append(ValueToChar(newValue));
+                char newChar = ValueToChar(newValue);
+                sbEncryptedText.Append(newChar);
             }
 
             // 2. Escape the escape character
@@ -124,14 +125,8 @@ namespace Salt.Cypher
                     newValue += cCharValueCount;
                 }
 
-                //// Check to see if this value actually is a printable character, otherwise it has gone around.
-
-                //if (CharToValue((char)newValue) == -1)
-                //{
-                //    newValue += cCharValueCount;
-                //}
-
-                sbDecryptedText.Append(ValueToChar(newValue));
+                char newChar = ValueToChar(newValue);
+                sbDecryptedText.Append(newChar);
             }
 
             return sbDecryptedText.ToString();
