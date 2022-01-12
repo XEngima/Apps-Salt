@@ -26,6 +26,11 @@ namespace Salt.Test
             return Contacts;
         }
 
+        public IContactStoreItem GetContactByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public IContactStoreItem GetContactStoreItem(Guid id)
         {
             foreach (var contact in Contacts)

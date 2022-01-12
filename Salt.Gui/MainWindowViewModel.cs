@@ -102,54 +102,58 @@ namespace Salt
                 }
 
                 var keyStore = Factory.CreateFileKeyStore(settings);
+                var contactStore = Factory.CreateXmlContactStore(settings, keyId);
 
-                SaltApp = new SaltApp(settings, Factory.CreateXmlContactStore(settings, keyId), Factory.CreateXmlMessageStore(settings), keyStore, new RealCryptographer());
+                SaltApp = new SaltApp(settings, contactStore, Factory.CreateXmlMessageStore(settings), keyStore, new RealCryptographer());
 
                 Contacts = new ObservableCollection<IContactStoreItem>();
                 MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();
                 MessageContent = "";
 
-                if (firstStartup)
+                var messageFilePaths = Directory.GetFiles(settings.MessageStoreFolderPath, "*.xml");
+
+                if (messageFilePaths.Length == 0)
                 {
-                    SaltApp.SendMessage(settings.MyContactId, "Welcome!", DefaultMessage.GetInstructionsMessage(), keyId.ToString());
+                    var contact = contactStore.GetContactByName("Me");
+                    SaltApp.SendMessage(settings.MyContactId, "Welcome!", DefaultMessage.GetInstructionsMessage(), contact.KeyName.ToString());
                 }
 
                 LoadContacts();
 
-                ////Debug
-                //string text = DefaultMessage.GetInstructionsMessage();
-                //string keyPart = keyStore.GetKeyPart("f83e6dcb-ff45-48d2-a7e8-bbddf58cd92f", 0, text.Length);
+            ////Debug
+            //string text = DefaultMessage.GetInstructionsMessage();
+            //string keyPart = keyStore.GetKeyPart("f83e6dcb-ff45-48d2-a7e8-bbddf58cd92f", 0, text.Length);
 
-                //if (text.Contains("Here are som instructions to get you started."))
-                //{
-                //    //int index = text.IndexOf("Here are som instructions to get you started.");
-                //    //int length = "Here are som instructions to get you started.".Length;
+            //if (text.Contains("Here are som instructions to get you started."))
+            //{
+            //    //int index = text.IndexOf("Here are som instructions to get you started.");
+            //    //int length = "Here are som instructions to get you started.".Length;
 
-                //    //text = text.Substring(index, length);
-                //    //keyPart = keyPart.Substring(index, length * 2);
+            //    //text = text.Substring(index, length);
+            //    //keyPart = keyPart.Substring(index, length * 2);
 
-                //    var chryptograpther = new RealCryptographer();
-                //    string encryptedText = chryptograpther.Encrypt(text, keyPart);
+            //    var chryptograpther = new RealCryptographer();
+            //    string encryptedText = chryptograpther.Encrypt(text, keyPart);
 
-                //    TextWriter writer = new StreamWriter(Path.Combine(@"C:\Users\SCBDEIS\Documents\", "Test.xml"));
-                //    writer.Write(encryptedText);
-                //    writer.Close();
+            //    TextWriter writer = new StreamWriter(Path.Combine(@"C:\Users\SCBDEIS\Documents\", "Test.xml"));
+            //    writer.Write(encryptedText);
+            //    writer.Close();
 
 
-                //    StreamReader reader = new StreamReader(Path.Combine(@"C:\Users\SCBDEIS\Documents\", "Test.xml"));
+            //    StreamReader reader = new StreamReader(Path.Combine(@"C:\Users\SCBDEIS\Documents\", "Test.xml"));
 
-                //    string encryptedText2 = reader.ReadToEnd();
-                //    reader.Close();
+            //    string encryptedText2 = reader.ReadToEnd();
+            //    reader.Close();
 
-                //    var decryptedText = chryptograpther.Decrypt(encryptedText2, keyPart);
-                //}
-            }
+            //    var decryptedText = chryptograpther.Decrypt(encryptedText2, keyPart);
+            //}
+        }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
-        }
+}
 
         private void LoadContacts()
         {

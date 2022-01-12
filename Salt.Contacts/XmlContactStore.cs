@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -67,6 +68,16 @@ namespace Salt.Contacts
         public IEnumerable<IContactStoreItem> GetAllContacts()
         {
             return ContactStoreItems;
+        }
+
+        /// <summary>
+        /// Gets a contact.
+        /// </summary>
+        /// <param name="name">The name of the contact.</param>
+        /// <returns>A contact. null if no contact with the current name exists.</returns>
+        public IContactStoreItem GetContactByName(string name)
+        {
+            return ContactStoreItems.FirstOrDefault(i => i.Name == name);
         }
     }
 }
