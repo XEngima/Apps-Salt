@@ -44,7 +44,13 @@ namespace Salt
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            OnSendMessage(new SendMessageEventArgs(DataContext.Recipient, DataContext.KeyName, DataContext.Subject, DataContext.Message));
+            var ev = new SendMessageEventArgs(DataContext.Recipient, DataContext.KeyName, DataContext.Subject, DataContext.Message);
+            OnSendMessage(ev);
+
+            if (ev.Handled)
+            {
+                Close();
+            }
         }
 
         public delegate void SendMessageEventHandler(object sender, SendMessageEventArgs e);

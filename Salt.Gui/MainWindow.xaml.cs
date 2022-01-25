@@ -69,6 +69,7 @@ namespace Salt
                     {
                         DataContext.SendMessage(recipient.Id, e.Subject, e.Message, recipient.KeyName);
                         MessageBox.Show("Message sent to " + e.Recipient + ".", "Message sent", MessageBoxButton.OK, MessageBoxImage.Information);
+                        e.Handled = true;
                     }
                 }
                 else
@@ -80,6 +81,11 @@ namespace Salt
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void NewContactMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

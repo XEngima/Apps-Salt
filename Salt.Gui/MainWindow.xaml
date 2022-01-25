@@ -15,7 +15,7 @@
                 <MenuItem x:Name="NewMessageMenuItem"  Header="_New message..." Click="NewMessageMenuItem_Click" />
             </MenuItem>
             <MenuItem Header="_Tools">
-                <MenuItem Header="_Add contact..." />
+                <MenuItem x:Name="NewContactMenuItem" Header="_Add contact..." Click="NewContactMenuItem_Click" />
             </MenuItem>
         </Menu>
         <Grid>

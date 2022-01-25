@@ -14,6 +14,7 @@ namespace Salt.Gui
             KeyName = keyName;
             Subject = subject;
             Message = message;
+            Handled = false;
         }
 
         public string Recipient { get; set; }
@@ -23,5 +24,7 @@ namespace Salt.Gui
         public string Subject { get; set; }
 
         public string Message { get; set; }
+
+        public bool Handled { get; set; }
     }
 }
