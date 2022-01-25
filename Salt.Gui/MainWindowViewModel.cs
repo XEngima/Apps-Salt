@@ -39,41 +39,48 @@ namespace Salt
         /// <returns></returns>
         private ISettings GetSettings()
         {
-            string path = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
-            ISettings settings;
-
-            // Create a new Serializer
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-
-            if (File.Exists(path))
+            try
             {
-                // Create a new StreamWriter
-                var reader = new StreamReader(path);
+                string path = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
+                ISettings settings;
 
-                // Serialize the file
-                settings = (Settings)serializer.Deserialize(reader);
+                // Create a new Serializer
+                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
 
-                // Close the writer
-                reader.Close();
+                if (File.Exists(path))
+                {
+                    // Create a new StreamWriter
+                    var reader = new StreamReader(path);
+
+                    // Serialize the file
+                    settings = (Settings)serializer.Deserialize(reader);
+
+                    // Close the writer
+                    reader.Close();
+                }
+                else
+                {
+                    settings = new Settings(Environment.CurrentDirectory);
+
+                    // Create a new StreamWriter
+                    TextWriter writer = new StreamWriter(path);
+
+                    // Serialize the file
+                    serializer.Serialize(writer, settings);
+
+                    // Close the writer
+                    writer.Close();
+                }
+
+                return settings;
             }
-            else
+            catch
             {
-                settings = new Settings(Environment.CurrentDirectory);
-
-                // Create a new StreamWriter
-                TextWriter writer = new StreamWriter(path);
-
-                // Serialize the file
-                serializer.Serialize(writer, settings);
-
-                // Close the writer
-                writer.Close();
+                return new Settings("C:\\Projekt\\Salt");
             }
-
-            return settings;
         }
 
-        public MainWindowViewModel()
+        public void Initialize()
         {
             // Create a settings object a
 
@@ -120,40 +127,48 @@ namespace Salt
 
                 LoadContacts();
 
-            ////Debug
-            //string text = DefaultMessage.GetInstructionsMessage();
-            //string keyPart = keyStore.GetKeyPart("f83e6dcb-ff45-48d2-a7e8-bbddf58cd92f", 0, text.Length);
+                ////Debug
+                //string text = DefaultMessage.GetInstructionsMessage();
+                //string keyPart = keyStore.GetKeyPart("f83e6dcb-ff45-48d2-a7e8-bbddf58cd92f", 0, text.Length);
 
-            //if (text.Contains("Here are som instructions to get you started."))
-            //{
-            //    //int index = text.IndexOf("Here are som instructions to get you started.");
-            //    //int length = "Here are som instructions to get you started.".Length;
+                //if (text.Contains("Here are som instructions to get you started."))
+                //{
+                //    //int index = text.IndexOf("Here are som instructions to get you started.");
+                //    //int length = "Here are som instructions to get you started.".Length;
 
-            //    //text = text.Substring(index, length);
-            //    //keyPart = keyPart.Substring(index, length * 2);
+                //    //text = text.Substring(index, length);
+                //    //keyPart = keyPart.Substring(index, length * 2);
 
-            //    var chryptograpther = new RealCryptographer();
-            //    string encryptedText = chryptograpther.Encrypt(text, keyPart);
+                //    var chryptograpther = new RealCryptographer();
+                //    string encryptedText = chryptograpther.Encrypt(text, keyPart);
 
-            //    TextWriter writer = new StreamWriter(Path.Combine(@"C:\Users\SCBDEIS\Documents\", "Test.xml"));
-            //    writer.Write(encryptedText);
-            //    writer.Close();
+                //    TextWriter writer = new StreamWriter(Path.Combine(@"C:\Users\SCBDEIS\Documents\", "Test.xml"));
+                //    writer.Write(encryptedText);
+                //    writer.Close();
 
 
-            //    StreamReader reader = new StreamReader(Path.Combine(@"C:\Users\SCBDEIS\Documents\", "Test.xml"));
+                //    StreamReader reader = new StreamReader(Path.Combine(@"C:\Users\SCBDEIS\Documents\", "Test.xml"));
 
-            //    string encryptedText2 = reader.ReadToEnd();
-            //    reader.Close();
+                //    string encryptedText2 = reader.ReadToEnd();
+                //    reader.Close();
 
-            //    var decryptedText = chryptograpther.Decrypt(encryptedText2, keyPart);
-            //}
-        }
+                //    var decryptedText = chryptograpther.Decrypt(encryptedText2, keyPart);
+                //}
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
-}
+        }
+
+        public MainWindowViewModel()
+        {
+            if (!DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+            {
+                Initialize();
+            }
+        }
 
         private void LoadContacts()
         {
