@@ -79,5 +79,23 @@ namespace Salt.Contacts
         {
             return ContactStoreItems.FirstOrDefault(i => i.Name == name);
         }
+
+        public void SaveContact(string name, Guid id, string keyName)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(ContactStoreItem));
+
+            var item = new ContactStoreItem(id, name, keyName);
+
+            // Create a new StreamWriter
+            TextWriter writer = new StreamWriter(Path.Combine(FolderPath, name + ".xml"));
+
+            // Serialize the file
+            serializer.Serialize(writer, item);
+
+            // Close the writer
+            writer.Close();
+
+            ContactStoreItems.Add(item);
+        }
     }
 }

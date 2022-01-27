@@ -17,5 +17,7 @@ namespace Salt.Business
         SaltMessage GetMessage(Guid id);
 
         void SendMessage(Guid recipient, string subject, string message, string keyName);
+
+        void SaveContact(string name, Guid id, string keyName);
     }
 }

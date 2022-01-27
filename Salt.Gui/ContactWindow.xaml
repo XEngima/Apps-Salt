@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Salt"
         mc:Ignorable="d"
-        Title="Contact" Height="auto" Width="353" d:DesignHeight="226.676" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+        Title="Contact" Height="248" Width="353" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen" d:DesignHeight="225.96">
     <Window.DataContext>
         <local:ContactWindowViewModel></local:ContactWindowViewModel>
     </Window.DataContext>

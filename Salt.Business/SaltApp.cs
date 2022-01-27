@@ -160,6 +160,11 @@ namespace Salt.Business
             return returnItems;
         }
 
+        public void SaveContact(string name, Guid id, string keyName)
+        {
+            ContactStore.SaveContact(name, id, keyName);
+        }
+
         public void SendMessage(Guid recipient, string subject, string message, string keyName)
         {
             // Find next key position

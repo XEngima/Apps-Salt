@@ -85,7 +85,18 @@ namespace Salt
 
         private void NewContactMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            var contactWindow = new ContactWindow();
 
+            contactWindow.UpdateContact += ContactWindow_UpdateContact;
+
+            contactWindow.ShowDialog();
+        }
+
+        private void ContactWindow_UpdateContact(object sender, ContactEventArgs e)
+        {
+            MessageBox.Show(e.Name);
+            DataContext.SaveContact(e.Name, Guid.Parse(e.ContactId), e.KeyName);
+            e.Handled = true;
         }
     }
 }

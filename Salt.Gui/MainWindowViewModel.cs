@@ -247,5 +247,11 @@ namespace Salt
         {
             SaltApp.SendMessage(recipient, subject, message, keyName);
         }
+
+        public void SaveContact(string name, Guid id, string keyName)
+        {
+            SaltApp.SaveContact(name, id, keyName);
+            Contacts.Add(new ContactStoreItem(id, name, keyName));
+        }
     }
 }

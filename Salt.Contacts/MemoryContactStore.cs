@@ -33,5 +33,10 @@ namespace Salt.Contacts
         {
             return Items.FirstOrDefault(i => i.Name == name);
         }
+
+        public void SaveContact(string name, Guid id, string keyName)
+        {
+            Items.Add(new ContactStoreItem(id, name, keyName));
+        }
     }
 }
