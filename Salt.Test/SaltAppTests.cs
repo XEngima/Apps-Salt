@@ -267,5 +267,27 @@ namespace Salt.Test
             Assert.IsNotNull(exception);
             Assert.AreEqual("The key 'NONEXISTINGKEYNAME' is not present in the key store.", exception.Message);
         }
+
+        [TestMethod]
+        public void ContactWithNoName_ContactSaved_CorrectException()
+        {
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
+            ContactException exception = null;
+
+            // Act
+
+            try
+            {
+                saltApp.SaveContact("", Guid.NewGuid(), "DanielTobiasKey");
+            }
+            catch (ContactException ex)
+            {
+                exception = ex;
+            }
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual("A contact must have a name.", exception.Message);
+        }
     }
 }
