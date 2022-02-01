@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Salt.Business
 {
-    public class MessagingException : ApplicationException
+    public class ContactException : ApplicationException
     {
-        public MessagingException()
+        public ContactException()
             :base()
         {
         }
 
-        public MessagingException(string message)
+        public ContactException(string message)
             :base(message)
         {
         }

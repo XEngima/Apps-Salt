@@ -245,5 +245,27 @@ namespace Salt.Test
             Assert.IsNotNull(messagingException);
             Assert.AreEqual("The key 'VeryShortKey' is exceeded.", messagingException.Message);
         }
+
+        [TestMethod]
+        public void ContactWithNonExistingKey_ContactSaved_CorrectException()
+        {
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
+            ContactException exception = null;
+
+            // Act
+
+            try
+            {
+                saltApp.SaveContact("Gusten", Guid.NewGuid(), "NONEXISTINGKEYNAME");
+            }
+            catch (ContactException ex)
+            {
+                exception = ex;
+            }
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual("The key 'NONEXISTINGKEYNAME' is not present in the key store.", exception.Message);
+        }
     }
 }

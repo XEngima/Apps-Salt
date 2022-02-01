@@ -46,7 +46,6 @@ namespace Salt.Test
 
         public void SaveContact(string name, Guid id, string keyName)
         {
-            throw new NotImplementedException();
         }
     }
 }

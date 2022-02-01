@@ -94,15 +94,22 @@ namespace Salt
 
         private void ContactWindow_UpdateContact(object sender, ContactEventArgs e)
         {
-            Guid uid;
-            if (Guid.TryParse(e.ContactId, out uid))
+            try
             {
-                DataContext.SaveContact(e.Name, uid, e.KeyName);
-                e.Handled = true;
+                Guid uid;
+                if (Guid.TryParse(e.ContactId, out uid))
+                {
+                    DataContext.SaveContact(e.Name, uid, e.KeyName);
+                    e.Handled = true;
+                }
+                else
+                {
+                    MessageBox.Show("A user's ID must be a valid UUID.", "Key error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (ContactException ex)
             {
-                MessageBox.Show("The ID must be a valid UUID.");
+                MessageBox.Show(ex.Message, "Key error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
