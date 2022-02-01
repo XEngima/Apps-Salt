@@ -223,5 +223,10 @@ namespace Salt.Business
             MessageStoreItem item = new MessageStoreItem(Guid.NewGuid(), keyName, keyPos, keyPart.Length, encryptedHeader, encryptedSubject, encryptedMessage);
             MessageStore.SendMessage(item);
         }
+
+        public Guid GenerateKey()
+        {
+            return KeyFileGenerator.CreateNewKeyFile(Settings.KeyStoreFolderPath, 300000);
+        }
     }
 }

@@ -112,5 +112,11 @@ namespace Salt
                 MessageBox.Show(ex.Message, "Key error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void NewKeyMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Guid keyId = DataContext.GenerateKey();
+            MessageBox.Show("Key '" + keyId + ".key' successfully created.", "Key created", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

@@ -19,5 +19,7 @@ namespace Salt.Business
         void SendMessage(Guid recipient, string subject, string message, string keyName);
 
         void SaveContact(string name, Guid id, string keyName);
+
+        Guid GenerateKey();
     }
 }

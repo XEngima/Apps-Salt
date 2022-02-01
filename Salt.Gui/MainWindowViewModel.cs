@@ -253,5 +253,10 @@ namespace Salt
             SaltApp.SaveContact(name, id, keyName);
             Contacts.Add(new ContactStoreItem(id, name, keyName));
         }
+
+        public Guid GenerateKey()
+        {
+            return SaltApp.GenerateKey();
+        }
     }
 }

@@ -16,6 +16,8 @@
             </MenuItem>
             <MenuItem Header="_Tools">
                 <MenuItem x:Name="NewContactMenuItem" Header="_Add contact..." Click="NewContactMenuItem_Click" />
+                <Separator/>
+                <MenuItem x:Name="NewKeyMenuItem" Header="_Generate a new key" Click="NewKeyMenuItem_Click" />
             </MenuItem>
         </Menu>
         <Grid>
