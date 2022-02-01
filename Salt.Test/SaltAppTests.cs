@@ -289,5 +289,27 @@ namespace Salt.Test
             Assert.IsNotNull(exception);
             Assert.AreEqual("A contact must have a name.", exception.Message);
         }
+
+        [TestMethod]
+        public void ContactAlreadyExists_NewContactSaved_CorrectException()
+        {
+            var saltApp = new SaltApp(Settings, ContactStore, MessageStore, KeyStore, Cryptographer);
+            ContactException exception = null;
+
+            // Act
+
+            try
+            {
+                saltApp.SaveContact("Tobias", Guid.NewGuid(), "DanielTobiasKey");
+            }
+            catch (ContactException ex)
+            {
+                exception = ex;
+            }
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual("The contact 'Tobias' already exists in the contact store.", exception.Message);
+        }
     }
 }

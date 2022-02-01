@@ -162,10 +162,15 @@ namespace Salt.Business
 
         public void SaveContact(string name, Guid id, string keyName)
         {
-            // Check to see if the key is in the key store
             if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ContactException("A contact must have a name.");
+            }
+
+            var existingContact = ContactStore.GetContactByName(name);
+            if (existingContact != null)
+            {
+                throw new ContactException("The contact '" + name + "' already exists in the contact store.");
             }
 
             // Check to see if the key is in the key store

@@ -28,7 +28,7 @@ namespace Salt.Test
 
         public IContactStoreItem GetContactByName(string name)
         {
-            throw new NotImplementedException();
+            return Contacts.FirstOrDefault(c => c.Name == name);
         }
 
         public IContactStoreItem GetContactStoreItem(Guid id)
