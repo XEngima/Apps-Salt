@@ -31,7 +31,7 @@ namespace Salt.Contacts
         /// <returns>A contact. null if no contact with the current name exists.</returns>
         public IContactStoreItem GetContactByName(string name)
         {
-            return Items.FirstOrDefault(i => i.Name == name);
+            return Items.FirstOrDefault(i => i.Name?.ToLower() == name?.ToLower());
         }
 
         public void SaveContact(string name, Guid id, string keyName)
