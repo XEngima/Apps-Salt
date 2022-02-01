@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Salt.Contacts;
 using Salt.Keys;
 using Salt.Messages;
+using Salt.Shared;
 
 namespace Salt.Business
 {
@@ -31,7 +32,7 @@ namespace Salt.Business
 
         public static IContactStore CreateXmlContactStore(ISettings settings, Guid myKeyName)
         {
-            return new XmlContactStore(settings.ContactStoreFolderPath, settings.MyContactId, myKeyName);
+            return new XmlContactStore(new FileService(), settings.ContactStoreFolderPath, settings.MyContactId, myKeyName);
         }
 
         private static MemoryMessageStore InitializeMemoryMessageStore()
