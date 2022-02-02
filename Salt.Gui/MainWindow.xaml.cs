@@ -3,6 +3,7 @@ using Salt.Gui;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,6 +118,21 @@ namespace Salt
         {
             Guid keyId = DataContext.GenerateKey();
             MessageBox.Show("Key '" + keyId + ".key' successfully created.", "Key created", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void OpenKeyStoreLocationMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", DataContext.Settings.KeyStoreFolderPath);
+        }
+
+        private void OpenContactStoreLocationMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", DataContext.Settings.ContactStoreFolderPath);
+        }
+
+        private void OpenMessageStoreLocationMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", DataContext.Settings.MessageStoreFolderPath);
         }
     }
 }
