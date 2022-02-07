@@ -80,6 +80,8 @@ namespace Salt
             }
         }
 
+        public ISettings Settings { get; private set; }
+
         public void Initialize()
         {
             // Create a settings object a
@@ -89,40 +91,40 @@ namespace Salt
                 string settingsFilePath = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
                 bool firstStartup = !File.Exists(settingsFilePath);
 
-                var settings = GetSettings();
+                Settings = GetSettings();
 
                 // if the key store directory does not exist, then create it
 
-                if (!Directory.Exists(settings.KeyStoreFolderPath))
+                if (!Directory.Exists(Settings.KeyStoreFolderPath))
                 {
-                    Directory.CreateDirectory(settings.KeyStoreFolderPath);
+                    Directory.CreateDirectory(Settings.KeyStoreFolderPath);
                 }
 
                 // If there are no key files - e.g. first startup - then create a key.
 
-                var filePaths = Directory.GetFiles(settings.KeyStoreFolderPath, "*.key");
+                var filePaths = Directory.GetFiles(Settings.KeyStoreFolderPath, "*.key");
                 var keyId = Guid.Empty;
 
                 if (filePaths.Length == 0)
                 {
-                    keyId = KeyFileGenerator.CreateNewKeyFile(settings.KeyStoreFolderPath, 300000);
+                    keyId = KeyFileGenerator.CreateNewKeyFile(Settings.KeyStoreFolderPath, 300000);
                 }
 
-                var keyStore = Factory.CreateFileKeyStore(settings);
-                var contactStore = Factory.CreateXmlContactStore(settings, keyId);
+                var keyStore = Factory.CreateFileKeyStore(Settings);
+                var contactStore = Factory.CreateXmlContactStore(Settings, keyId);
 
-                SaltApp = new SaltApp(settings, contactStore, Factory.CreateXmlMessageStore(settings), keyStore, new RealCryptographer());
+                SaltApp = new SaltApp(Settings, contactStore, Factory.CreateXmlMessageStore(Settings), keyStore, new RealCryptographer());
 
                 Contacts = new ObservableCollection<IContactStoreItem>();
                 MessageHeaders = new ObservableCollection<MessageHeaderViewModel>();
                 MessageContent = "";
 
-                var messageFilePaths = Directory.GetFiles(settings.MessageStoreFolderPath, "*.xml");
+                var messageFilePaths = Directory.GetFiles(Settings.MessageStoreFolderPath, "*.xml");
 
                 if (messageFilePaths.Length == 0)
                 {
                     var contact = contactStore.GetContactByName("Me");
-                    SaltApp.SendMessage(settings.MyContactId, "Welcome!", DefaultMessage.GetInstructionsMessage(), contact.KeyName.ToString());
+                    SaltApp.SendMessage(Settings.MyContactId, "Welcome!", DefaultMessage.GetInstructionsMessage(), contact.KeyName.ToString());
                 }
 
                 LoadContacts();

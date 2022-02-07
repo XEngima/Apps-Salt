@@ -18,6 +18,10 @@
                 <MenuItem x:Name="NewContactMenuItem" Header="_Add contact..." Click="NewContactMenuItem_Click" />
                 <Separator/>
                 <MenuItem x:Name="NewKeyMenuItem" Header="_Generate a new key" Click="NewKeyMenuItem_Click" />
+                <Separator/>
+                <MenuItem x:Name="OpenKeyStoreLocationMenuItem" Header="Open _Key Store Location" Click="OpenKeyStoreLocationMenuItem_Click" />
+                <MenuItem x:Name="OpenContactStoreLocationMenuItem" Header="Open _Contact Store Location" Click="OpenContactStoreLocationMenuItem_Click" />
+                <MenuItem x:Name="OpenMessageStoreLocationMenuItem" Header="Open _Message Store Location" Click="OpenMessageStoreLocationMenuItem_Click" />
             </MenuItem>
         </Menu>
         <Grid>
