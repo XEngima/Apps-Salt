@@ -26,6 +26,7 @@
                 <MenuItem x:Name="OpenKeyStoreLocationMenuItem" Header="Open _Key Store Location" Click="OpenKeyStoreLocationMenuItem_Click" />
                 <MenuItem x:Name="OpenContactStoreLocationMenuItem" Header="Open _Contact Store Location" Click="OpenContactStoreLocationMenuItem_Click" />
                 <MenuItem x:Name="OpenMessageStoreLocationMenuItem" Header="Open _Message Store Location" Click="OpenMessageStoreLocationMenuItem_Click" />
+                <MenuItem x:Name="OpenSettingsFileLocationMenuItem" Header="Open _Settings File Location" Click="OpenSettingsFileLocationMenuItem_Click" />
             </MenuItem>
         </Menu>
         <Grid>

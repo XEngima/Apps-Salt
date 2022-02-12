@@ -146,5 +146,10 @@ namespace Salt
             Guid keyId = DataContext.GenerateKey(30000000);
             MessageBox.Show("Key '" + keyId + ".key' successfully created in the key store.", "Key created", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void OpenSettingsFileLocationMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Salt"));
+        }
     }
 }
