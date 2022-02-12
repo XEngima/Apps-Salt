@@ -41,7 +41,7 @@ namespace Salt
         {
             try
             {
-                string path = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
+                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Salt", "Settings.xml");
                 ISettings settings;
 
                 // Create a new Serializer
@@ -60,7 +60,7 @@ namespace Salt
                 }
                 else
                 {
-                    settings = new Settings(Environment.CurrentDirectory);
+                    settings = new Settings(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Salt"));
 
                     // Create a new StreamWriter
                     TextWriter writer = new StreamWriter(path);
@@ -88,7 +88,12 @@ namespace Salt
 
             try
             {
-                string settingsFilePath = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
+                if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Salt")))
+                {
+                    Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Salt"));
+                }
+
+                string settingsFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Salt", "Settings.xml");
                 bool firstStartup = !File.Exists(settingsFilePath);
 
                 Settings = GetSettings();
