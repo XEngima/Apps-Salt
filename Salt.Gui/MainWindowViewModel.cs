@@ -256,9 +256,9 @@ namespace Salt
             Contacts.Add(new ContactStoreItem(id, name, keyName));
         }
 
-        public Guid GenerateKey()
+        public Guid GenerateKey(int size)
         {
-            return SaltApp.GenerateKey();
+            return SaltApp.GenerateKey(size);
         }
     }
 }

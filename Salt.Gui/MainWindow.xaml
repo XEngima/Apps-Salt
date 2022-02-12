@@ -17,7 +17,11 @@
             <MenuItem Header="_Tools">
                 <MenuItem x:Name="NewContactMenuItem" Header="_Add contact..." Click="NewContactMenuItem_Click" />
                 <Separator/>
-                <MenuItem x:Name="NewKeyMenuItem" Header="_Generate a new key" Click="NewKeyMenuItem_Click" />
+                <MenuItem x:Name="NewKeyMenuItem" Header="_Generate a new key">
+                    <MenuItem x:Name="NewKeySmallMenuItem" Header="_Small (300.000 characters)" Click="NewKeySmallMenuItem_Click" />
+                    <MenuItem x:Name="NewKeyMediumMenuItem" Header="_Medium (3.000.000 characters)" Click="NewKeyMediumMenuItem_Click" />
+                    <MenuItem x:Name="NewKeyLargeMenuItem" Header="_Large (30.000.000 characters)" Click="NewKeyLargeMenuItem_Click" />
+                </MenuItem>
                 <Separator/>
                 <MenuItem x:Name="OpenKeyStoreLocationMenuItem" Header="Open _Key Store Location" Click="OpenKeyStoreLocationMenuItem_Click" />
                 <MenuItem x:Name="OpenContactStoreLocationMenuItem" Header="Open _Contact Store Location" Click="OpenContactStoreLocationMenuItem_Click" />

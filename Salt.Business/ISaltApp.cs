@@ -20,6 +20,6 @@ namespace Salt.Business
 
         void SaveContact(string name, Guid id, string keyName);
 
-        Guid GenerateKey();
+        Guid GenerateKey(int size);
     }
 }

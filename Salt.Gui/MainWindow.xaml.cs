@@ -114,9 +114,9 @@ namespace Salt
             }
         }
 
-        private void NewKeyMenuItem_Click(object sender, RoutedEventArgs e)
+        private void NewKeySmallMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Guid keyId = DataContext.GenerateKey();
+            Guid keyId = DataContext.GenerateKey(300000);
             MessageBox.Show("Key '" + keyId + ".key' successfully created in the key store.", "Key created", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -133,6 +133,18 @@ namespace Salt
         private void OpenMessageStoreLocationMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("explorer.exe", DataContext.Settings.MessageStoreFolderPath);
+        }
+
+        private void NewKeyMediumMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Guid keyId = DataContext.GenerateKey(3000000);
+            MessageBox.Show("Key '" + keyId + ".key' successfully created in the key store.", "Key created", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void NewKeyLargeMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Guid keyId = DataContext.GenerateKey(30000000);
+            MessageBox.Show("Key '" + keyId + ".key' successfully created in the key store.", "Key created", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

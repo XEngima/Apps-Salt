@@ -224,9 +224,9 @@ namespace Salt.Business
             MessageStore.SendMessage(item);
         }
 
-        public Guid GenerateKey()
+        public Guid GenerateKey(int size)
         {
-            return KeyFileGenerator.CreateNewKeyFile(Settings.KeyStoreFolderPath, 300000);
+            return KeyFileGenerator.CreateNewKeyFile(Settings.KeyStoreFolderPath, size);
         }
     }
 }
